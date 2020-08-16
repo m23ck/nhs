@@ -36,7 +36,7 @@ module.exports = {
         );
     },
     getGebruikerById: (id, callBack) => {
-        pool.query(`select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where id = ?`,
+        pool.query(`select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where gebruiker.id = ?`,
             [id],
             (error, results, fields) => {
                 if (error) {

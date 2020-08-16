@@ -1,13 +1,14 @@
 function redirectIfToken() {
-    jwToken = localStorage.getItem("token");
+    jwToken = localStorage.getItem("token")
+    usertype = localStorage.getItem("gebruiker_type")
     if (jwToken != null) {
-      if (localStorage.getItem("token") == "admin") {
+      if (localStorage.getItem("gebruiker_type") == "admin") {
         window.location.replace("./src/views/Admin/dashboard.html");
       }
-      else if (localStorage.getItem("token") == "docent") {
+      else if (localStorage.getItem("gebruiker_type") == "docent") {
         window.location.replace("./src/views/Docent/dashboard.html");
       }
-      else if (localStorage.getItem("token") == "student") {
+      else if (localStorage.getItem("gebruiker_type") == "student") {
         window.location.replace("./src/views/Student/dashboard.html");
       }
       else{

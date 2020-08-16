@@ -35,8 +35,11 @@
       type="text/javascript"
       src="../../../src/style/materialize/js/materialize.min.js"
     ></script>
+    <script src="../../controllers/main.js"></script>
+    <script src="../../controllers/permissions.js"></script>
     <script>
       M.AutoInit();
+      redirectIfNotPermitted();
     </script>
   </body>
 </html>
