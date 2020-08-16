@@ -100,7 +100,20 @@ module.exports = {
                 if (error) {
                     return callBack(error);
                 }
-                return callBack(null, results[0]);
+                return callBack(null, results);
+            }
+        );
+
+    },
+    getGebruikersByType: (type, callBack) => {
+        pool.query(
+            'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where type = ?',
+            [type],
+            (error, results, fields) => {
+                if (error) {
+                    return callBack(error);
+                }
+                return callBack(null, results);
             }
         );
 
