@@ -2,6 +2,7 @@ const {
     createGebruiker,
     getGebruikerById,
     getGebruikers,
+    getGebruikersByCohort,
     updateGebruiker,
     deleteGebruiker,
     getGebruikerByEmail
@@ -57,6 +58,25 @@ module.exports = {
     getGebruikerByEmail: (req, res) => {
         const email = req.params.email;
         getGebruikerByEmail(email, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.status(404).json({
+                    succes: 0,
+                    message: "Gebruiker bestaat niet!"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getGebruikersByCohort: (req, res) => {
+        const cohort = req.params.cohort;
+        getGebruikersByCohort(cohort, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
@@ -170,12 +190,16 @@ module.exports = {
                 }, process.env.KEY, {
                     expiresIn: "10h"
                 });
+                console.log(results.type)
                 return res.status(200).json({
                     success: 1,
                     message: "Login Succesvol",
                     token: jsonToken,
-                    gebruiker_id: results.id
+                    gebruiker_id: results.id,
+                    gebruiker_type: results.type
                 });
+                
+                
             } else {
                 return res.status(401).json({
                     success: 0,

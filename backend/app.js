@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 
 const app = express();
 const gebruikerRouter = require("./server/routes/gebruiker.route");
-const typeRouter = require("./server/routes/type.model");
+const typeRouter = require("./server/routes/type.route");
 const klasRouter = require("./server/routes/klas.route");
 const roadmapRouter = require("./server/routes/roadmap.route");
 const assignmentRouter = require("./server/routes/assignment.route");

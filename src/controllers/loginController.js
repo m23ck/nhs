@@ -1,7 +1,18 @@
 function redirectIfToken() {
     jwToken = localStorage.getItem("token");
     if (jwToken != null) {
-      window.location.replace("./src/views/dashboard.html");
+      if (localStorage.getItem("token") == "admin") {
+        window.location.replace("./src/views/Admin/dashboard.html");
+      }
+      else if (localStorage.getItem("token") == "docent") {
+        window.location.replace("./src/views/Docent/dashboard.html");
+      }
+      else if (localStorage.getItem("token") == "student") {
+        window.location.replace("./src/views/Student/dashboard.html");
+      }
+      else{
+        console.log("Kan gebruiker_type niet vinden!")
+      }
       alert("Er is al een gebruiker ingelogd!");
     }
   }
@@ -23,7 +34,7 @@ function redirectIfToken() {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
   
-    fetch('http://127.0.0.1:3000/server/gebruiker/login', {
+    fetch('http://127.0.0.1:3000/gebruiker/login', {
       method: 'POST',
       headers: myHeaders,
       mode: 'cors',
@@ -34,8 +45,20 @@ function redirectIfToken() {
       .then(data => {
         if (data.token) {
           localStorage.setItem("token", data.token);
-          localStorage.setItem("gebruiker_id", data.id);
-          window.location.replace("./src/views/dashboard.html");
+          localStorage.setItem("gebruiker_id", data.gebruiker_id);
+          localStorage.setItem("gebruiker_type", data.gebruiker_type);
+          if (data.gebruiker_type == "admin") {
+            window.location.replace("./src/views/Admin/dashboard.html");
+          }
+          else if (data.gebruiker_type == "docent") {
+            window.location.replace("./src/views/Docent/dashboard.html");
+          }
+          else if (data.gebruiker_type == "student") {
+            window.location.replace("./src/views/Student/dashboard.html");
+          }
+          else{
+            console.log("Kan gebruiker_type niet vinden!")
+          }
   
         } else {
   
