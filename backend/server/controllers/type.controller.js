@@ -25,7 +25,7 @@ module.exports = {
         })
     },
     getTypeById: (req, res) => {
-        const type_id = req.params.id;
+        const type_id = req.params.type_id;
         getTypeById(type_id, (err, results) => {
             if (err) {
                 console.log(err);
@@ -63,7 +63,7 @@ module.exports = {
     },
     updateType: (req, res) => {
         const body = req.body;
-        const type_id = req.params.id;
+        const type_id = req.params.type_id;
         getTypeById(type_id, (err, results) => {
             if (err) {
                 console.log(err);
@@ -91,7 +91,7 @@ module.exports = {
 
     },
     deleteType: (req, res) => {
-        const type_id = req.params.id;
+        const type_id = req.params.type_id;
         getTypeById(type_id, (err, results) => {
             if (err) {
                 console.log(err);

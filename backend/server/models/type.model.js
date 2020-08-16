@@ -25,9 +25,9 @@ module.exports = {
       }
     );
   },
-  getTypeById: (id, callBack) => {
+  getTypeById: (type_id, callBack) => {
     pool.query(
-      `select * from type where id = ?`,
+      `select * from type where type_id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {
@@ -37,12 +37,12 @@ module.exports = {
       }
     );
   },
-  updateType: (data, id, callBack) => {
+  updateType: (data, type_id, callBack) => {
     pool.query(
-      'update type set type = ? where id = ?',
+      'update type set type = ? where type_id = ?',
       [
         data.type,
-        id
+        type_id
       ],
       (error, results, fields) => {
         if (error) {
@@ -54,7 +54,7 @@ module.exports = {
   },
   deleteType: (id, callBack) => {
     pool.query(
-      `delete from type where id = ?`,
+      `delete from type where type_id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {

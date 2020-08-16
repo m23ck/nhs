@@ -25,7 +25,7 @@ module.exports = {
     },
     getGebruikers: callBack => {
         pool.query(
-            `select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id`,
+            `select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.type_id`,
             [],
             (error, results, fields) => {
                 if (error) {
@@ -36,7 +36,7 @@ module.exports = {
         );
     },
     getGebruikerById: (id, callBack) => {
-        pool.query(`select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where gebruiker.id = ?`,
+        pool.query(`select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.type_id where gebruiker.id = ?`,
             [id],
             (error, results, fields) => {
                 if (error) {
@@ -81,7 +81,7 @@ module.exports = {
     },
     getGebruikerByEmail: (email, callBack) => {
         pool.query(
-            'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where email = ?',
+            'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.type_id where email = ?',
             [email],
             (error, results, fields) => {
                 if (error) {
@@ -107,7 +107,7 @@ module.exports = {
     },
     getGebruikersByType: (type, callBack) => {
         pool.query(
-            'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.id where type = ?',
+            'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.type_id where type = ?',
             [type],
             (error, results, fields) => {
                 if (error) {
