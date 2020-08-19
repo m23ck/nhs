@@ -2,8 +2,8 @@ const current_token2 = localStorage.getItem("token");
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);
-
-fetch(`http://127.0.0.1:3000/gebruiker/type/student`, {
+// const type_user = "docent"
+fetch(`http://127.0.0.1:3000/gebruiker/type/docent`, {
   method: "GET",
   headers: myHeaders,
   mode: "cors",
@@ -23,7 +23,6 @@ fetch(`http://127.0.0.1:3000/gebruiker/type/student`, {
         body += "<td>" + i.naam + "</td>";
         body += "<td>" + i.voornaam + "</td>";
         body += "<td>" + i.email + "</td>";
-        body += "<td>" + i.cohort + "</td>";
         body += "<td>" + i.telefoon + "</td>";
         body += "<td>" + i.adres + "</td>";
         body += "<td>" + i.type + "</td>";

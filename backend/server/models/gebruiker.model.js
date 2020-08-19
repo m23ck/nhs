@@ -4,7 +4,7 @@ const pool = require("../../config/config");
 module.exports = {
     createGebruiker: (data, callBack) => {
         pool.query(
-            'insert into gebruiker(gebruiker_type_id, naam, voornaam, email, cohort, telefoon, adres, wachtwoord) values(?,?,?,?,?,?,?,?)',
+            'insert into gebruiker(gebruiker_type_id, naam, voornaam, email, cohort, telefoon, adres, wachtwoord, status) values(?,?,?,?,?,?,?,?,?)',
             [
                 data.gebruiker_type_id,
                 data.naam,
@@ -13,7 +13,8 @@ module.exports = {
                 data.cohort,
                 data.telefoon,
                 data.adres,
-                data.wachtwoord
+                data.wachtwoord,
+                data.status
             ],
             (error, results, fields) => {
                 if (error) {
@@ -47,7 +48,7 @@ module.exports = {
         );
     },
     updateGebruiker: (data, id, callBack) => {
-        pool.query('update gebruiker set gebruiker_type_id = ?, naam = ?, voornaam = ?, email = ?, cohort = ?, telefoon = ?, adres = ?, wachtwoord = ? where id = ?',
+        pool.query('update gebruiker set gebruiker_type_id = ?, naam = ?, voornaam = ?, email = ?, cohort = ?, telefoon = ?, adres = ?, wachtwoord = ?, status = ? where id = ?',
             [
                 data.gebruiker_type_id,
                 data.naam,
@@ -57,6 +58,7 @@ module.exports = {
                 data.telefoon,
                 data.adres,
                 data.wachtwoord,
+                data.status,
                 id
             ],
             (error, results, fields) => {
@@ -109,6 +111,19 @@ module.exports = {
         pool.query(
             'select * from gebruiker inner join type on gebruiker.gebruiker_type_id=type.type_id where type = ?',
             [type],
+            (error, results, fields) => {
+                if (error) {
+                    return callBack(error);
+                }
+                return callBack(null, results);
+            }
+        );
+
+    },
+    getGebruikersByStatus: (status, callBack) => {
+        pool.query(
+            'select * from gebruiker where status = ?',
+            [status],
             (error, results, fields) => {
                 if (error) {
                     return callBack(error);

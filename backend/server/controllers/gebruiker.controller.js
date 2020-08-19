@@ -4,6 +4,7 @@ const {
     getGebruikers,
     getGebruikersByCohort,
     getGebruikersByType,
+    getGebruikersByStatus,
     updateGebruiker,
     deleteGebruiker,
     getGebruikerByEmail
@@ -78,6 +79,25 @@ module.exports = {
     getGebruikersByCohort: (req, res) => {
         const cohort = req.params.cohort;
         getGebruikersByCohort(cohort, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.status(404).json({
+                    succes: 0,
+                    message: "Gebruiker bestaat niet!"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getGebruikersByStatus: (req, res) => {
+        const status = req.params.status;
+        getGebruikersByStatus(status, (err, results) => {
             if (err) {
                 console.log(err);
                 return;

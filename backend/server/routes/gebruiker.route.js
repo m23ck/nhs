@@ -7,6 +7,7 @@ const {
     getGebruikerByEmail,
     getGebruikersByCohort,
     getGebruikersByType,
+    getGebruikersByStatus,
     login
 } = require("../controllers/gebruiker.controller");
 const router = require("express").Router();
@@ -16,7 +17,8 @@ router.post("/", checkToken, createGebruiker);
 router.get("/", checkToken, getGebruikers);
 router.get("/:id", checkToken, getGebruikerById);
 router.get("/:email", checkToken, getGebruikerByEmail);
-router.get("/:cohort", checkToken, getGebruikersByCohort);
+router.get("/cohort/:cohort", checkToken, getGebruikersByCohort);
+router.get("/status/:status", checkToken, getGebruikersByStatus);
 router.get("/type/:type", checkToken, getGebruikersByType);
 router.put("/:id", checkToken, updateGebruiker);
 router.delete("/:id", checkToken, deleteGebruiker);

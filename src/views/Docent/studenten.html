@@ -62,7 +62,7 @@
             </nav>
         </div>
     
-        <!-- Docenten Table -->
+        <!-- Studenten Table -->
         <div class="container">
             <div class="row">
                 <blockquote>
@@ -80,10 +80,11 @@
                                 <th>Telefoon</th>
                                 <th>Adres</th>
                                 <th>Type</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody id="docentTableBody">
+                        <tbody id="studentTableBody">
                         </tbody>
                     </table>
                 </div>
@@ -92,7 +93,7 @@
     
         <!-- Floating Gebruiker Button -->
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_docent">
+            <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_student">
                 <i class="large material-icons">add</i>
             </a>
         </div>
@@ -104,7 +105,7 @@
                 <br>
                 <div>
                     <div class="row">
-                        <form class="col s12" method="POST" id="docentForm" name="docentForm"
+                        <form class="col s12" method="POST" id="studentForm" name="studentForm"
                             onsubmit="return createStudent()">
                             <div class="row">
                                 <div class="input-field col s6">
@@ -128,7 +129,18 @@
                                     <label for="email">Email</label>
                                 </div>
                             </div>
-                            <!-- cohort -->
+                            <div class="row">
+    
+                                <div class="input-field col s6">
+                                    <input type="text" name="cohort" id="cohort" required>
+                                    <label for="cohort">Cohort</label>
+                                </div>
+    
+                                <div class="input-field col s6">
+                                    <input type="text" name="status" id="status" value="new" required disabled>
+                                    <label for="status">status</label>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input type="text" name="adres" id="adres" required>
@@ -158,14 +170,14 @@
         </div>
     
         <!-- update docent modal -->
-        <div id="modal_update_docent" class="modal" style="height: 900px;">
+        <div id="modal_update_student" class="modal" style="height: 900px;">
             <div class="modal-content">
-                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Docent wijzigen</h3>
+                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Student wijzigen</h3>
                 <br>
                 <div>
                     <div class="row">
-                        <form class="col s12" method="POST" id="updateDocentForm" name="updateDocentForm"
-                            onsubmit="return updateDocent()">
+                        <form class="col s12" method="POST" id="updateStudentForm" name="updateStudentForm"
+                            onsubmit="return updateStudent()">
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input type="text" name="naam" id="updateNaam" required>
@@ -186,6 +198,18 @@
                                 <div class="input-field col s6">
                                     <input type="text" name="email" id="updateEmail" required>
                                     <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                   
+                                <div class="input-field col s6">
+                                    <input type="text" name="cohort" id="updateCohort" required>
+                                    <label for="cohort">Cohort</label>
+                                </div>
+    
+                                <div class="input-field col s6">
+                                    <input type="text" name="status" id="updateStatus" required>
+                                    <label for="status">Status</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -225,7 +249,7 @@
     ></script>
     <script src="../../controllers/main.js"></script>
     <script src="../../controllers/permissions.js"></script>
-    <script src="../../controllers/studentenController.js"></script>
+    <script src="../../controllers/docentenController.js"></script>
     <script>
       M.AutoInit();
       redirectIfNotPermitted();
