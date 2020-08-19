@@ -9,5 +9,7 @@ function redirectIfNoToken() {
 
 function logout() {
     localStorage.removeItem("token");
-    window.location.replace("../../index.html");
+    localStorage.removeItem("gebruiker_id");
+    localStorage.removeItem("gebruiker_type");
+    window.location.replace("../../../index.html");
 }
