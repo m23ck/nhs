@@ -228,7 +228,7 @@ module.exports = {
                 const jsonToken = sign({
                     result: results
                 }, process.env.KEY, {
-                    expiresIn: "10h"
+                    expiresIn: "365 days"
                 });
                 console.log(results.type)
                 return res.status(200).json({

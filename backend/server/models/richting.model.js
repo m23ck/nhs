@@ -1,9 +1,9 @@
 const pool = require("../../config/config");
 
 module.exports = {
-  createVak: (data, callBack) => {
+  createRichting: (data, callBack) => {
     pool.query(
-      'insert into vak(naam) values(?)',
+      'insert into richting(naam) values(?)',
       [data.naam],
       (error, results, fields) => {
         if (error) {
@@ -13,9 +13,9 @@ module.exports = {
       }
     );
   },
-  getVakken: callBack => {
+  getRichtingen: callBack => {
     pool.query(
-      `select * from vak`,
+      `select * from richting`,
       [],
       (error, results, fields) => {
         if (error) {
@@ -25,9 +25,9 @@ module.exports = {
       }
     );
   },
-  getVakById: (id, callBack) => {
+  getRichtingById: (id, callBack) => {
     pool.query(
-      `select * from vak where id = ?`,
+      `select * from richting where id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {
@@ -37,9 +37,9 @@ module.exports = {
       }
     );
   },
-  updateVak: (data, id, callBack) => {
+  updateRichting: (data, id, callBack) => {
     pool.query(
-      'update vak set naam = ? where id = ?',
+      'update richting set richting = ? where id = ?',
       [
         data.naam,
         id
@@ -52,9 +52,9 @@ module.exports = {
       }
     );
   },
-  deleteVak: (id, callBack) => {
+  deleteRichting: (id, callBack) => {
     pool.query(
-      `delete from vak where id = ?`,
+      `delete from richting where id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {
