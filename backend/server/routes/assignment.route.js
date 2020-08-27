@@ -1,6 +1,7 @@
 const {
     createAssignment,
     getAssignmentById,
+    getAssignmentsByRoadmapId,
     getAssignments,
     updateAssignment,
     deleteAssignment
@@ -11,6 +12,7 @@ const { checkToken } = require("../../auth/token_validation");
 router.post("/", checkToken, createAssignment);
 router.get("/", checkToken, getAssignments);
 router.get("/:id", checkToken, getAssignmentById);
+router.get("/roadmap/:roadmap_id", checkToken, getAssignmentsByRoadmapId);
 router.put("/:id", checkToken, updateAssignment);
 router.delete("/:id", checkToken, deleteAssignment);
 

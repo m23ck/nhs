@@ -6,6 +6,18 @@ const {
     deleteKlas
 } = require("../models/klas.model");
 
+const {
+    createJaarKlas,
+    getJaarKlasById,
+    getJaarKlassen,
+    updateJaarKlas,
+    deleteJaarKlas
+} = require("../models/jaar_klas.model");
+
+
+
+
+
 module.exports = {
     createKlas: (req, res) => {
         const body = req.body;
@@ -23,6 +35,20 @@ module.exports = {
                 data: results
             })
         })
+
+        // createJaarKlas(body, (err, results) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return res.status(500).json({
+        //             success: 0,
+        //             message: "Database connection error!"
+        //         })
+        //     }
+        //     return res.status(200).json({
+        //         success: 1,
+        //         data: results
+        //     })
+        // })
     },
     getKlasById: (req, res) => {
         const klas_id = req.params.id;

@@ -1,28 +1,13 @@
 const pool = require("../../config/config");
 
 module.exports = {
-  createKlas: (data, callBack) => {
-    pool.query(
-      'insert into klas(naam, jaar, klassendocent_id) values(?,?,?)',
-      [
-          data.naam,
-          data.jaar,
-          data.klassendocent_id
-        ],
-      (error, results, fields) => {
-        if (error) {
-          return callBack(error);
-        }
-        return callBack(null, results);
-      }
-    );
+  createJaarKlas: (data, callBack) => {
     pool.query(
       'insert into jaar_klas(klas_id, richting_id, jaar) values(?,?,?)',
-      [
-          data.naam,
-          data.jaar,
-          data.klassendocent_id,
-          results.id
+      [ 
+          data.klas_id,
+          data.richting_id,
+          data.jaar
         ],
       (error, results, fields) => {
         if (error) {
@@ -32,9 +17,9 @@ module.exports = {
       }
     );
   },
-  getKlassen: callBack => {
+  getJaarKlassen: callBack => {
     pool.query(
-      `select * from klas`,
+      `select * from jaar_klas`,
       [],
       (error, results, fields) => {
         if (error) {
@@ -44,9 +29,9 @@ module.exports = {
       }
     );
   },
-  getKlasById: (id, callBack) => {
+  getJaarKlasById: (id, callBack) => {
     pool.query(
-      `select * from klas where id = ?`,
+      `select * from jaar_klas where id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {
@@ -56,13 +41,13 @@ module.exports = {
       }
     );
   },
-  updateKlas: (data, id, callBack) => {
+  updateJaarKlas: (data, id, callBack) => {
     pool.query(
-      'update klas set naam = ?, jaar = ?, klassendocent_id = ? where id = ?',
+      'update jaar_klas set klas_id = ?, richting_id = ?, jaar = ? where id = ?',
       [
-        data.naam,
+        data.klas_id,
+        data.richting_id,
         data.jaar,
-        data.klassendocent_id,
         id
       ],
       (error, results, fields) => {
@@ -73,7 +58,7 @@ module.exports = {
       }
     );
   },
-  deleteKlas: (id, callBack) => {
+  deleteJaarKlas: (id, callBack) => {
     pool.query(
       `delete from klas where id = ?`,
       [id],

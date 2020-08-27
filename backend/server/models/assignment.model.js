@@ -3,9 +3,10 @@ const pool = require("../../config/config");
 module.exports = {
   createAssignment: (data, callBack) => {
     pool.query(
-      'insert into assignment(naam, start_datum, inlever_datum, vak_id, punten, herkansingspunten, roadmap_id) values(?,?,?,?,?,?,?)',
+      'insert into assignment(naam, omschrijving, start_datum, inlever_datum, vak_id, punten, herkansingspunten, roadmap_id) values(?,?,?,?,?,?,?)',
       [
           data.naam,
+          data.omschrijving,
           data.start_datum,
           data.inlever_datum,
           data.vak_id,
@@ -45,11 +46,24 @@ module.exports = {
       }
     );
   },
+  getAssignmentsByRoadmapId: (roadmap_id, callBack) => {
+    pool.query(
+      `select * from assignment where roadmap_id = ?`,
+      [roadmap_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
   updateAssignment: (data, id, callBack) => {
     pool.query(
-      'update assignment set naam = ?, start_datum = ?, inlever_datum = ?, vak_id = ?, punten = ?, herkansingspunten = ?, roadmap_id = ? where id = ?',
+      'update assignment set naam = ?, omschrijving = ?, start_datum = ?, inlever_datum = ?, vak_id = ?, punten = ?, herkansingspunten = ?, roadmap_id = ? where id = ?',
       [
         data.naam,
+        data.omschrijving,
         data.start_datum,
         data.inlever_datum,
         data.vak_id,
