@@ -236,6 +236,14 @@ module.exports = {
                     message: "Login Succesvol",
                     token: jsonToken,
                     gebruiker_id: results.id,
+                    naam: results.naam,
+                    voornaam: results.voornaam,
+                    full_name: results.voornaam + " " + results.naam,
+                    email: results.email,
+                    cohort: results.cohort,
+                    telefoon: results.telefoon,
+                    adres: results.adres,
+                    status: results.status,
                     gebruiker_type: results.type
                 });
                 

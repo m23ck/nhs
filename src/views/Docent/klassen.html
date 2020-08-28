@@ -16,6 +16,7 @@
     />
     
     <link rel="stylesheet" href="../../../src/style/main.css">
+    <script src="../../controllers/main.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NHS - Klassen</title>
@@ -86,21 +87,12 @@
                 </div>
             </div>
         </div>
-    
-
-        <div class="input-field col s12">
-            <select required id="klassendocent_id" >
-            <option value="" disabled selected>Klassendocent</option>
-            
-         
-            </select>
-            <label>Klassendocent</label>
-        </div>
+        
 
 
         <!-- Floating Klas Button -->
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_klas" onclick="getDocenten()">
+            <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_klas" >
                 <i class="large material-icons">add</i>
             </a>
         </div>
@@ -131,18 +123,14 @@
                                     <label for="richting">Richting</label>
                                 </div>
     
-                                <div class="input-field col s12">
-                                    <select required id="klassendocent_id" >
-                                    <option value="" disabled selected>Klassendocent</option>
-                                    
-                                 
-                                    </select>
-                                    <label>Klassendocent</label>
-                                </div>
-                                <!-- <div class="input-field col s6">
-                                    <input type="text" name="klassendocent" id="klassendocent_id" required>
+                                
+                                <div class="input-field col s6">
+                                    <input type="text" name="klassendocent" id="klassendocent" value="" disabled>
                                     <label for="klassendocent">Klassendocent</label>
-                                </div> -->
+                                    <script>
+                                            document.getElementById("klassendocent").value = getName()
+                                    </script>
+                                </div>
                             </div>
                            
                             <button class="btn waves-effect waves-light, nav" type="submit" name="action">Opslaan</button>
@@ -199,7 +187,7 @@
       type="text/javascript"
       src="../../../src/style/materialize/js/materialize.min.js"
     ></script>
-    <script src="../../controllers/main.js"></script>
+    
     <script src="../../controllers/permissions.js"></script>
     <script src="../../controllers/klassenController.js"></script>
     <script>

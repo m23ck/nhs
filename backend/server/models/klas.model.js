@@ -16,21 +16,7 @@ module.exports = {
         return callBack(null, results);
       }
     );
-    pool.query(
-      'insert into jaar_klas(klas_id, richting_id, jaar) values(?,?,?)',
-      [
-          data.naam,
-          data.jaar,
-          data.klassendocent_id,
-          results.id
-        ],
-      (error, results, fields) => {
-        if (error) {
-          return callBack(error);
-        }
-        return callBack(null, results);
-      }
-    );
+    
   },
   getKlassen: callBack => {
     pool.query(

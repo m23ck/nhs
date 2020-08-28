@@ -45,9 +45,11 @@ function redirectIfToken() {
       .then(data => data.json())
       .then(data => {
         if (data.token) {
+          localStorage.setItem("nhs_user", JSON.stringify(data))
           localStorage.setItem("token", data.token);
           localStorage.setItem("gebruiker_id", data.gebruiker_id);
           localStorage.setItem("gebruiker_type", data.gebruiker_type);
+
           if (data.gebruiker_type == "admin") {
             window.location.replace("./src/views/Admin/dashboard.html");
           }

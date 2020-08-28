@@ -1,4 +1,5 @@
 const current_token2 = localStorage.getItem("token");
+const current_docent = localStorage.getItem("gebruiker_id");
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);
@@ -42,6 +43,7 @@ function createKlas() {
   let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
+    data["klassendocent_id"] = current_docent
     // data["gebruiker_type_id"] = 3
     // data["status"] = "new"
   }
@@ -115,39 +117,3 @@ function getData(td) {
   id = selectedRow.cells[0].innerHTML;
   console.log(id);
 }
-
-function getDocenten() {
-let docenten
-  fetch(`http://127.0.0.1:3000/gebruiker/type/docent`, {
-    method: "GET",
-    headers: myHeaders,
-    mode: "cors",
-    cache: "default",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.data.length > 0) {
-        docenten = data.data;
-        // return docenten
-        // console.log(docenten);
-      }
-    })
-    .catch((err) => console.log(err));
-
-    return docenten
-}
-
-let docenten = getDocenten();
-console.log(docenten)
-let docent_select = document.querySelector("#klassendocent_id");
-
-for (let docent of docenten) {
-  let option = document.createElement("option");
-  console.log(docent.naam);
-  option.text = `${docent.naam} ${docent.voornaam}`;
-  option.value = docent.id;
-  docent_select.appendChild(option);
-}
-
-// select
-// let docenten = getDocenten()
