@@ -230,7 +230,7 @@ module.exports = {
                 }, process.env.KEY, {
                     expiresIn: "365 days"
                 });
-                console.log(results.type)
+                // console.log(results.type)
                 return res.status(200).json({
                     success: 1,
                     message: "Login Succesvol",

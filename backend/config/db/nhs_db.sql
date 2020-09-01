@@ -1,67 +1,470 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 01, 2020 at 09:55 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `nhs_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignment`
+--
+
+CREATE TABLE `assignment` (
+  `id` int(11) NOT NULL,
+  `roadmap_id` int(11) DEFAULT NULL,
+  `vak_id` varchar(255) NOT NULL,
+  `naam` varchar(255) NOT NULL,
+  `omschrijving` text NOT NULL,
+  `start_datum` date DEFAULT NULL,
+  `inlever_datum` date DEFAULT NULL,
+  `punten` int(255) NOT NULL,
+  `herkansingspunten` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `docent_richting`
+--
+
+CREATE TABLE `docent_richting` (
+  `id` int(11) NOT NULL,
+  `docent_id` int(11) NOT NULL,
+  `richting_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `docent_vak`
+--
+
+CREATE TABLE `docent_vak` (
+  `id` int(11) NOT NULL,
+  `docent_id` int(11) NOT NULL,
+  `vak_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gebruiker`
+--
+
 CREATE TABLE `gebruiker` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `gebruiker_type_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `gebruiker_type_id` int(11) NOT NULL,
   `naam` varchar(255) NOT NULL,
   `voornaam` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `cohort` int,
-  `telefoon` int,
-  `adres` varchar(255),
+  `cohort` int(11) DEFAULT NULL,
+  `telefoon` int(11) DEFAULT NULL,
+  `adres` varchar(255) DEFAULT NULL,
   `wachtwoord` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `type` (
-  `type_id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) NOT NULL
-);
+--
+-- Dumping data for table `gebruiker`
+--
 
-CREATE TABLE `vak` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `naam` varchar(255) NOT NULL
-);
+INSERT INTO `gebruiker` (`id`, `gebruiker_type_id`, `naam`, `voornaam`, `email`, `cohort`, `telefoon`, `adres`, `wachtwoord`, `status`) VALUES
+(2, 1, 'Mack', 'Andojo', 'andojomack@gmail.com', 2016, 7254402, 'Mahadew Missierweg 43', '$2b$10$ZfTF0q7Sqt4DHin/.TQQ6OjiWUa7ml//RolkM7I2V6JGCjTuaViR2', ''),
+(3, 2, 'Raghosing', 'Sardha', 'rs@gmail.com', NULL, 8564321, 'RS Straat 43', '$2b$10$ziYuAMAszXxLE665UETOPOEzMTn88FunVmfnPEIh1Ddii/GEyOyla', ''),
+(4, 2, 'Tdlohreg', 'Mayra', 'tmayra@gmail.com', NULL, 79765421, 'mayraStraat 43', '$2b$10$OZR6jLhnPRRIifHnLuyhaOEmz2nHeUARs66OYZwzV3uBrxc5Ocbyi', ''),
+(8, 1, 'Monorath', 'Raman', 'ramanmono@yahoo.com', NULL, 8954326, 'monorathweg 11', '$2b$10$JeSTIDvKV3OZsC4e7qq5CeH3wbNUadxR2p1ZaXFbuWe.hqxW8/0Be', ''),
+(10, 3, 'Latchmansing', 'Kenson', 'klsing@gmail.com', 2016, 8954326, 'singweg 3', '$2b$10$Uf6bBquL.O5.BIx.f8N43eitK9DtHozXRfKnE/odSGiMDo03IOYMK', 'new'),
+(11, 3, 'Samadhan', 'Shaniel', 'esaniello@gmail.com', 2016, 8786854, 'lalaweg 1', '$2b$10$oMj53GYhe6ZnSvuSrRG2xurVEgCX2QTACItDAunz/jet4GkQHbCVi', 'new');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jaar_klas`
+--
+
+CREATE TABLE `jaar_klas` (
+  `id` int(11) NOT NULL,
+  `klas_id` int(11) NOT NULL,
+  `richting_id` int(11) NOT NULL,
+  `jaar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `klas`
+--
 
 CREATE TABLE `klas` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `naam` varchar(255) NOT NULL,
-  `jaar` int NOT NULL,
-  `klassendocent_id` int NOT NULL
-);
+  `klassendocent_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `roadmap` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `naam` varchar(255) NOT NULL,
-  `start_datum` date,
-  `eind_datum` date,
-  `punten` int
-);
+--
+-- Dumping data for table `klas`
+--
 
-CREATE TABLE `assignment` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `roadmap_id` int,
-  `vak_id` varchar(255) NOT NULL,
-  `naam` varchar(255) NOT NULL,
-  `start_datum` date,
-  `inlever_datum` date,
-  `herkansingspunten` int
-);
+INSERT INTO `klas` (`id`, `naam`, `klassendocent_id`) VALUES
+(2, '4.06.21', 3),
+(3, '3.06.21', 3),
+(4, '1.23', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `klas_roadmaps`
+--
+
+CREATE TABLE `klas_roadmaps` (
+  `id` int(11) NOT NULL,
+  `roadmap_id` int(11) DEFAULT NULL,
+  `jaar_klas_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resultaat`
+--
 
 CREATE TABLE `resultaat` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `assignment_id` int,
-  `student_id` int,
+  `id` int(11) NOT NULL,
+  `assignment_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
-  `type` varchar(255)
-);
+  `type` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `gebruiker` ADD FOREIGN KEY (`gebruiker_type_id`) REFERENCES `type` (`type_id`);
+-- --------------------------------------------------------
 
-ALTER TABLE `klas` ADD FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
+--
+-- Table structure for table `richting`
+--
 
-ALTER TABLE `assignment` ADD FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`id`);
+CREATE TABLE `richting` (
+  `id` int(11) NOT NULL,
+  `naam` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `assignment` ADD FOREIGN KEY (`vak_id`) REFERENCES `vak` (`id`);
+--
+-- Dumping data for table `richting`
+--
 
-ALTER TABLE `resultaat` ADD FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`id`);
+INSERT INTO `richting` (`id`, `naam`) VALUES
+(1, 'Informatie-en Communicatie Technologie'),
+(2, 'Audio-visuele Productie'),
+(3, 'Proces Techniek');
 
-ALTER TABLE `resultaat` ADD FOREIGN KEY (`student_id`) REFERENCES `gebruiker` (`id`);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roadmap`
+--
+
+CREATE TABLE `roadmap` (
+  `id` int(11) NOT NULL,
+  `naam` varchar(255) NOT NULL,
+  `start_datum` date DEFAULT NULL,
+  `eind_datum` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_klas`
+--
+
+CREATE TABLE `student_klas` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `jaar_klas_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `type_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`type_id`, `type`) VALUES
+(1, 'admin'),
+(2, 'docent'),
+(3, 'student');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vak`
+--
+
+CREATE TABLE `vak` (
+  `id` int(11) NOT NULL,
+  `naam` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `roadmap_id` (`roadmap_id`);
+
+--
+-- Indexes for table `docent_richting`
+--
+ALTER TABLE `docent_richting`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `docent_id` (`docent_id`),
+  ADD KEY `richting_id` (`richting_id`);
+
+--
+-- Indexes for table `docent_vak`
+--
+ALTER TABLE `docent_vak`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `docent_id` (`docent_id`),
+  ADD KEY `vak_id` (`vak_id`);
+
+--
+-- Indexes for table `gebruiker`
+--
+ALTER TABLE `gebruiker`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `gebruiker_type_id` (`gebruiker_type_id`);
+
+--
+-- Indexes for table `jaar_klas`
+--
+ALTER TABLE `jaar_klas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `klas_id` (`klas_id`),
+  ADD KEY `richting_id` (`richting_id`);
+
+--
+-- Indexes for table `klas`
+--
+ALTER TABLE `klas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `klassendocent_id` (`klassendocent_id`);
+
+--
+-- Indexes for table `klas_roadmaps`
+--
+ALTER TABLE `klas_roadmaps`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `roadmap_id` (`roadmap_id`),
+  ADD KEY `jaar_klas_id` (`jaar_klas_id`);
+
+--
+-- Indexes for table `resultaat`
+--
+ALTER TABLE `resultaat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `richting`
+--
+ALTER TABLE `richting`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roadmap`
+--
+ALTER TABLE `roadmap`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_klas`
+--
+ALTER TABLE `student_klas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `jaar_klas_id` (`jaar_klas_id`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `vak`
+--
+ALTER TABLE `vak`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `assignment`
+--
+ALTER TABLE `assignment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `docent_richting`
+--
+ALTER TABLE `docent_richting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `docent_vak`
+--
+ALTER TABLE `docent_vak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gebruiker`
+--
+ALTER TABLE `gebruiker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `jaar_klas`
+--
+ALTER TABLE `jaar_klas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `klas`
+--
+ALTER TABLE `klas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `klas_roadmaps`
+--
+ALTER TABLE `klas_roadmaps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `resultaat`
+--
+ALTER TABLE `resultaat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `richting`
+--
+ALTER TABLE `richting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `roadmap`
+--
+ALTER TABLE `roadmap`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_klas`
+--
+ALTER TABLE `student_klas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `vak`
+--
+ALTER TABLE `vak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`id`);
+
+--
+-- Constraints for table `docent_richting`
+--
+ALTER TABLE `docent_richting`
+  ADD CONSTRAINT `docent_richting_ibfk_1` FOREIGN KEY (`docent_id`) REFERENCES `gebruiker` (`id`),
+  ADD CONSTRAINT `docent_richting_ibfk_2` FOREIGN KEY (`richting_id`) REFERENCES `richting` (`id`);
+
+--
+-- Constraints for table `docent_vak`
+--
+ALTER TABLE `docent_vak`
+  ADD CONSTRAINT `docent_vak_ibfk_1` FOREIGN KEY (`docent_id`) REFERENCES `gebruiker` (`id`),
+  ADD CONSTRAINT `docent_vak_ibfk_2` FOREIGN KEY (`vak_id`) REFERENCES `vak` (`id`);
+
+--
+-- Constraints for table `gebruiker`
+--
+ALTER TABLE `gebruiker`
+  ADD CONSTRAINT `gebruiker_ibfk_1` FOREIGN KEY (`gebruiker_type_id`) REFERENCES `type` (`type_id`);
+
+--
+-- Constraints for table `jaar_klas`
+--
+ALTER TABLE `jaar_klas`
+  ADD CONSTRAINT `jaar_klas_ibfk_1` FOREIGN KEY (`klas_id`) REFERENCES `klas` (`id`),
+  ADD CONSTRAINT `jaar_klas_ibfk_2` FOREIGN KEY (`richting_id`) REFERENCES `richting` (`id`);
+
+--
+-- Constraints for table `klas`
+--
+ALTER TABLE `klas`
+  ADD CONSTRAINT `klas_ibfk_1` FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
+
+--
+-- Constraints for table `klas_roadmaps`
+--
+ALTER TABLE `klas_roadmaps`
+  ADD CONSTRAINT `klas_roadmaps_ibfk_1` FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`id`),
+  ADD CONSTRAINT `klas_roadmaps_ibfk_2` FOREIGN KEY (`jaar_klas_id`) REFERENCES `jaar_klas` (`id`);
+
+--
+-- Constraints for table `student_klas`
+--
+ALTER TABLE `student_klas`
+  ADD CONSTRAINT `student_klas_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `gebruiker` (`id`),
+  ADD CONSTRAINT `student_klas_ibfk_2` FOREIGN KEY (`jaar_klas_id`) REFERENCES `jaar_klas` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

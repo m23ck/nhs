@@ -115,7 +115,8 @@ function getData(td) {
   document.getElementById("updateTelefoon").value =
     selectedRow.cells[4].innerHTML;
   document.getElementById("updateAdres").value = selectedRow.cells[5].innerHTML;
-  document.getElementById("updateType").value = selectedRow.cells[6].innerHTML;
+  document.getElementById("updateType").value = selectedRow.cells[7].innerHTML;
+  document.getElementById("updateStatus").value = selectedRow.cells[8].innerHTML;
   //   console.log(selectedRow);
   // document.getElementById('updateDistrict').selected = selectedRow.cells[2].innerHTML;
   id = selectedRow.cells[0].innerHTML;

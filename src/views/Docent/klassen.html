@@ -14,184 +14,242 @@
       href="../../../src/style/materialize/css/materialize.min.css"
       media="screen,projection"
     />
-    
-    <link rel="stylesheet" href="../../../src/style/main.css">
+
+    <link rel="stylesheet" href="../../../src/style/main.css" />
     <script src="../../controllers/main.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NHS - Klassen</title>
   </head>
-    <body class="blue lighten-4">
-        <!-- Nav Bar -->
-        <div class="row">
-            <nav class="nav_height">
-                <div class="nav-wrapper nav" style="padding-left: 10px;">
-                    <!-- Image Logo -->
-                    <div class="image-link">
-                        <a href="./dashboard.html">
-                            <img id="logo" class="brand-logo image-link" src="../../../assets/natinlogo.png"
-                                style="height: auto; width: 50px;">
-                        </a>
-                    </div>
-                    <!-- Navigation  -->
-                    <div class="nav-wrapper">
-                        <!-- Menu Dropdown Structure -->
-                        <div>
-                            <ul id="menu" class="dropdown-content" style="width: 200px;">
-                                <!-- <li><a href="./commentaar.html">Commentaar</a></li>
+  <body class="blue lighten-4">
+    <!-- Nav Bar -->
+    <div class="row">
+      <nav class="nav_height">
+        <div class="nav-wrapper nav" style="padding-left: 10px">
+          <!-- Image Logo -->
+          <div class="image-link">
+            <a href="./dashboard.html">
+              <img
+                id="logo"
+                class="brand-logo image-link"
+                src="../../../assets/natinlogo.png"
+                style="height: auto; width: 50px"
+              />
+            </a>
+          </div>
+          <!-- Navigation  -->
+          <div class="nav-wrapper">
+            <!-- Menu Dropdown Structure -->
+            <div>
+              <ul id="menu" class="dropdown-content" style="width: 200px">
+                <!-- <li><a href="./commentaar.html">Commentaar</a></li>
                                 <li><a href="./presentie.html">Presentie</a></li>
                                 <li><a href="./ressort.html">Ressort</a></li>
                                 <li><a href="#!">Vergadering</a></li> -->
-                            </ul>
-                            <ul id="instellingen" class="dropdown-content">
-                                <li><a href="./gebruikers.html">Accounts</a></li>
-                                <li class="divider"></li>
-                                <li><a onclick="logout()">Uitloggen</a></li>
-                            </ul>
-                        </div>
-                        <!-- Dropdowns Button -->
-                        <ul class="hide-on-med-and-down right">
-                            <li><a class="dropdown-trigger" data-target="menu">Menu<i
-                                        class="material-icons right">arrow_drop_down</i></a>
-                            </li>
-                            <li><a class="dropdown-trigger" data-target="instellingen">Instellingen<i
-                                        class="material-icons right">arrow_drop_down</i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    
-        <!-- Klassen Table -->
-        <div class="container">
-            <div class="row">
-                <blockquote>
-                    <p class="flow-text">Klassen Beheren</p>
-                </blockquote>
-                <div class="col s12" style="height: 28em; width: auto; overflow: auto;">
-                    <table id="klasTable" class="highlight"  style="width: 1000px;">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Naam</th>
-                                <th>Jaar</th>
-                                <th>Richting</th>
-                                <th>Klassendocent</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="klasTableBody">
-                        </tbody>
-                    </table>
-                </div>
+              </ul>
+              <ul id="instellingen" class="dropdown-content">
+                <li><a href="./gebruikers.html">Accounts</a></li>
+                <li class="divider"></li>
+                <li><a onclick="logout()">Uitloggen</a></li>
+              </ul>
             </div>
+            <!-- Dropdowns Button -->
+            <ul class="hide-on-med-and-down right">
+              <li>
+                <a class="dropdown-trigger" data-target="menu"
+                  >Menu<i class="material-icons right">arrow_drop_down</i></a
+                >
+              </li>
+              <li>
+                <a class="dropdown-trigger" data-target="instellingen"
+                  >Instellingen<i class="material-icons right"
+                    >arrow_drop_down</i
+                  ></a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
-        
+      </nav>
+    </div>
 
+    <!-- Klassen Table -->
+    <div class="container">
+      <div class="row">
+        <blockquote>
+          <p class="flow-text">Klassen Beheren</p>
+        </blockquote>
+        <div class="col s12" style="height: 28em; width: auto; overflow: auto">
+          <table id="klasTable" class="highlight" style="width: 1000px">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Naam</th>
+                <th>Jaar</th>
+                <th>Richting</th>
+                <th>Klassendocent</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="klasTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-        <!-- Floating Klas Button -->
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_klas" >
-                <i class="large material-icons">add</i>
-            </a>
-        </div>
-    
-        <!-- Create klas modal -->
-        <div id="modal_klas" class="modal" style="height: 900px;">
-            <div class="modal-content">
-                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Nieuw Klas Aanmaken</h3>
-                <br>
-                <div>
-                    <div class="row">
-                        <form class="col s12" method="POST" id="klasForm" name="klasForm"
-                            onsubmit="return createKlas()">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input type="text" name="naam" id="naam" required>
-                                    <label for="naam">Naam</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" name="jaar" id="jaar" required>
-                                    <label for="jaar">Jaar</label>
-                                </div>
-                            </div>
-                            <div class="row">
-    
-                                <div class="input-field col s6">
-                                    <input type="text" name="richting" id="richting" value="3" required disabled>
-                                    <label for="richting">Richting</label>
-                                </div>
-    
-                                
-                                <div class="input-field col s6">
-                                    <input type="text" name="klassendocent" id="klassendocent" value="" disabled>
-                                    <label for="klassendocent">Klassendocent</label>
-                                    <script>
-                                            document.getElementById("klassendocent").value = getName()
-                                    </script>
-                                </div>
-                            </div>
-                           
-                            <button class="btn waves-effect waves-light, nav" type="submit" name="action">Opslaan</button>
-    
-                        </form>
-                    </div>
+    <!-- Floating Klas Button -->
+    <div class="fixed-action-btn">
+      <a
+        class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger"
+        href="#modal_klas"
+        onclick="return getRichtingen();"
+      >
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+
+    <!-- Create klas modal -->
+    <div id="modal_klas" class="modal" style="height: 900px">
+      <div class="modal-content">
+        <h3 style="font-family: 'Anton', sans-serif; text-align: center">
+          Nieuw Klas Aanmaken
+        </h3>
+        <br />
+        <div>
+          <div class="row">
+            <form
+              class="col s12"
+              method="POST"
+              id="klasForm"
+              name="klasForm"
+              onsubmit="return createKlas()"
+            >
+              <div class="row">
+                <div class="input-field col s6">
+                  <input type="text" name="naam" id="naam" required />
+                  <label for="naam">Naam</label>
                 </div>
-            </div>
-        </div>
-    
-        <!-- update klas modal -->
-        <div id="modal_update_klas" class="modal" style="height: 900px;">
-            <div class="modal-content">
-                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Klas wijzigen</h3>
-                <br>
-                <div>
-                    <div class="row">
-                        <form class="col s12" method="POST" id="updateKlasForm" name="updateKlasForm"
-                            onsubmit="return updateKlas()">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input type="text" name="naam" id="updateNaam" required>
-                                    <label for="naam">Naam</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" name="jaar" id="updateJaar" required>
-                                    <label for="jaar">Jaar</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                   
-                                <div class="input-field col s6">
-                                    <input type="text" name="richting" id="updateRichting" required>
-                                    <label for="richting">Richting</label>
-                                </div>
-    
-                                <div class="input-field col s6">
-                                    <input type="text" name="klassendocent" id="updateKlassendocent" required>
-                                    <label for="klassendocent">Klassendocent</label>
-                                </div>
-                            </div>
-                            
-                            <button class="btn waves-effect waves-light, nav" type="submit" name="action">Opslaan</button>
-    
-                        </form>
-                    </div>
+                <div class="input-field col s6">
+                  <input type="text" name="jaar" id="jaar" required />
+                  <label for="jaar">Jaar</label>
                 </div>
-            </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s8">
+                  <select class="select-dropdown dropdown-trigger" name="richting_id" id="richting_id">
+                    <option value="Kies een richting" disabled selected>
+                      Kies een richting
+                    </option>
+                  </select>
+                  <label for="richting_id">Richting</label>
+                </div>
+              </div>
+              <div>
+                <div class="input-field col s6">
+                  <input
+                    type="text"
+                    name="klassendocent"
+                    id="klassendocent"
+                    value=""
+                    disabled
+                  />
+                  <label for="klassendocent">Klassendocent</label>
+                  <script>
+                    document.getElementById("klassendocent").value = getName();
+                  </script>
+                </div>
+              </div>
+
+              <button
+                class="btn waves-effect waves-light, nav"
+                type="submit"
+                name="action"
+              >
+                Opslaan
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- update klas modal -->
+    <div id="modal_update_klas" class="modal" style="height: 900px">
+      <div class="modal-content">
+        <h3 style="font-family: 'Anton', sans-serif; text-align: center">
+          Klas wijzigen
+        </h3>
+        <br />
+        <div>
+          <div class="row">
+            <form
+              class="col s12"
+              method="POST"
+              id="updateKlasForm"
+              name="updateKlasForm"
+              onsubmit="return updateKlas()"
+            >
+              <div class="row">
+                <div class="input-field col s6">
+                  <input type="text" name="naam" id="updateNaam" required />
+                  <label for="naam">Naam</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="text" name="jaar" id="updateJaar" required />
+                  <label for="jaar">Jaar</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input
+                    type="text"
+                    name="richting"
+                    id="updateRichting"
+                    required
+                  />
+                  <label for="richting">Richting</label>
+                </div>
+
+                <div class="input-field col s6">
+                  <input
+                    type="text"
+                    name="klassendocent"
+                    id="updateKlassendocent"
+                    required
+                  />
+                  <label for="klassendocent">Klassendocent</label>
+                </div>
+              </div>
+
+              <button
+                class="btn waves-effect waves-light, nav"
+                type="submit"
+                name="action"
+              >
+                Opslaan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--JavaScript at end of body for optimized loading-->
-    
+
     <script
       type="text/javascript"
       src="../../../src/style/materialize/js/materialize.min.js"
     ></script>
-    
+
     <script src="../../controllers/permissions.js"></script>
     <script src="../../controllers/klassenController.js"></script>
     <script>
       M.AutoInit();
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll("select");
+        var instances = M.FormSelect.init(elems, {});
+        // var instances = M.FormSelect.init(elems, options);
+      });
       redirectIfNotPermitted();
     </script>
   </body>

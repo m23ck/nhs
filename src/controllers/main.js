@@ -23,3 +23,13 @@ function getName() {
 
 
 redirectIfNoToken()
+
+
+
+function refreshSelect(el) {
+    let instance = M.FormSelect.getInstance(el)
+    instance.destroy()
+    el.classList.add('white-text')
+    M.FormSelect.init(el)
+    document.getElementsByClassName("select-dropdown dropdown-trigger")[0].classList.add("white-text")
+}

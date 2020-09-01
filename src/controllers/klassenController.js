@@ -79,7 +79,7 @@ function deleteCheck(td) {
   selectedRow = td.parentElement.parentElement;
   id = selectedRow.cells[0].innerHTML;
 
-  function deleteStudent() {
+  function deleteKlas() {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + current_token2);
 
@@ -116,4 +116,45 @@ function getData(td) {
   // document.getElementById('updateDistrict').selected = selectedRow.cells[2].innerHTML;
   id = selectedRow.cells[0].innerHTML;
   console.log(id);
+}
+
+
+
+
+
+
+
+
+
+
+function getRichtingen() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/richting', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('richting_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = i.naam;
+                  console.log(option)
+                  dropdown.appendChild(option);
+                  console.log(dropdown)
+              })
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
 }
