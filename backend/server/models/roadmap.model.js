@@ -3,9 +3,9 @@ const pool = require("../../config/config");
 module.exports = {
   createRoadmap: (data, callBack) => {
     pool.query(
-      'insert into roadmap(naam, start_datum, eind_datum) values(?,?,?)',
+      'insert into roadmap(roadmap_naam, start_datum, eind_datum) values(?,?,?)',
       [
-          data.naam,
+          data.roadmap_naam,
           data.start_datum,
           data.eind_datum
         ],
@@ -43,7 +43,7 @@ module.exports = {
   },
   updateRoadmap: (data, id, callBack) => {
     pool.query(
-      'update roadmap set naam = ?, start_datum = ?, eind_datum = ? where id = ?',
+      'update roadmap set roadmap_naam = ?, start_datum = ?, eind_datum = ? where id = ?',
       [
         data.naam,
         data.start_datum,

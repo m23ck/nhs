@@ -17,14 +17,14 @@ fetch(`http://127.0.0.1:3000/klas`, {
 
     if (data.data.length > 0) {
       var body = "";
-
+      // console.log(data.data)
       data.data.forEach((i) => {
         body += "<tr>";
         body += "<td>" + i.id + "</td>";
-        body += "<td>" + i.naam + "</td>";
+        body += "<td>" + i.klas_naam + "</td>";
         body += "<td>" + i.jaar + "</td>";
-        body += "<td>" + i.richting + "</td>";
-        body += "<td>" + i.klassendocent + "</td>";
+        body += "<td>" + i.richting_naam + "</td>";
+        body += "<td>" + `${i.naam + " "+ i.voornaam}` + "</td>";
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_klas' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Verwijderen' data-toggle='tooltip' style='cursor: pointer;' onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
@@ -43,7 +43,7 @@ function createKlas() {
   let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
-    data["klassendocent_id"] = current_docent
+    // data["klassendocent_id"] = current_docent
     // data["gebruiker_type_id"] = 3
     // data["status"] = "new"
   }
@@ -139,8 +139,8 @@ function getRichtingen() {
   })
       .then(res => res.json())
       .then(data => {
-          console.log(data);
-          console.log(data.data.length);
+          // console.log(data);
+          // console.log(data.data.length);
           if (data.data.length > 0) {
               data.data.forEach(i => {
                   let dropdown = document.getElementById('richting_id');
@@ -148,13 +148,59 @@ function getRichtingen() {
                   let option = document.createElement('option');
                   option.setAttribute('value', `${i.id}`);
                   option.textContent = i.naam;
-                  console.log(option)
+                  // console.log(option)
                   dropdown.appendChild(option);
-                  console.log(dropdown)
+                  // console.log(dropdown)
+                  
               })
+              refreshSelect(document.getElementById('richting_id'))
+
           }
       })
       .catch((err) => console.log(err))
 
   // return false;
+}
+
+
+
+function getDocenten() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/gebruiker/type/docent', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          // console.log(data);
+          // console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('klassendocent_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = `${i.naam + " " + i.voornaam}`;
+                  // console.log(option)
+                  dropdown.appendChild(option);
+                  // console.log(dropdown)
+                  
+              })
+              refreshSelect(document.getElementById('klassendocent_id'))
+
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
+}
+
+
+function fillSelects(){
+  getRichtingen();
+  getDocenten();
 }

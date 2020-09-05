@@ -19,7 +19,7 @@
     <script src="../../controllers/main.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NHS - Klassen</title>
+    <title>NHS - Vakken</title>
   </head>
   <body class="blue lighten-4">
     <!-- Nav Bar -->
@@ -73,46 +73,42 @@
       </nav>
     </div>
 
-    <!-- Klassen Table -->
+    <!-- Vakken Table -->
     <div class="container">
       <div class="row">
         <blockquote>
-          <p class="flow-text">Klassen Beheren</p>
+          <p class="flow-text">Vakken Beheren</p>
         </blockquote>
         <div class="col s12" style="height: 28em; width: auto; overflow: auto">
-          <table id="klasTable" class="highlight" style="width: 1000px">
+          <table id="vakTable" class="highlight" style="width: 1000px">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Naam</th>
-                <th>Jaar</th>
-                <th>Richting</th>
-                <th>Klassendocent</th>
                 <th></th>
               </tr>
             </thead>
-            <tbody id="klasTableBody"></tbody>
+            <tbody id="vakTableBody"></tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- Floating Klas Button -->
+    <!-- Floating Vak Button -->
     <div class="fixed-action-btn">
       <a
         class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger"
-        href="#modal_klas"
-        onclick="return fillSelects();"
+        href="#modal_vak"
       >
         <i class="large material-icons">add</i>
       </a>
     </div>
 
-    <!-- Create klas modal -->
-    <div id="modal_klas" class="modal" style="height: 900px">
+    <!-- Create vak modal -->
+    <div id="modal_vak" class="modal" style="height: 900px">
       <div class="modal-content">
         <h3 style="font-family: 'Anton', sans-serif; text-align: center">
-          Nieuw Klas Aanmaken
+          Nieuw Vak Aanmaken
         </h3>
         <br />
         <div>
@@ -120,54 +116,19 @@
             <form
               class="col s12"
               method="POST"
-              id="klasForm"
-              name="klasForm"
-              onsubmit="return createKlas()"
+              id="vakForm"
+              name="vakForm"
+              onsubmit="return createVak()"
             >
               <div class="row">
-                <div class="input-field col s6">
-                  <input type="text" name="klas_naam" id="klas_naam" required />
-                  <label for="klas_naam">Naam</label>
+                <div class="input-field col s12">
+                  <input type="text" name="vak_naam" id="vak_naam" required />
+                  <label for="vak_naam">Naam</label>
                 </div>
-                <div class="input-field col s6">
-                  <input type="text" name="jaar" id="jaar" required />
-                  <label for="jaar">Jaar</label>
-                </div>
+                
               </div>
-              <div class="row">
-                <div class="input-field col s8">
-                  <select name="richting_id" id="richting_id">
-                    <option value="Kies een richting" disabled selected>
-                      Kies een richting
-                    </option>
-                  </select>
-                  <label for="richting_id">Richting</label>
-                </div>
-              </div>
-              <div>
-                <!-- <div class="input-field col s6">
-                  <input
-                    type="text"
-                    name="klassendocent"
-                    id="klassendocent"
-                    value=""
-                    disabled
-                  />
-                  <label for="klassendocent">Klassendocent</label>
-                  <script>
-                    document.getElementById("klassendocent").value = getName();
-                  </script>
-                </div> -->
-                <div class="input-field col s8">
-                    <select name="klassendocent_id" id="klassendocent_id">
-                      <option value="Kies een richting" disabled selected>
-                        Kies een klassendocent
-                      </option>
-                    </select>
-                    <label for="klassendocent_id">Klassendocent</label>
-                  </div>
-              </div>
-
+              
+               
               <button
                 class="btn waves-effect waves-light, nav"
                 type="submit"
@@ -181,11 +142,11 @@
       </div>
     </div>
 
-    <!-- update klas modal -->
-    <div id="modal_update_klas" class="modal" style="height: 900px">
+    <!-- update vak modal -->
+    <div id="modal_update_vak" class="modal" style="height: 900px">
       <div class="modal-content">
         <h3 style="font-family: 'Anton', sans-serif; text-align: center">
-          Klas wijzigen
+          Vak wijzigen
         </h3>
         <br />
         <div>
@@ -193,41 +154,18 @@
             <form
               class="col s12"
               method="POST"
-              id="updateKlasForm"
-              name="updateKlasForm"
-              onsubmit="return updateKlas()"
+              id="updatevakForm"
+              name="updatevakForm"
+              onsubmit="return updateVak()"
             >
               <div class="row">
                 <div class="input-field col s6">
-                  <input type="text" name="naam" id="updateNaam" required />
-                  <label for="naam">Naam</label>
+                  <input type="text" name="vak_naam" id="updateVakNaam" required />
+                  <label for="vak_naam">Naam</label>
                 </div>
-                <div class="input-field col s6">
-                  <input type="text" name="jaar" id="updateJaar" required />
-                  <label for="jaar">Jaar</label>
-                </div>
+                
               </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input
-                    type="text"
-                    name="richting"
-                    id="updateRichting"
-                    required
-                  />
-                  <label for="richting">Richting</label>
-                </div>
-
-                <div class="input-field col s6">
-                  <input
-                    type="text"
-                    name="klassendocent"
-                    id="updateKlassendocent"
-                    required
-                  />
-                  <label for="klassendocent">Klassendocent</label>
-                </div>
-              </div>
+              
 
               <button
                 class="btn waves-effect waves-light, nav"
@@ -250,15 +188,10 @@
     ></script>
 
     <script src="../../controllers/permissions.js"></script>
-    <script src="../../controllers/klassenController.js"></script>
+    <script src="../../controllers/vakkenController.js"></script>
     <script>
       M.AutoInit();
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll("select");
-        var instances = M.FormSelect.init(elems, {});
-        // var instances = M.FormSelect.init(elems, options);
-
-      });
+      
       redirectIfNotPermitted();
     </script>
   </body>

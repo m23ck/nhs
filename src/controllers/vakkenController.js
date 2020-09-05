@@ -3,7 +3,7 @@ const current_token2 = localStorage.getItem("token");
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);
 // const type_user = "docent"
-fetch(`http://127.0.0.1:3000/richting`, {
+fetch(`http://127.0.0.1:3000/vak`, {
   method: "GET",
   headers: myHeaders,
   mode: "cors",
@@ -20,21 +20,21 @@ fetch(`http://127.0.0.1:3000/richting`, {
       data.data.forEach((i) => {
         body += "<tr>";
         body += "<td>" + i.id + "</td>";
-        body += "<td>" + i.richting_naam + "</td>";
+        body += "<td>" + i.vak_naam + "</td>";
         body += `<td>
-                    <a class='modal-trigger' href='#modal_update_richting' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
+                    <a class='modal-trigger' href='#modal_update_vak' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Verwijderen' data-toggle='tooltip' style='cursor: pointer;' onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
                 </td>`;
         body += "</tr>";
       });
 
-      document.getElementById("richtingTableBody").innerHTML = body;
+      document.getElementById("vakTableBody").innerHTML = body;
     }
   })
   .catch((err) => console.log(err));
 
-function createRichting() {
-  let form = document.forms["richtingForm"];
+function createVak() {
+  let form = document.forms["vakForm"];
   let fd = new FormData(form);
   let data = {};
   for (let [key, prop] of fd) {
@@ -49,7 +49,7 @@ function createRichting() {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Accept", "application/json");
 
-  fetch("http://127.0.0.1:3000/richting", {
+  fetch("http://127.0.0.1:3000/vak", {
     method: "POST",
     headers: myHeaders,
     mode: "cors",
@@ -72,11 +72,11 @@ function deleteCheck(td) {
   selectedRow = td.parentElement.parentElement;
   id = selectedRow.cells[0].innerHTML;
 
-  function deleteRichting() {
+  function deleteVak() {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + current_token2);
 
-    fetch("http://127.0.0.1:3000/richting/" + id, {
+    fetch("http://127.0.0.1:3000/vak/" + id, {
       method: "DELETE",
       headers: myHeaders,
       mode: "cors",
@@ -84,7 +84,7 @@ function deleteCheck(td) {
     })
       .then((res) => res.json())
       .then((res) => {
-        alert("Richting succesvol verwijderd!");
+        alert("Vak succesvol verwijderd!");
         location.reload();
       })
       .catch((err) => console.error(err));
@@ -93,20 +93,20 @@ function deleteCheck(td) {
   }
 
   if (confirm("Bent u zeker?")) {
-    deleteDocent();
+    deleteVak();
   }
 }
 
 function getData(td) {
   selectedRow = td.parentElement.parentElement;
-  document.getElementById("updateNaam").value = selectedRow.cells[1].innerHTML;
+  document.getElementById("updateVakNaam").value = selectedRow.cells[1].innerHTML;
   
   id = selectedRow.cells[0].innerHTML;
   console.log(id);
 }
 
 function updateRichting() {
-  let form = document.forms["updateRichtingForm"];
+  let form = document.forms["updateVakForm"];
   let fd = new FormData(form);
   let data = {};
   for (let [key, prop] of fd) {
@@ -124,7 +124,7 @@ function updateRichting() {
   selectedRow = td.parentElement.parentElement;
   id = selectedRow.cells[0].innerHTML;
   console.log(id);
-  fetch(`http://127.0.0.1:3000/richting/${id}`, {
+  fetch(`http://127.0.0.1:3000/vak/${id}`, {
     method: "PUT",
     headers: myHeaders,
     mode: "cors",

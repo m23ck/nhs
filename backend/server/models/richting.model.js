@@ -3,8 +3,8 @@ const pool = require("../../config/config");
 module.exports = {
   createRichting: (data, callBack) => {
     pool.query(
-      'insert into richting(naam) values(?)',
-      [data.naam],
+      'insert into richting(richting_naam) values(?)',
+      [data.richting_naam],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
@@ -39,9 +39,9 @@ module.exports = {
   },
   updateRichting: (data, id, callBack) => {
     pool.query(
-      'update richting set richting = ? where id = ?',
+      'update richting set richting_naam = ? where id = ?',
       [
-        data.naam,
+        data.richting_naam,
         id
       ],
       (error, results, fields) => {

@@ -3,8 +3,8 @@ const pool = require("../../config/config");
 module.exports = {
   createVak: (data, callBack) => {
     pool.query(
-      'insert into vak(naam) values(?)',
-      [data.naam],
+      'insert into vak(vak_naam) values(?)',
+      [data.vak_naam],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
@@ -39,9 +39,9 @@ module.exports = {
   },
   updateVak: (data, id, callBack) => {
     pool.query(
-      'update vak set naam = ? where id = ?',
+      'update vak set vak_naam = ? where id = ?',
       [
-        data.naam,
+        data.vak_naam,
         id
       ],
       (error, results, fields) => {
