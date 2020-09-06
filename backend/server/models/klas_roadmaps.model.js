@@ -3,8 +3,9 @@ const pool = require("../../config/config");
 module.exports = {
   createKlasRoadmapAssociation: (data, callBack) => {
     pool.query(
-      'insert into klas_roadmaps(klas_id, roadmap_id) values(?,?)',
-      [data.klas_id,
+      'insert into klas_roadmaps(jaar_klas_id, roadmap_id) values(?,?)',
+      [
+          data.jaar_klas_id,
         data.roadmap_id
     ],
       (error, results, fields) => {

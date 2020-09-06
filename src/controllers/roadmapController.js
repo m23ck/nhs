@@ -302,7 +302,134 @@ function getAssignmentData(td) {
   // console.log(id);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// associations
+
+
+function getKlassen() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/klas', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          // console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('jaar_klas_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = i.klas_naam;
+                  // console.log(option)
+                  dropdown.appendChild(option);
+                  // console.log(dropdown)
+                  
+              })
+              refreshSelect(document.getElementById('jaar_klas_id'))
+
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
+}
+
+
+function getRoadmaps() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/roadmap', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          // console.log(data);
+          // console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('roadmap_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = i.roadmap_naam;
+                  // console.log(option)
+                  dropdown.appendChild(option);
+                  // console.log(dropdown)
+                  
+              })
+              refreshSelect(document.getElementById('roadmap_id'))
+
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
+}
+
 function fillAssociationSelects(){
   getKlassen()
   getRoadmaps()
+}
+
+
+
+
+
+
+function assignRoadmap() {
+  let form = document.forms["assignRoadmapForm"];
+  let fd = new FormData(form);
+  let data = {};
+  for (let [key, prop] of fd) {
+    data[key] = prop;
+  }
+  VALUE = JSON.stringify(data, null, 2);
+
+  console.log(VALUE);
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Accept", "application/json");
+
+  fetch("http://127.0.0.1:3000/klas_roadmap_association", {
+    method: "POST",
+    headers: myHeaders,
+    mode: "cors",
+    cache: "default",
+    body: VALUE,
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log("Success", res);
+      location.reload();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  return false;
 }
