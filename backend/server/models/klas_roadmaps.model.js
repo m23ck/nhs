@@ -67,7 +67,7 @@ module.exports = {
 
   deleteKlasRoadmapAssociation: (klas_roadmap_id, callBack) => {
     pool.query(
-      `delete from type where klas_roadmap_id = ?`,
+      `delete from klas_roadmaps where klas_roadmap_id = ?`,
       [klas_roadmap_id],
       (error, results, fields) => {
         if (error) {
