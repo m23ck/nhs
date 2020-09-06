@@ -184,6 +184,58 @@
       </div>
     </div>
 
+    <!-- Assign roadmap modal -->
+    <div id="modal_assign_roadmap" class="modal" style="height: 900px">
+      <div class="modal-content">
+        <h3 style="font-family: 'Anton', sans-serif; text-align: center">
+          Assign Roadmap
+        </h3>
+        <br />
+        <div>
+          <div class="row">
+            <form
+              class="col s12"
+              method="POST"
+              id="assignRoadmapForm"
+              name="assignRoadmapForm"
+              onsubmit="return assignRoadmap()"
+            >
+              <div class="row">
+                <div class="input-field col s6">
+                  <select name="klas_id" id="klas_id" >
+                    <option value="Kies een klas" disabled selected>
+                      Kies een klas
+                    </option>
+                  </select>
+                  <label for="klas_id">Klas</label>
+                </div>
+
+                <div class="input-field col s6">
+                  <select name="roadmap_id" id="roadmap_id" >
+                    <option value="Kies een Roadmap" disabled selected>
+                      Kies een roadmap
+                    </option>
+                  </select>
+                  <label for="roadmap_id">Roadmap</label>
+                </div>
+              </div>
+
+              <button
+                class="btn waves-effect waves-light, nav"
+                type="submit"
+                name="action"
+              >
+                Opslaan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <!-- update roadmap modal -->
     <div id="modal_update_roadmap" class="modal" style="height: 900px">
       <div class="modal-content">

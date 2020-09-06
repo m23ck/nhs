@@ -29,7 +29,7 @@ fetch(`http://127.0.0.1:3000/roadmap/`, {
                     <a class='modal-trigger' href='#modal_update_roadmap' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getRoadmapData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Delete' data-toggle='tooltip' style='cursor: pointer;'  onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
                     <a title='Go' data-toggle='tooltip' style='cursor: pointer;'  onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
-                    <a class='modal-trigger' href='#modal_assign_roadmap' title='Assign' data-toggle='tooltip' style='cursor: pointer;'><i class='small material-icons' style='color: #228B22;'>assignment</i></a>
+                    <a class='modal-trigger' href='#modal_assign_roadmap' title='Assign' data-toggle='tooltip' style='cursor: pointer;' onclick="return fillAssociationSelects();"><i class='small material-icons' style='color: #228B22;'>assignment</i></a>
                 </td>`;
         body += "</tr>";
       });
@@ -300,4 +300,9 @@ function getAssignmentData(td) {
   document.getElementById("updateHerkansingspunten").value = selectedRow.cells[5].innerHTML;
   id = selectedRow.cells[0].innerHTML;
   // console.log(id);
+}
+
+function fillAssociationSelects(){
+  getKlassen()
+  getRoadmaps()
 }
