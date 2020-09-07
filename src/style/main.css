@@ -22,12 +22,32 @@
 .logo-block img {
   vertical-align: middle;
 }
-
+nav-block {
+  margin-top: 30px;
+  display: block;
+}
+nav-block li {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  height: 35px;
+}
+nav-block li.active {
+  background: #45e042 !important;
+}
+nav-block li a {
+  color: white !important;
+  height: 35px !important;
+  line-height: 35px !important;
+}
 .line {
   height: 1px;
   width: 80%;
   display: block;
   background: white;
+  filter: opacity(0.6);
   margin: 0 auto;
 }
 .main-content {
@@ -39,4 +59,22 @@
 nav {
   background-color: #f0f0f0 !important;
   color: black;
+}
+
+.card {
+  border-radius: 6px;
+}
+.card-header-floating {
+  display: block;
+  height: 90px;
+  width: 90%;
+  transform: translate(0%, -30%);
+  margin: 0 auto;
+  color: white;
+  background: #45e042;
+  padding: 10px 10px;
+  border-radius: 6px;
+}
+.card-subtitle {
+  display: block;
 }
