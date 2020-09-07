@@ -3,10 +3,10 @@ const pool = require("../../config/config");
 module.exports = {
   createStudentKlasAssociation: (data, callBack) => {
     pool.query(
-      'insert into student_klas(student_id, klas_id) values(?,?)',
+      'insert into student_klas(student_id, jaar_klas_id) values(?,?)',
       [
           data.student_id,
-        data.klas_id
+        data.jaar_klas_id
     ],
       (error, results, fields) => {
         if (error) {
@@ -52,10 +52,10 @@ module.exports = {
       }
     );
   },
-  getStudentKlasAssociationByKlasId: (klas_id, callBack) => {
+  getStudentKlasAssociationByKlasId: (jaar_klas_id, callBack) => {
     pool.query(
-        `select * from student_klas INNER JOIN jaar_klas ON student_klas.jaar_klas_id = jaar_klas.id INNER JOIN gebruiker ON student_klas.student_id = gebruiker.id where klas_id = ?`,
-      [klas_id],
+        `select * from student_klas INNER JOIN jaar_klas ON student_klas.jaar_klas_id = jaar_klas.id INNER JOIN gebruiker ON student_klas.student_id = gebruiker.id where jaar_klas_id = ?`,
+      [jaar_klas_id],
       (error, results, fields) => {
         if (error) {
           return callBack(error);

@@ -45,8 +45,8 @@ module.exports = {
         });
     },
     getStudentKlasAssociationByKlasId: (req, res) => {
-        const klas_id = req.params.klas_id;
-        getStudentKlasAssociationByKlasId(klas_id, (err, results) => {
+        const jaar_klas_id = req.params.jaar_klas_id;
+        getStudentKlasAssociationByKlasId(jaar_klas_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;

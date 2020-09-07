@@ -105,7 +105,7 @@ function getData(td) {
   console.log(id);
 }
 
-function updateRichting() {
+function updateVak() {
   let form = document.forms["updateVakForm"];
   let fd = new FormData(form);
   let data = {};
@@ -143,3 +143,6 @@ function updateRichting() {
 
   return false;
 }
+
+
+
