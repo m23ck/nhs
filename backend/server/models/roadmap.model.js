@@ -41,6 +41,31 @@ module.exports = {
       }
     );
   },
+  getRoadmapsByStudentId: (student_id, callBack) => {
+    pool.query(
+      `SELECT
+      roadmap.id AS roadmap_id,
+      roadmap.roadmap_naam,
+      roadmap.start_datum,
+      roadmap.eind_datum,
+      klas.klas_naam
+  FROM
+      roadmap
+  INNER JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id
+  INNER JOIN student_klas ON klas_roadmaps.jaar_klas_id = student_klas.jaar_klas_id
+  INNER JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id
+  INNER JOIN klas ON jaar_klas.klas_id = klas.id
+  WHERE
+      student_klas.student_id = ?`,
+      [student_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
   updateRoadmap: (data, id, callBack) => {
     pool.query(
       'update roadmap set roadmap_naam = ?, start_datum = ?, eind_datum = ? where id = ?',

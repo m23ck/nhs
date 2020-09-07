@@ -1,6 +1,7 @@
 const {
     createRoadmap,
     getRoadmapById,
+    getRoadmapsByStudentId,
     getRoadmaps,
     updateRoadmap,
     deleteRoadmap
@@ -27,6 +28,25 @@ module.exports = {
     getRoadmapById: (req, res) => {
         const roadmap_id = req.params.id;
         getRoadmapById(roadmap_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "Roadmap bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getRoadmapsByStudentId: (req, res) => {
+        const student_id = req.params.student_id;
+        getRoadmapsByStudentId(student_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
