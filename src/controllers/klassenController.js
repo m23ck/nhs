@@ -204,3 +204,126 @@ function fillSelects(){
   getRichtingen();
   getDocenten();
 }
+
+
+
+
+
+// associations
+
+
+function getKlassen() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/klas', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          // console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('jaar_klas_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = i.klas_naam;
+                  // console.log(option)
+                  dropdown.appendChild(option);
+                  // console.log(dropdown)
+                  
+              })
+              refreshSelect(document.getElementById('jaar_klas_id'))
+
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
+}
+
+
+function getStudents() {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+
+  fetch('http://127.0.0.1:3000/gebruiker/type/student', {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+      cache: 'default'
+  })
+      .then(res => res.json())
+      .then(data => {
+          // console.log(data);
+          // console.log(data.data.length);
+          if (data.data.length > 0) {
+              data.data.forEach(i => {
+                  let dropdown = document.getElementById('student_id');
+
+                  let option = document.createElement('option');
+                  option.setAttribute('value', `${i.id}`);
+                  option.textContent = i.full_name;
+                  // console.log(option)
+                  dropdown.appendChild(option);
+                  // console.log(dropdown)
+                  
+              })
+              refreshSelect(document.getElementById('student_id'))
+
+          }
+      })
+      .catch((err) => console.log(err))
+
+  // return false;
+}
+
+function fillStudentClassSelects(){
+  getKlassen()
+  getStudents()
+}
+
+
+
+
+
+
+function add_student_to_class() {
+  let form = document.forms["add_student_to_classForm"];
+  let fd = new FormData(form);
+  let data = {};
+  for (let [key, prop] of fd) {
+    data[key] = prop;
+  }
+  VALUE = JSON.stringify(data, null, 2);
+
+  console.log(VALUE);
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token2);
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Accept", "application/json");
+
+  fetch("http://127.0.0.1:3000/student_klas_association", {
+    method: "POST",
+    headers: myHeaders,
+    mode: "cors",
+    cache: "default",
+    body: VALUE,
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log("Success", res);
+      location.reload();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  return false;
+}
