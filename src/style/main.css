@@ -16,7 +16,7 @@
 }
 
 .logo-block {
-  padding: 20px 50px;
+  padding: 5px 50px;
 }
 
 .logo-block img {
@@ -31,8 +31,9 @@
   margin: 0 auto;
 }
 .main-content {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
   padding-left: 288px;
+  min-height: calc(100vh - 64px);
 }
 /* materialize overrides */
 nav {
