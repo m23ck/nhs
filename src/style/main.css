@@ -68,6 +68,7 @@ nav {
   display: block;
   height: 90px;
   width: 90%;
+  min-width: 90px;
   transform: translate(0%, -30%);
   margin: 0 auto;
   color: white;
@@ -75,6 +76,34 @@ nav {
   padding: 10px 10px;
   border-radius: 6px;
 }
+.card-header-floating.with-icon {
+  width: 25% !important;
+  margin: 0 27px !important;
+  border-radius: 15px !important;
+}
+
+.card-header-floating.with-icon .material-icons {
+  display: block;
+  text-align: center;
+  padding: 20px;
+}
 .card-subtitle {
   display: block;
+}
+
+/* colors */
+.error {
+  background: linear-gradient(90deg, #ff5656 0%, #ff3737 100%);
+}
+.pending {
+  background: linear-gradient(90deg, #ffe296 0%, #f8d57d 100%);
+}
+
+/* Complete Assignments */
+.card-header-floating.with-icon .card-title {
+  transform: translate(60%, -120%);
+  color: black;
+  display: block;
+  width: 190px;
+  font-size: large;
 }
