@@ -1,0 +1,41 @@
+@media only screen and (max-width: 990px) {
+  .main-content {
+    padding-left: 0 !important;
+  }
+}
+/*  */
+.sidebar {
+  background: linear-gradient(
+      0deg,
+      rgba(33, 33, 33, 0.9),
+      rgba(33, 33, 33, 0.9)
+    ),
+    url("../../assets/Student/BG\ Photo.png");
+  filter: opacity(0.9);
+  width: 288px;
+}
+
+.logo-block {
+  padding: 20px 50px;
+}
+
+.logo-block img {
+  vertical-align: middle;
+}
+
+.line {
+  height: 1px;
+  width: 80%;
+  display: block;
+  background: white;
+  margin: 0 auto;
+}
+.main-content {
+  background-color: #f0f0f0;
+  padding-left: 288px;
+}
+/* materialize overrides */
+nav {
+  background-color: #f0f0f0 !important;
+  color: black;
+}
