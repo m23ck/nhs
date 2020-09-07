@@ -107,3 +107,9 @@ nav {
   width: 190px;
   font-size: large;
 }
+.card-header-floating.with-icon .card-subtitle {
+  width: 30px;
+  color: black;
+  font-size: x-large;
+  transform: translate(770%, -90%);
+}
