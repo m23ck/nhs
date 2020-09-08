@@ -3,6 +3,9 @@
     padding-left: 0 !important;
   }
 }
+body {
+  background-color: #f0f0f0 !important;
+}
 /*  */
 .sidebar {
   background: linear-gradient(
@@ -94,6 +97,13 @@ nav {
 }
 .card-subtitle {
   display: block;
+}
+.card-content > a {
+  /* color: #a3a3a3; */
+}
+.open-in-new {
+  vertical-align: middle;
+  color: #a3a3a3;
 }
 
 /* colors */
