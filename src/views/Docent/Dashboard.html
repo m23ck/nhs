@@ -20,13 +20,23 @@
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
-          <a href="">
+          <a class='dropdown-trigger ' href='#' data-target='dropdown1' href="#">
             <i class="material-icons black-text">notifications</i>
           </a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+          </ul>
+
         </li>
         <li>
-          <a href="">
+          <a class='dropdown-trigger ' href='#' data-target='dropdown2' href="#">
             <i class="material-icons black-text">person</i>
+          </a>
+          <ul id='dropdown2' class='dropdown-content'>
+            <li><a href="#!">Gebruiker</a></li>
+            <li><a onclick="logout()">Uitloggen</a></li>
+          </ul>
           </a>
         </li>
       </ul>
@@ -42,16 +52,29 @@
       <span class="line"></span>
       <nav-block>
         <li class="active">
-          <a href="./studenten.html">Studenten</a>
+          <i class="material-icons">dashboard</i>
+          <a href="#">Dashboard</a>
         </li>
         <li>
+          <i class="material-icons">person</i>
+          <a href="#">Mijn Gegevens</a>
+        </li>
+        <li>
+          <i class="material-icons">flag</i>
           <a href="./roadmaps.html">Roadmaps</a>
         </li>
         <li>
+          <i class="material-icons">people</i>
           <a href="./klassen.html">Klassen</a>
         </li>
         <li>
+          <i class="material-icons">library_books</i>
           <a href="./vakken.html">Vakken</a>
+        </li>
+        <li>
+          <i class="material-icons">school</i>
+          <a href="./studenten.html">Studenten</a>
+
         </li>
       </nav-block>
     </ul>
@@ -102,56 +125,29 @@
       </div>
     </div>
     <div class="row">
-      <div class="col s12 m4">
-        <div class="card white">
-          <div class="card-header-floating with-icon z-depth-2">
-            <i class="material-icons">done_all</i>
-            <span class="card-title">Completed Assignments</span>
-            <span class="card-subtitle">34</span>
-          </div>
-          <div class="card-content ">
-
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="card white">
-          <div class="card-header-floating with-icon pending z-depth-2">
-            <i class="material-icons">access_time</i>
-            <span class="card-title">Pending Assignments</span>
-            <span class="card-subtitle">21</span>
-          </div>
-          <div class="card-content ">
-
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="card white">
-          <div class="card-header-floating with-icon error z-depth-2">
-            <i class="material-icons">error</i>
-            <span class="card-title">Closed Assignments</span>
-            <span class="card-subtitle">23</span>
-          </div>
-          <div class="card-content ">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col s12 m6">
         <div class="card white">
-          <div class="card-header-floating pending z-depth-2">
-            <span class="card-title">Scores</span>
-            <span class="card-subtitle">Weergave van je totale scores behaalde scores per vak</span>
+          <div class="card-header-floating pending">
+            <span class="card-title">Average Scores</span>
+            <span class="card-subtitle">Een weergave van de gemiddelde scores van jouw vakken per klas</span>
           </div>
           <div class="card-content ">
-            Insert Chart Here...
+            Insert Chart...
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="card white">
+          <div class="card-header-floating silver">
+            <span class="card-title">Assignments Schedule</span>
+            <span class="card-subtitle">Een schema van de opkomende assignments per klas</span>
+          </div>
+          <div class="card-content ">
+            Insert Chart...
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
   </div>

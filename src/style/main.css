@@ -42,6 +42,11 @@ nav-block li a {
   height: 35px !important;
   line-height: 35px !important;
 }
+nav-block li i.material-icons {
+  color: white;
+  float: left;
+  padding: 5px 10px;
+}
 .line {
   height: 1px;
   width: 80%;
@@ -98,7 +103,9 @@ nav {
 .pending {
   background: linear-gradient(90deg, #ffe296 0%, #f8d57d 100%);
 }
-
+.silver {
+  background: linear-gradient(90deg, #cacaca 0%, #a3a3a3 100%);
+}
 /* Complete Assignments */
 .card-header-floating.with-icon .card-title {
   transform: translate(60%, -120%);
@@ -113,3 +120,5 @@ nav {
   font-size: x-large;
   transform: translate(770%, -90%);
 }
+
+/* Rectangle 18 */
