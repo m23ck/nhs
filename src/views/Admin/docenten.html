@@ -15,204 +15,231 @@
     <title>NHS - Docenten</title>
 </head>
 
-<body class="blue lighten-4">
-    <!-- Nav Bar -->
-    <div class="row">
-        <nav class="nav_height">
-            <div class="nav-wrapper nav" style="padding-left: 10px;">
-                <!-- Image Logo -->
-                <div class="image-link">
-                    <a href="./dashboard.html">
-                        <img id="logo" class="brand-logo image-link" src="../../../assets/natinlogo.png"
-                            style="height: auto; width: 50px;">
+<body>
+    <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a class='dropdown-trigger ' href='#' data-target='dropdown1' href="#">
+                        <i class="material-icons black-text">notifications</i>
                     </a>
-                </div>
-                <!-- Navigation  -->
-                <div class="nav-wrapper">
-                    <!-- Menu Dropdown Structure -->
-                    <div>
-                        <ul id="menu" class="dropdown-content" style="width: 200px;">
-                            <!-- <li><a href="./commentaar.html">Commentaar</a></li>
-                                <li><a href="./presentie.html">Presentie</a></li>
-                                <li><a href="./ressort.html">Ressort</a></li>
-                                <li><a href="#!">Vergadering</a></li> -->
-                        </ul>
-                        <ul id="instellingen" class="dropdown-content">
-                            <li><a href="./gebruikers.html">Accounts</a></li>
-                            <li class="divider"></li>
-                            <li><a onclick="logout()">Uitloggen</a></li>
-                        </ul>
-                    </div>
-                    <!-- Dropdowns Button -->
-                    <ul class="hide-on-med-and-down right">
-                        <li><a class="dropdown-trigger" data-target="menu">Menu<i
-                                    class="material-icons right">arrow_drop_down</i></a>
-                        </li>
-                        <li><a class="dropdown-trigger" data-target="instellingen">Instellingen<i
-                                    class="material-icons right">arrow_drop_down</i></a>
-                        </li>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
+
+                </li>
+                <li>
+                    <a class='dropdown-trigger ' href='#' data-target='dropdown2' href="#">
+                        <i class="material-icons black-text">person</i>
+                    </a>
+                    <ul id='dropdown2' class='dropdown-content'>
+                        <li><a href="./gegevens.html"><i class="material-icons left">person</i>Gebruiker</a></li>
+                        <li><a onclick="logout()">Uitloggen</a></li>
+                    </ul>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Nav Bar -->
+    <div class="col s3">
+        <ul id="slide-out" class="sidenav sidenav-fixed sidebar text-white">
+            <li class="white-text logo-block">
+                <img width="50px" src="../../../assets/natinlogo.png" />
+                Huiswerk Systeem
+            </li>
+            <span class="line"></span>
+            <nav-block>
+                <li>
+                    <i class="material-icons">dashboard</i>
+                    <a href="./dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <i class="material-icons">person</i>
+                    <a href="./gegevens.html">Mijn Gegevens</a>
+                </li>
+                <li class="active">
+                    <i class="material-icons">people</i>
+                    <a href="./docenten.html">Docenten</a>
+                </li>
+                <li>
+                    <i class="material-icons">people</i>
+                    <a href="./admins.html">Admins</a>
+                </li>
+                <li>
+                    <i class="material-icons">flag</i>
+                    <a href="./richtingen.html">Richtingen</a>
+                </li>
+            </nav-block>
+        </ul>
     </div>
 
-    <!-- Docenten Table -->
-    <div class="container">
+    <div class="main-content">
+        <!-- Docenten Table -->
         <div class="row">
-            <blockquote>
-                <p class="flow-text">Docenten Beheren</p>
-            </blockquote>
-            <div class="col s12" style="height: 28em; width: auto; overflow: auto;">
-                <table id="docentTable" class="responsive-table" style="width: 1000px;">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Naam</th>
-                            <th>Voornaam</th>
-                            <th>Email</th>
-                            <th>Telefoon</th>
-                            <th>Adres</th>
-                            <th>Type</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="docentTableBody">
-                    </tbody>
-                </table>
+            <div class="col s12 m12">
+                <div class="card white">
+                    <div class="card-content ">
+                        <a class="waves-effect waves-light btn primary"><i
+                                class="material-icons right">add</i>Docent</a>
+                        <table id="docentTable" class="highlight responsive-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Naam</th>
+                                    <th>Voornaam</th>
+                                    <th>Email</th>
+                                    <th>Telefoon</th>
+                                    <th>Adres</th>
+                                    <th>Type</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="docentTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <!-- Docenten Table -->
 
-    <!-- Floating Gebruiker Button -->
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger" href="#modal_docent">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
 
-    <!-- Create docent modal -->
-    <div id="modal_docent" class="modal" style="height: 900px;">
-        <div class="modal-content">
-            <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Nieuw Docent Aanmaken</h3>
-            <br>
-            <div>
-                <div class="row">
-                    <form class="col s12" method="POST" id="docentForm" name="docentForm"
-                        onsubmit="return createDocent()">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="text" name="naam" id="naam" required>
-                                <label for="naam">Naam</label>
+        <!-- Floating Gebruiker Button -->
+        <div class="fixed-action-btn">
+            <a class=" btn-floating primary  btn-large nav waves-effect waves-light btn modal-trigger"
+                href="#modal_docent">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
+
+        <!-- Create docent modal -->
+        <div id="modal_docent" class="modal" style="height: 900px;">
+            <div class="modal-content">
+                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Nieuw Docent Aanmaken</h3>
+                <br>
+                <div>
+                    <div class="row">
+                        <form class="col s12" method="POST" id="docentForm" name="docentForm"
+                            onsubmit="return createDocent()">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" name="naam" id="naam" required>
+                                    <label for="naam">Naam</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" name="voornaam" id="voornaam" required>
+                                    <label for="voornaam">Voornaam</label>
+                                </div>
                             </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="voornaam" id="voornaam" required>
-                                <label for="voornaam">Voornaam</label>
-                            </div>
-                        </div>
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="input-field col s6">
-                                <select name="gebruiker_type_id">
-                                    <option value="1">Admin</option>
-                                    <option value="2">Docent</option>
-                                </select>
-                                <label for="gebruiker_type_id">Type</label>
-                            </div>
+                                <div class="input-field col s6">
+                                    <select name="gebruiker_type_id">
+                                        <option value="1">Admin</option>
+                                        <option value="2">Docent</option>
+                                    </select>
+                                    <label for="gebruiker_type_id">Type</label>
+                                </div>
 
-                            <!-- <div class="input-field col s6">
+                                <!-- <div class="input-field col s6">
                                     <input type="text" name="gebruiker_type_id" id="gebruiker_type_id" value="2" required disabled>
                                     <label for="gebruiker_type_id">Type_id</label>
                                 </div> -->
 
-                            <div class="input-field col s6">
-                                <input type="text" name="email" id="email" required>
-                                <label for="email">Email</label>
+                                <div class="input-field col s6">
+                                    <input type="text" name="email" id="email" required>
+                                    <label for="email">Email</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="text" name="adres" id="adres" required>
-                                <label for="adres">Adres</label>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" name="adres" id="adres" required>
+                                    <label for="adres">Adres</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" name="telefoon" id="telefoon" required>
+                                    <label for="telefoon">Telefoon</label>
+                                </div>
                             </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="telefoon" id="telefoon" required>
-                                <label for="telefoon">Telefoon</label>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="password" name="wachtwoord" id="wachtwoord" required>
+                                    <label for="wachtwoord">Wachtwoord</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="password" name="wachtwoord2" id="wachtwoord2" required>
+                                    <label for="wachtwoord2">Wachtwoord Opniew Invoeren</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="password" name="wachtwoord" id="wachtwoord" required>
-                                <label for="wachtwoord">Wachtwoord</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input type="password" name="wachtwoord2" id="wachtwoord2" required>
-                                <label for="wachtwoord2">Wachtwoord Opniew Invoeren</label>
-                            </div>
-                        </div>
-                        <button class="btn waves-effect waves-light, nav" type="submit" name="action">Opslaan</button>
+                            <button class="btn waves-effect waves-light primary nav" type="submit"
+                                name="action">Opslaan</button>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- update docent modal -->
-    <div id="modal_update_docent" class="modal" style="height: 900px;">
-        <div class="modal-content">
-            <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Docent wijzigen</h3>
-            <br>
-            <div>
-                <div class="row">
-                    <form class="col s12" method="POST" id="updateDocentForm" name="updateDocentForm"
-                        onsubmit="return updateDocent()">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="text" name="naam" id="updateNaam" required>
-                                <label for="naam">Naam</label>
+        <!-- update docent modal -->
+        <div id="modal_update_docent" class="modal" style="height: 900px;">
+            <div class="modal-content">
+                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Docent wijzigen</h3>
+                <br>
+                <div>
+                    <div class="row">
+                        <form class="col s12" method="POST" id="updateDocentForm" name="updateDocentForm"
+                            onsubmit="return updateDocent()">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" name="naam" id="updateNaam" required>
+                                    <label for="naam">Naam</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" name="voornaam" id="updateVoornaam" required>
+                                    <label for="voornaam">Voornaam</label>
+                                </div>
                             </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="voornaam" id="updateVoornaam" required>
-                                <label for="voornaam">Voornaam</label>
-                            </div>
-                        </div>
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="input-field col s6">
-                                <input type="text" name="type" id="updateType" placeholder="1=admin, 2=docent" required>
-                                <label for="type">Type</label>
+                                <div class="input-field col s6">
+                                    <input type="text" name="type" id="updateType" placeholder="1=admin, 2=docent"
+                                        required>
+                                    <label for="type">Type</label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <input type="text" name="email" id="updateEmail" required>
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" name="adres" id="updateAdres" required>
+                                    <label for="adres">Adres</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" name="telefoon" id="updateTelefoon" required>
+                                    <label for="telefoon">Telefoon</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="password" name="wachtwoord" id="updateWachtwoord" required>
+                                    <label for="wachtwoord">Wachtwoord</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="password" name="wachtwoord2" id="updateWachtwoord2" required>
+                                    <label for="wachtwoord2">Wachtwoord Opniew Invoeren</label>
+                                </div>
                             </div>
 
-                            <div class="input-field col s6">
-                                <input type="text" name="email" id="updateEmail" required>
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="text" name="adres" id="updateAdres" required>
-                                <label for="adres">Adres</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="telefoon" id="updateTelefoon" required>
-                                <label for="telefoon">Telefoon</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="password" name="wachtwoord" id="updateWachtwoord" required>
-                                <label for="wachtwoord">Wachtwoord</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input type="password" name="wachtwoord2" id="updateWachtwoord2" required>
-                                <label for="wachtwoord2">Wachtwoord Opniew Invoeren</label>
-                            </div>
-                        </div>
+                            <button class="btn waves-effect waves-light primary nav" type="submit"
+                                name="action">Opslaan</button>
 
-                        <button class="btn waves-effect waves-light, nav" type="submit" name="action">Opslaan</button>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

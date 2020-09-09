@@ -16,16 +16,91 @@
 </head>
 
 <body>
-  <div class="container">
+  <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a class='dropdown-trigger ' href='#' data-target='dropdown1' href="#">
+            <i class="material-icons black-text">notifications</i>
+          </a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a class='dropdown-trigger ' href='#' data-target='dropdown2' href="#">
+            <i class="material-icons black-text">person</i>
+          </a>
+          <ul id='dropdown2' class='dropdown-content'>
+            <li><a href="./gegevens.html"><i class="material-icons left">person</i>Gebruiker</a></li>
+            <li><a onclick=" logout()">Uitloggen</a></li>
+          </ul>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="col s3">
+    <ul id="slide-out" class="sidenav sidenav-fixed sidebar text-white">
+      <li class="white-text logo-block">
+        <img width="50px" src="../../../assets/natinlogo.png" />
+        Huiswerk Systeem
+      </li>
+      <span class="line"></span>
+      <nav-block>
+        <li class="active">
+          <i class="material-icons">dashboard</i>
+          <a href="#">Dashboard</a>
+        </li>
+        <li>
+          <i class="material-icons">person</i>
+          <a href="./gegevens.html">Mijn Gegevens</a>
+        </li>
+        <li>
+          <i class="material-icons">people</i>
+          <a href="./docenten.html">Docenten</a>
+        </li>
+        <li>
+          <i class="material-icons">people</i>
+          <a href="./admins.html">Admins</a>
+        </li>
+        <li>
+          <i class="material-icons">flag</i>
+          <a href="./richtingen.html">Richtingen</a>
+        </li>
+      </nav-block>
+    </ul>
+  </div>
+
+  <div class="main-content">
     <div class="row">
-      <h1 class="center-align black-text" style="padding-top: 4%;">
-        Admin Dashboard
-      </h1>
-      <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="./docenten.html">Docenten</a>
-        <a href="./admins.html">Admins</a>
-        <a href="./richtingen.html">richtingen</a>
-      </nav>
+      <div class="col s12 m6">
+        <div class="card white">
+          <div class="card-header-floating z-depth-2">
+            <span class="card-title">Leaderboard</span>
+            <span class="card-subtitle">Dit zijn de studenten met de hoogste totale score.</span>
+          </div>
+          <div class="card-content ">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Naam</th>
+                  <th>Voornaam</th>
+                  <th>Klas</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
