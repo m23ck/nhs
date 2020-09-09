@@ -1,10 +1,10 @@
-const gebruiker_id = JSON.parse(localStorage.getItem("nhs_user")).id;
-const current_token = localStorage.getItem("token");
-
-const myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer " + current_token);
-
 function redirectIfNotPermitted() {
+  const gebruiker_id = localStorage.getItem("gebruiker_id");
+  const current_token = localStorage.getItem("token");
+
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + current_token);
+
   fetch(`http://127.0.0.1:3000/gebruiker/${gebruiker_id}`, {
     method: "GET",
     headers: myHeaders,
@@ -31,11 +31,4 @@ function redirectIfNotPermitted() {
       console.error(err);
     });
   return false;
-}
-
-function redirectIfNoToken() {
-  if (current_token == null) {
-    window.location.replace("../../../index.html");
-    alert("U Moet Eerst Inloggen!");
-  }
-}
+} 
