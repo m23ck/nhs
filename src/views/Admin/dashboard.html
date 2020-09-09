@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!--Import Google Icon Font-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <!--Import materialize.css-->
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="../../../src/style/materialize/css/materialize.min.css"
-      media="screen,projection"
-    />
-    
-    <link rel="stylesheet" href="../../../src/style/main.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NHS - Dashboard</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <h1 class="center-align black-text" style="padding-top: 4%;">
-          Admin Dashboard
-        </h1>
-        <nav>
-          <a href="./docenten.html">Docenten</a>
-          <a href="./admins.html">Admins</a>
-          <a href="./richtingen.html">richtingen</a>
-        </nav>
-      </div>
-    </div>
 
-    <!--JavaScript at end of body for optimized loading-->
-    
-    <script
-      type="text/javascript"
-      src="../../../src/style/materialize/js/materialize.min.js"
-    ></script>
-    <script src="../../controllers/main.js"></script>
-    <script src="../../controllers/permissions.js"></script>
-    <script>
-      M.AutoInit();
-      redirectIfNotPermitted();
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../../../src/style/materialize/css/materialize.min.css"
+    media="screen,projection" />
+
+  <link rel="stylesheet" href="../../../src/style/main.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NHS - Dashboard</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1 class="center-align black-text" style="padding-top: 4%;">
+        Admin Dashboard
+      </h1>
+      <nav>
+        <a href="./docenten.html">Docenten</a>
+        <a href="./admins.html">Admins</a>
+        <a href="./richtingen.html">richtingen</a>
+      </nav>
+    </div>
+  </div>
+
+  <!--JavaScript at end of body for optimized loading-->
+
+  <script type="text/javascript" src="../../../src/style/materialize/js/materialize.min.js"></script>
+  <script src="../../controllers/main.js"></script>
+  <script src="../../controllers/permissions.js"></script>
+  <script>
+    M.AutoInit();
+    window.onload = redirectIfNotPermitted();
+  </script>
+</body>
+
 </html>

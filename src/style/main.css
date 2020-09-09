@@ -137,4 +137,7 @@ nav {
   transform: translate(770%, -90%);
 }
 
-/* Rectangle 18 */
+/* Tables*/
+#gegevensForm {
+  padding: 0px 20px;
+}
