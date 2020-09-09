@@ -16,7 +16,8 @@ function redirectIfNotPermitted() {
     .then((data) => {
       console.log(data.data.type);
 
-      type = window.location.pathname.split('/').filter(item => item)[3].toLocaleLowerCase()
+      baseURL = window.location.pathname.split('/').filter(item => item)
+      type = baseURL[baseURL.length - 2].toLowerCase()
 
       if (type != data.data.type) {
         console.log(data.data.type)
