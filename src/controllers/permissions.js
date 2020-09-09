@@ -30,4 +30,4 @@ function redirectIfNotPermitted() {
       console.error(err);
     });
   return false;
-}
+} 
