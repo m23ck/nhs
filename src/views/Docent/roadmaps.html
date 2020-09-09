@@ -18,7 +18,7 @@
 
 <body class="blue lighten-4">
   <!-- Nav Bar -->
-  <nav>
+  <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
@@ -36,8 +36,8 @@
             <i class="material-icons black-text">person</i>
           </a>
           <ul id='dropdown2' class='dropdown-content'>
-            <li><a href="#!">Gebruiker</a></li>
-            <li><a onclick="logout()">Uitloggen</a></li>
+            <li><a href="./gegevens.html"><i class="material-icons left">person</i>Gebruiker</a></li>
+            <li><a onclick=" logout()">Uitloggen</a></li>
           </ul>
           </a>
         </li>
@@ -101,21 +101,6 @@
               </thead>
 
               <tbody id="roadmapTableBody">
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>Eclair</td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>Jellybean</td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>Lollipop</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -137,7 +122,7 @@
         onclick="return fillSelects();">Add Assignment</a>
       <br />
       <div class="col s12" style="height: 28em; width: auto; overflow: auto">
-        <table id="assignmentsTable" class="highlight" style="width: 1000px">
+        <table id="assignmentsTable" class="responsive-table">
           <thead>
             <tr>
               <th>ID</th>

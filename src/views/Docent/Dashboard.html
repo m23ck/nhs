@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <nav>
+  <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
@@ -34,8 +34,8 @@
             <i class="material-icons black-text">person</i>
           </a>
           <ul id='dropdown2' class='dropdown-content'>
-            <li><a href="#!">Gebruiker</a></li>
-            <li><a onclick="logout()">Uitloggen</a></li>
+            <li><a href="./gegevens.html"><i class="material-icons left">person</i>Gebruiker</a></li>
+            <li><a onclick=" logout()">Uitloggen</a></li>
           </ul>
           </a>
         </li>
@@ -89,7 +89,7 @@
             <span class="card-subtitle">Dit zijn de studenten met de hoogste totale score.</span>
           </div>
           <div class="card-content ">
-            <table>
+            <table class="responsive-table">
               <thead>
                 <tr>
                   <th>Naam</th>
@@ -100,31 +100,14 @@
               </thead>
 
               <tbody>
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>Jellybean</td>
-                  <td>$3.76</td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>Lollipop</td>
-                  <td>$7.00</td>
-                </tr>
+
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class=" row">
       <div class="col s12 m6">
         <div class="card white">
           <div class="card-header-floating pending z-depth-2">
