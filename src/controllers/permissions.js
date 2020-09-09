@@ -14,9 +14,9 @@ function redirectIfNotPermitted() {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data.data.type);
+      console.log(data.data.type);
 
-      type = localStorage.getItem("gebruiker_type")
+      type = window.location.pathname.split('/').filter(item => item)[3].toLocaleLowerCase()
 
       if (type != data.data.type) {
         console.log(data.data.type)

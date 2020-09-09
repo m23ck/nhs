@@ -122,13 +122,14 @@
   <script src="../../controllers/permissions.js"></script>
   <script>
     M.AutoInit();
-    document.addEventListener("DOMContentLoaded", function () {
-      var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems, {});
-      // var instances = M.FormSelect.init(elems, options);
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   var elems = document.querySelectorAll("select");
+    //   var instances = M.FormSelect.init(elems, {});
+    //   // var instances = M.FormSelect.init(elems, options);
 
-    });
+    // });
     redirectIfNotPermitted();
+    console.log('re')
   </script>
 </body>
 
