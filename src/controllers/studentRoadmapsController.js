@@ -96,25 +96,44 @@ function hideRoadmaps_viewAssignments(){
 
 function submitCheck(td) {
   selectedRow = td.parentElement.parentElement;
-  id = selectedRow.cells[0].innerHTML;
+  let assignment_id = selectedRow.cells[0].innerHTML;
+  let student_id = JSON.parse(localStorage.getItem("nhs_user")).gebruiker_id
+
 
   function submitAssignment() {
+    let fd = new FormData();
+    fd.append('assignment_id', assignment_id)
+    fd.append('student_id', student_id)
+    fd.append('status', "submitted")
+    let data = {};
+    for (let [key, prop] of fd) {
+      data[key] = prop;
+    }
+    VALUE = JSON.stringify(data, null, 2);
+  
+    console.log(VALUE);
+  
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + current_token2);
-
-    fetch("http://127.0.0.1:3000/assignment/" + id, {
-      method: "DELETE",
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Accept", "application/json");
+  
+    fetch("http://127.0.0.1:3000/assignment_submission", {
+      method: "POST",
       headers: myHeaders,
       mode: "cors",
       cache: "default",
+      body: VALUE,
     })
       .then((res) => res.json())
       .then((res) => {
-        alert("Roadmap succesvol verwijderd!");
+        console.log("Success", res);
         location.reload();
       })
-      .catch((err) => console.error(err));
-
+      .catch((err) => {
+        console.error(err);
+      });
+  
     return false;
   }
 
@@ -127,37 +146,3 @@ function submitCheck(td) {
 
 
 
-// function createRoadmap() {
-//   let form = document.forms["roadmapForm"];
-//   let fd = new FormData(form);
-//   let data = {};
-//   for (let [key, prop] of fd) {
-//     data[key] = prop;
-//   }
-//   VALUE = JSON.stringify(data, null, 2);
-
-//   console.log(VALUE);
-
-//   const myHeaders = new Headers();
-//   myHeaders.append("Authorization", "Bearer " + current_token2);
-//   myHeaders.append("Content-Type", "application/json");
-//   myHeaders.append("Accept", "application/json");
-
-//   fetch("http://127.0.0.1:3000/roadmap", {
-//     method: "POST",
-//     headers: myHeaders,
-//     mode: "cors",
-//     cache: "default",
-//     body: VALUE,
-//   })
-//     .then((res) => res.json())
-//     .then((res) => {
-//       console.log("Success", res);
-//       location.reload();
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-
-//   return false;
-// }
