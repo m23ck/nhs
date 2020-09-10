@@ -16,32 +16,27 @@ fetch(`http://127.0.0.1:3000/roadmap/student/${student_id}`, {
 
     if (data.data.length > 0) {
       var body = "";
-        const roadmapList = document.getElementById('roadmapList')
+
       data.data.forEach((i) => {
-        let listItem = document.createElement("li")
-        let link = document.createElement("a")
-        // listItem.textContent = i.roadmap_naam
-        link.textContent = i.roadmap_naam
-        // link.onclick = printID(this)
-        // link.title = i.roadmap_id
-        link.setAttribute('data-roadmap_id', i.roadmap_id)
-        link.setAttribute('href', '#')
-        link.setAttribute('onclick', "viewAssignments(this)")
-        listItem.appendChild(link)
-        roadmapList.appendChild(listItem)
+        body += "<tr>";
+        body += "<td>" + i.roadmap_id + "</td>";
+        body += "<td>" + i.roadmap_naam + "</td>";
+        body += "<td>" + i.start_datum + "</td>";
+        body += "<td>" + i.eind_datum + "</td>";
+        body += `<td>
+                    <a title='Go' data-toggle='tooltip' style='cursor: pointer;'  onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
+                </td>`;
+        body += "</tr>";
       });
 
+      document.getElementById("roadmapsTableBody").innerHTML = body;
     }
   })
   .catch((err) => console.log(err));
-//   getElementById("")
 
-function viewAssignments(roadmap){
-
-    let roadmap_id = roadmap.getAttribute('data-roadmap_id')
-    // getAssignments(roadmap_id)
-    document.getElementById('roadmapsContainer').style = "none"
-    document.getElementById('assignmentsContainer').style = "block"
+function viewAssignments(td){
+  selectedRow = td.parentElement.parentElement;
+    let roadmap_id =  selectedRow.cells[0].innerHTML;
 
 fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap_id}`, {
   method: "GET",
@@ -68,16 +63,15 @@ fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap_id}`, {
         body += "<td>" + i.punten + "</td>";
         body += "<td>" + i.herkansingspunten + "</td>";
         body += `<td>
-                  <a class='modal-trigger' href='#modal_update_assignment' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getAssignmentData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
-                  <a title='Delete' data-toggle='tooltip' style='cursor: pointer;'  onclick='return deleteAssignmentCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
-              </td>`;
+                  <a class='modal-trigger' href='#modal_update_assignment' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return submitCheck(this)'><i class='small material-icons' style='color: #228B22;'>check</i></a>
+                  </td>`;
         body += "</tr>";
         
       });
       document.getElementById("assignmentsTableBody").innerHTML = body;
       document.getElementById("AssignmentsHeader").innerHTML = data.data[0].roadmap_naam;
 
-      
+      hideRoadmaps_viewAssignments()
     }
   })
   .catch((err) => console.log(err));
@@ -86,12 +80,84 @@ fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap_id}`, {
 
 
 
-function hideAssignments(){
+function hideAssignments_viewRoadmaps(){
   document.getElementById('roadmapsContainer').style = "block"
   document.getElementById('assignmentsContainer').style = "none"  
+  window.location.reload()
 }
 
-function unhideAssignments(){
+function hideRoadmaps_viewAssignments(){
   document.getElementById('roadmapsContainer').style = "none"
   document.getElementById('assignmentsContainer').style = "block"  
 }
+
+
+
+
+function submitCheck(td) {
+  selectedRow = td.parentElement.parentElement;
+  id = selectedRow.cells[0].innerHTML;
+
+  function submitAssignment() {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + current_token2);
+
+    fetch("http://127.0.0.1:3000/assignment/" + id, {
+      method: "DELETE",
+      headers: myHeaders,
+      mode: "cors",
+      cache: "default",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        alert("Roadmap succesvol verwijderd!");
+        location.reload();
+      })
+      .catch((err) => console.error(err));
+
+    return false;
+  }
+
+  if (confirm("Bent u zeker?")) {
+    submitAssignment();
+  }
+}
+
+
+
+
+
+// function createRoadmap() {
+//   let form = document.forms["roadmapForm"];
+//   let fd = new FormData(form);
+//   let data = {};
+//   for (let [key, prop] of fd) {
+//     data[key] = prop;
+//   }
+//   VALUE = JSON.stringify(data, null, 2);
+
+//   console.log(VALUE);
+
+//   const myHeaders = new Headers();
+//   myHeaders.append("Authorization", "Bearer " + current_token2);
+//   myHeaders.append("Content-Type", "application/json");
+//   myHeaders.append("Accept", "application/json");
+
+//   fetch("http://127.0.0.1:3000/roadmap", {
+//     method: "POST",
+//     headers: myHeaders,
+//     mode: "cors",
+//     cache: "default",
+//     body: VALUE,
+//   })
+//     .then((res) => res.json())
+//     .then((res) => {
+//       console.log("Success", res);
+//       location.reload();
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+
+//   return false;
+// }
