@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2020 at 09:55 PM
+-- Generation Time: Sep 11, 2020 at 01:07 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -31,13 +31,42 @@ CREATE TABLE `assignment` (
   `id` int(11) NOT NULL,
   `roadmap_id` int(11) DEFAULT NULL,
   `vak_id` varchar(255) NOT NULL,
-  `naam` varchar(255) NOT NULL,
+  `assignment_naam` varchar(255) NOT NULL,
   `omschrijving` text NOT NULL,
   `start_datum` date DEFAULT NULL,
   `inlever_datum` date DEFAULT NULL,
   `punten` int(255) NOT NULL,
   `herkansingspunten` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assignment`
+--
+
+INSERT INTO `assignment` (`id`, `roadmap_id`, `vak_id`, `assignment_naam`, `omschrijving`, `start_datum`, `inlever_datum`, `punten`, `herkansingspunten`) VALUES
+(1, 2, '2', 'Helloworld', 'Creeer een Helloworld command-line programma met Java', '2020-09-03', '2020-09-04', 20, 15),
+(2, 3, '2', 'Stelling van Pythagoras Leren', 'Maak alle opgegeven sommen en zorg ervoor dat je de stelling van pythagoras kent', '2020-09-04', '2020-09-07', 19, 14),
+(3, 2, '1', 'Linux Server opzetten', 'Zet een linux server met CentOS op', '2020-09-08', '2020-09-09', 30, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignment_submission`
+--
+
+CREATE TABLE `assignment_submission` (
+  `id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assignment_submission`
+--
+
+INSERT INTO `assignment_submission` (`id`, `assignment_id`, `student_id`, `status`) VALUES
+(2, 3, 11, 'submitted');
 
 -- --------------------------------------------------------
 
@@ -107,6 +136,16 @@ CREATE TABLE `jaar_klas` (
   `jaar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jaar_klas`
+--
+
+INSERT INTO `jaar_klas` (`id`, `klas_id`, `richting_id`, `jaar`) VALUES
+(1, 6, 1, 2019),
+(2, 8, 2, 2017),
+(3, 9, 3, 2018),
+(4, 10, 3, 2018);
+
 -- --------------------------------------------------------
 
 --
@@ -115,7 +154,7 @@ CREATE TABLE `jaar_klas` (
 
 CREATE TABLE `klas` (
   `id` int(11) NOT NULL,
-  `naam` varchar(255) NOT NULL,
+  `klas_naam` varchar(255) NOT NULL,
   `klassendocent_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -123,10 +162,16 @@ CREATE TABLE `klas` (
 -- Dumping data for table `klas`
 --
 
-INSERT INTO `klas` (`id`, `naam`, `klassendocent_id`) VALUES
+INSERT INTO `klas` (`id`, `klas_naam`, `klassendocent_id`) VALUES
 (2, '4.06.21', 3),
 (3, '3.06.21', 3),
-(4, '1.23', 3);
+(4, '1.23', 3),
+(5, '2.26', 3),
+(6, '3.06.11', 3),
+(7, '1.06.10', 3),
+(8, '2.06.23', 3),
+(9, '1.01.2', 3),
+(10, '1.03.5', 4);
 
 -- --------------------------------------------------------
 
@@ -139,6 +184,13 @@ CREATE TABLE `klas_roadmaps` (
   `roadmap_id` int(11) DEFAULT NULL,
   `jaar_klas_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `klas_roadmaps`
+--
+
+INSERT INTO `klas_roadmaps` (`id`, `roadmap_id`, `jaar_klas_id`) VALUES
+(1, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -162,14 +214,14 @@ CREATE TABLE `resultaat` (
 
 CREATE TABLE `richting` (
   `id` int(11) NOT NULL,
-  `naam` varchar(255) NOT NULL
+  `richting_naam` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `richting`
 --
 
-INSERT INTO `richting` (`id`, `naam`) VALUES
+INSERT INTO `richting` (`id`, `richting_naam`) VALUES
 (1, 'Informatie-en Communicatie Technologie'),
 (2, 'Audio-visuele Productie'),
 (3, 'Proces Techniek');
@@ -182,10 +234,18 @@ INSERT INTO `richting` (`id`, `naam`) VALUES
 
 CREATE TABLE `roadmap` (
   `id` int(11) NOT NULL,
-  `naam` varchar(255) NOT NULL,
+  `roadmap_naam` varchar(255) NOT NULL,
   `start_datum` date DEFAULT NULL,
   `eind_datum` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roadmap`
+--
+
+INSERT INTO `roadmap` (`id`, `roadmap_naam`, `start_datum`, `eind_datum`) VALUES
+(2, 'ITE Basics', '2020-09-03', '2020-09-08'),
+(3, 'Wiskunde Inleiding', '2020-09-03', '2020-09-15');
 
 -- --------------------------------------------------------
 
@@ -198,6 +258,13 @@ CREATE TABLE `student_klas` (
   `student_id` int(11) NOT NULL,
   `jaar_klas_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student_klas`
+--
+
+INSERT INTO `student_klas` (`id`, `student_id`, `jaar_klas_id`) VALUES
+(1, 11, 3);
 
 -- --------------------------------------------------------
 
@@ -227,8 +294,17 @@ INSERT INTO `type` (`type_id`, `type`) VALUES
 
 CREATE TABLE `vak` (
   `id` int(11) NOT NULL,
-  `naam` varchar(255) NOT NULL
+  `vak_naam` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vak`
+--
+
+INSERT INTO `vak` (`id`, `vak_naam`) VALUES
+(1, 'Engels'),
+(2, 'Wiskunde'),
+(3, 'IT Essentials');
 
 --
 -- Indexes for dumped tables
@@ -240,6 +316,14 @@ CREATE TABLE `vak` (
 ALTER TABLE `assignment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `roadmap_id` (`roadmap_id`);
+
+--
+-- Indexes for table `assignment_submission`
+--
+ALTER TABLE `assignment_submission`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assignment_id` (`assignment_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `docent_richting`
@@ -333,7 +417,13 @@ ALTER TABLE `vak`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `assignment_submission`
+--
+ALTER TABLE `assignment_submission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `docent_richting`
@@ -357,19 +447,19 @@ ALTER TABLE `gebruiker`
 -- AUTO_INCREMENT for table `jaar_klas`
 --
 ALTER TABLE `jaar_klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `klas`
 --
 ALTER TABLE `klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `resultaat`
@@ -387,13 +477,13 @@ ALTER TABLE `richting`
 -- AUTO_INCREMENT for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student_klas`
 --
 ALTER TABLE `student_klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -405,7 +495,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `vak`
 --
 ALTER TABLE `vak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -416,6 +506,13 @@ ALTER TABLE `vak`
 --
 ALTER TABLE `assignment`
   ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`id`);
+
+--
+-- Constraints for table `assignment_submission`
+--
+ALTER TABLE `assignment_submission`
+  ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`id`),
+  ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `gebruiker` (`id`);
 
 --
 -- Constraints for table `docent_richting`
