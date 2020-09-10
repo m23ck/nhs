@@ -15,6 +15,7 @@ const assignmentRouter = require("./server/routes/assignment.route");
 const resultaatRouter = require("./server/routes/resultaat.route");
 const klas_roadmapsRouter = require("./server/routes/klas_roadmaps.route");
 const student_klasRouter = require("./server/routes/student_klas.route");
+const assignment_submissionRouter = require("./server/routes/assignment_submission.route");
 
 //Remove when in production
 app.use(cors({
@@ -37,6 +38,7 @@ app.use("/assignment", assignmentRouter);
 app.use("/resultaat", resultaatRouter);
 app.use("/klas_roadmap_association", klas_roadmapsRouter);
 app.use("/student_klas_association", student_klasRouter);
+app.use("/assignment_submission", assignment_submissionRouter);
 
 
 
