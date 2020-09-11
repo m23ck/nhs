@@ -65,6 +65,23 @@ module.exports = {
       }
     );
   },
+  getSpecificAssignmentSubmissions: (klas_id, roadmap_id,status, callBack) => {
+    pool.query(
+        `select * from assignment_submission INNER JOIN assignment ON assignment_submission.assignment_id = assignment.id INNER JOIN gebruiker ON assignment_submission.student_id = gebruiker.id WHERE klas_id = ? AND roadmap_id = ? status = ?`,
+      [
+        klas_id,
+        roadmap_id,
+        status
+      ],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   changeAssignmentSubmissionStatus: (data, assignment_submission_id, callBack) => {
     pool.query(
       "update assignment_submission set status = ? where id = ?",
