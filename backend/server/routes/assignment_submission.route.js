@@ -3,6 +3,7 @@ const {
     getAssignmentSubmissionById,
     getAssignmentSubmissionByAssignmentId,
     getAssignmentSubmissionByStudentId,
+    getSpecificAssignmentSubmissions,
     getAssignmentSubmissions,
     changeAssignmentSubmissionStatus,
     deleteAssignmentSubmission
@@ -15,6 +16,7 @@ router.get("/", checkToken, getAssignmentSubmissions);
 router.get("/:id", checkToken, getAssignmentSubmissionById);
 router.get("/assignment/:assignment_id", checkToken, getAssignmentSubmissionByAssignmentId);
 router.get("/student/:student_id", checkToken, getAssignmentSubmissionByStudentId);
+router.get("/:klas_id/:roadmap_id/:status", checkToken, getSpecificAssignmentSubmissions);
 router.put("/:id", checkToken, changeAssignmentSubmissionStatus);
 router.delete("/:id", checkToken, deleteAssignmentSubmission);
 

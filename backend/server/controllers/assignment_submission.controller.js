@@ -3,6 +3,7 @@ const {
     getAssignmentSubmissionById,
     getAssignmentSubmissionByAssignmentId,
     getAssignmentSubmissionByStudentId,
+    getSpecificAssignmentSubmissions,
     getAssignmentSubmissions,
     changeAssignmentSubmissionStatus,
     deleteAssignmentSubmission
@@ -48,6 +49,27 @@ module.exports = {
     getAssignmentSubmissionByAssignmentId: (req, res) => {
         const assignment_id = req.params.assignment_id;
         getAssignmentSubmissionByAssignmentId(assignment_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "AssignmentSubmission bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getSpecificAssignmentSubmissions: (req, res) => {
+        const klas_id = req.params.klas_id;
+        const roadmap_id = req.params.roadmap_id;
+        const status = req.params.status;
+        getSpecificAssignmentSubmissions(klas_id, roadmap_id, status, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
