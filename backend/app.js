@@ -47,7 +47,7 @@ app.listen(process.env.APP_PORT, () => {
 })
 
 
-//When route does not exist, show the requester this message
+// When route does not exist, show the requester this message
 app.get('*', (req, res) => {
     res.json({
         message: "Welkom bij de Backend van N.H.S."

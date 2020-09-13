@@ -34,7 +34,7 @@ module.exports = {
   },
   getKlassen: (callBack) => {
     pool.query(
-      `SELECT * From jaar_klas INNER JOIN klas ON jaar_klas.klas_id = klas.id INNER JOIN richting ON jaar_klas.richting_id = richting.id INNER JOIN gebruiker ON klas.klassendocent_id = gebruiker.id`
+      `SELECT jaar_klas.id as jaar_klas_id, richting.richting_naam as richting, jaar_klas.jaar, klas.klas_naam, gebruiker.naam as klassendocent_naam, gebruiker.voornaam as klassendocent_voornaam From jaar_klas LEFT JOIN klas ON jaar_klas.klas_id = klas.id LEFT JOIN richting ON jaar_klas.richting_id = richting.id LEFT JOIN gebruiker ON klas.klassendocent_id = gebruiker.id`
       // `SELECT klas.id as klasid, klas.naam as klasnaam, jaar_klas.jaar as jaar richting.naam as richtingnaam, docent.naam as docentnaam, docent.voornaam as docentvoornaam From ((jaar_klas, klas, richting INNER JOIN klas ON jaar_klas.klas_id = klasid) INNER JOIN richting ON jaar_klas.richting_id = richting.id)`
      , [], (error, results, fields) => {
       if (error) {

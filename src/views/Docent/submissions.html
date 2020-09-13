@@ -145,6 +145,28 @@
     </div>
 
 
+    <!-- Submissions Table -->
+    <div class="container">
+      <div class="row">
+        <blockquote>
+          <p class="flow-text">Submissions</p>
+        </blockquote>
+        
+        <div class="col s12" style="height: 28em; width: auto; overflow: auto">
+          <table id="assignmentSubmissionsTable" class="highlight" style="width: 1000px">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>inleverdatum</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="assignmentSubmissionsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
 
     <!--JavaScript at end of body for optimized loading-->
@@ -159,10 +181,9 @@
     </script>
     <script>
       M.AutoInit();
-      
+      redirectIfNotPermitted();
       window.onload = fillSelects();
       
-      redirectIfNotPermitted();
     </script>
   </body>
 </html>

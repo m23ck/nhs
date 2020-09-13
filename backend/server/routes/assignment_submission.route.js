@@ -13,10 +13,11 @@ const { checkToken } = require("../../auth/token_validation");
 
 router.post("/", checkToken, createAssignmentSubmission);
 router.get("/", checkToken, getAssignmentSubmissions);
-router.get("/:id", checkToken, getAssignmentSubmissionById);
 router.get("/assignment/:assignment_id", checkToken, getAssignmentSubmissionByAssignmentId);
 router.get("/student/:student_id", checkToken, getAssignmentSubmissionByStudentId);
-router.get("/:klas_id/:roadmap_id/:status", checkToken, getSpecificAssignmentSubmissions);
+router.get("/specific/", checkToken, getSpecificAssignmentSubmissions);
+// don't put the get by ID before getspecific  fsr it ruins it
+router.get("/:id", checkToken, getAssignmentSubmissionById);
 router.put("/:id", checkToken, changeAssignmentSubmissionStatus);
 router.delete("/:id", checkToken, deleteAssignmentSubmission);
 
