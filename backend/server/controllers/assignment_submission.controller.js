@@ -66,10 +66,11 @@ module.exports = {
         });
     },
     getSpecificAssignmentSubmissions: (req, res) => {
-        const klas_id = req.params.klas_id;
-        const roadmap_id = req.params.roadmap_id;
-        const status = req.params.status;
-        getSpecificAssignmentSubmissions(klas_id, roadmap_id, status, (err, results) => {
+        const jaar_klas_id = req.query.jaar_klas_id;
+        const roadmap_id = req.query.roadmap_id;
+        const status = req.query.status;
+        getSpecificAssignmentSubmissions(jaar_klas_id, roadmap_id, status, (err, results) => {
+            
             if (err) {
                 console.log(err);
                 return;
