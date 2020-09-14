@@ -88,7 +88,7 @@ nav {
   transform: translate(0%, -30%);
   margin: 0 auto;
   color: white;
-  background: #45e042;
+  background: linear-gradient(90deg, #4aec47 0%, #45e042 100%);
   padding: 10px 10px;
   border-radius: 6px;
 }
@@ -124,7 +124,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 }
 /* colors */
 .primary {
-  background: #45e042;
+  background: linear-gradient(90deg, #4aec47 0%, #45e042 100%);
 }
 .error {
   background: linear-gradient(90deg, #ff5656 0%, #ff3737 100%);
@@ -155,4 +155,3 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 #gegevensForm {
   padding: 0px 20px;
 }
-
