@@ -1,29 +1,15 @@
 const {
-    createResultaat,
+    
     getResultaatById,
+    getResultatenByRoadmapId,
+    getResultatenByKlasId,
+    getResultatenByVakId,
     getResultaten,
-    updateResultaat,
+    getTopResultaten,
     deleteResultaat
 } = require("../models/resultaat.model");
 
 module.exports = {
-    createResultaat: (req, res) => {
-        const body = req.body;
-
-        createResultaat(body, (err, results) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({
-                    success: 0,
-                    message: "Database connection error!"
-                })
-            }
-            return res.status(200).json({
-                success: 1,
-                data: results
-            })
-        })
-    },
     getResultaatById: (req, res) => {
         const resultaat_id = req.params.id;
         getResultaatById(resultaat_id, (err, results) => {
@@ -43,9 +29,9 @@ module.exports = {
             });
         });
     },
-    getResultaatByAssignmentId: (req, res) => {
-        const assignment_id = req.params.assignment_id;
-        getResultaatByAssignmentId(assignment_id, (err, results) => {
+    getResultatenByRoadmapId: (req, res) => {
+        const roadmap_id = req.params.roadmap_id;
+        getResultatenByRoadmapId(roadmap_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
@@ -62,9 +48,28 @@ module.exports = {
             });
         });
     },
-    getResultaatByStudentId: (req, res) => {
-        const student_id = req.params.student_id;
-        getResultaatByStudentId(student_id, (err, results) => {
+    getResultatenByKlasId: (req, res) => {
+        const klas_id = req.params.klas_id;
+        getResultatenByKlasId(klas_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "Resultaat bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getResultatenByVakId: (req, res) => {
+        const vak_id = req.params.vak_id;
+        getResultatenByVakId(vak_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
@@ -99,34 +104,23 @@ module.exports = {
             });
         });
     },
-    updateResultaat: (req, res) => {
-        const body = req.body;
-        const resultaat_id = req.params.id;
-        getResultaatById(resultaat_id, (err, results) => {
+    getTopResultaten: (req, res) => {
+        getTopResultaten((err, results) => {
             if (err) {
                 console.log(err);
                 return;
             }
             if (!results) {
-                return res.json({
-                    succes: 0,
-                    message: "resultaat bestaat niet!"
-                });
-            } else {
-                updateResultaat(body, resultaat_id, (err) => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-                    return res.status(200).json({
-                        success: 1,
-                        message: "update Succesvol!"
-                    });
+                return res.status(204).json({
+                    success: 0,
+                    message: " Er bestaan op dit moment nog geen resultaten! "
                 });
             }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
         });
-
-
     },
     deleteResultaat: (req, res) => {
         const resultaat_id = req.params.id;
