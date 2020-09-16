@@ -67,15 +67,19 @@ module.exports = {
   },
   getSpecificAssignmentSubmissions: (jaar_klas_id, roadmap_id, status, callBack) => {
     pool.query(
-        `SELECT assignment_submission.id, assignment_submission.status, assignment.assignment_naam, roadmap.roadmap_naam, gebruiker.naam, gebruiker.voornaam, klas.klas_naam
-        FROM assignment_submission 
-          LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id           
-          LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id 
-          LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id 
-          LEFT JOIN student_klas ON student_klas.student_id = gebruiker.id          
-          LEFT JOIN jaar_klas ON student_klas.jaar_klas_id = jaar_klas.id          
-          LEFT JOIN klas ON jaar_klas.klas_id = klas.id
-        WHERE
+        `SELECT
+        assignment_submission.id, assignment_submission.status, assignment.assignment_naam, roadmap.roadmap_naam, gebruiker.naam, gebruiker.voornaam, klas.klas_naam
+             FROM assignment_submission 
+               LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id           
+               LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id 
+               LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id 
+               LEFT JOIN student_klas ON student_klas.student_id = gebruiker.id          
+               LEFT JOIN jaar_klas ON student_klas.jaar_klas_id = jaar_klas.id          
+               LEFT JOIN klas ON jaar_klas.klas_id = klas.id
+         WHERE
+         assignment_submission.id NOT IN (
+         SELECT resultaat.assignment_submission_id from resultaat WHERE resultaat.assignment_submission_id = assignment_submission.id)
+         And
             student_klas.jaar_klas_id = ?
         And
             assignment.roadmap_id = ?
@@ -99,19 +103,48 @@ module.exports = {
   },
 
   changeAssignmentSubmissionStatus: (data, assignment_submission_id, callBack) => {
-    pool.query(
-      "update assignment_submission set status = ? where id = ?",
-      [
-        data.status, 
-        assignment_submission_id
-    ],
-      (error, results, fields) => {
-        if (error) {
-          return callBack(error);
+    // check if the submission was approved and then create a record for it
+    if(data.status == "approved"){
+      // Await the ID for the assignment
+        pool.query(
+        "update assignment_submission set status = ? where id = ?",
+        [data.status, assignment_submission_id],
+        (error, results, fields) => {
+          if (error) {
+            reject(error);
+            return callBack(error);
+          }
+          resolve(results.insertId);
+          // return callBack(null, results[0]);
         }
-        return callBack(null, results[0]);
-      }
-    );
+      );
+     
+
+      pool.query(
+        "insert into resultaat(assignment_submission_id) values(?)",
+        [assignment_submission_id],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results);
+        }
+      );
+    } 
+    else{
+          pool.query(
+            "update assignment_submission set status = ? where id = ?",
+            [data.status, assignment_submission_id],
+            (error, results, fields) => {
+              if (error) {
+                return callBack(error);
+              }
+              return callBack(null, results[0]);
+            });
+    }
+
+
+    
   },
 
   deleteAssignmentSubmission: (assignment_submission_id, callBack) => {
