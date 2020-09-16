@@ -72,6 +72,9 @@ nav {
   color: black;
 }
 
+.btn {
+  border-radius: 0.4em;
+}
 .btn-floating:hover {
   background-color: #79ff76;
 }
@@ -109,10 +112,16 @@ nav {
 .card-content > a {
   /* color: #a3a3a3; */
 }
+.input-field {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
 .open-in-new {
   vertical-align: middle;
   color: #a3a3a3;
 }
+
 /* theme customization*/
 input[type="text"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid #45e042;
@@ -122,6 +131,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) {
 input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   color: #45e042;
 }
+
 /* colors */
 .primary {
   background: linear-gradient(90deg, #4aec47 0%, #45e042 100%);
@@ -154,4 +164,30 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 /* Tables*/
 #gegevensForm {
   padding: 0px 20px;
+}
+
+/* FORM STUFF*/
+
+/* custom inputs */
+.nhs-input {
+  height: 1.5rem !important;
+  font-size: 16px !important;
+  margin: 0 0 8px 0 !important;
+  border-radius: 0.5em !important;
+  border: #ced4da 1px solid !important;
+  padding: 13px 3px !important;
+}
+.nhs-input-label {
+  margin-left: 0.4em;
+}
+.nhs-input-label.active {
+  transform: translateY(-19px) scale(0.8) !important;
+}
+
+form .row {
+  margin-bottom: 0 !important;
+}
+
+form h5 {
+  color: #949494;
 }
