@@ -33,3 +33,10 @@ function refreshSelect(el) {
     M.FormSelect.init(el)
     document.getElementsByClassName("select-dropdown dropdown-trigger")[0].classList.add("white-text")
 }
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    for (const element of document.getElementsByTagName("label")) {
+        element.classList.add("active")
+    };
+})

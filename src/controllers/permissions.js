@@ -14,13 +14,13 @@ function redirectIfNotPermitted() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.type);
+      // console.log(data.data.type);
 
       baseURL = window.location.pathname.split('/').filter(item => item)
       type = baseURL[baseURL.length - 2].toLowerCase()
 
       if (type != data.data.type) {
-        console.log(data.data.type)
+        // console.log(data.data.type)
         localStorage.removeItem("gebruiker_type")
         localStorage.setItem("gebruiker_type", data.data.type)
         window.location.replace("../../../index.html")
