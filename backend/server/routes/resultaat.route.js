@@ -1,21 +1,22 @@
 const {
-    createResultaat,
     getResultaatById,
-    getResultaatByAssignmentId,
-    getResultaatByStudentId,
+    getResultatenByRoadmapId,
+    getResultatenByKlasId,
+    getResultatenByVakId,
     getResultaten,
-    updateResultaat,
+    getTopResultaten,
     deleteResultaat
 } = require("../controllers/resultaat.controller");
 const router = require("express").Router();
 const { checkToken } = require("../../auth/token_validation");
 
-router.post("/", checkToken, createResultaat);
+
 router.get("/", checkToken, getResultaten);
+router.get("/top/", checkToken, getTopResultaten);
 router.get("/:id", checkToken, getResultaatById);
-router.get("/:assignment_id", checkToken, getResultaatByAssignmentId);
-router.get("/:student_id", checkToken, getResultaatByStudentId);
-router.put("/:id", checkToken, updateResultaat);
+router.get("/:roadmap_id", checkToken, getResultatenByRoadmapId);
+router.get("/:klas_id", checkToken, getResultatenByKlasId);
+router.get("/:vak_id", checkToken, getResultatenByVakId);
 router.delete("/:id", checkToken, deleteResultaat);
 
 module.exports = router;
