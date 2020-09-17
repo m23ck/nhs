@@ -75,9 +75,13 @@ nav {
 .btn {
   border-radius: 0.4em;
 }
+.btn:disabled {
+  background: #dfdfdf;
+}
 .btn-floating:hover {
   background-color: #79ff76;
 }
+
 .card {
   border-radius: 6px;
 }
@@ -91,7 +95,7 @@ nav {
   transform: translate(0%, -30%);
   margin: 0 auto;
   color: white;
-  background: linear-gradient(90deg, #4aec47 0%, #45e042 100%);
+  background: linear-gradient(90deg, #45e042 0%, #5cca59 100%);
   padding: 10px 10px;
   border-radius: 6px;
 }
@@ -134,13 +138,13 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 
 /* colors */
 .primary {
-  background: linear-gradient(90deg, #4aec47 0%, #45e042 100%);
+  background: linear-gradient(90deg, #48b346 0%, #45e042 100%);
 }
 .error {
-  background: linear-gradient(90deg, #ff5656 0%, #ff3737 100%);
+  background: linear-gradient(90deg, #ff2020 0%, #c50909 100%);
 }
 .pending {
-  background: linear-gradient(90deg, #ffe296 0%, #f8d57d 100%);
+  background: linear-gradient(90deg, #f8d57d 0%, #e4ba50 100%);
 }
 .silver {
   background: linear-gradient(90deg, #cacaca 0%, #a3a3a3 100%);
