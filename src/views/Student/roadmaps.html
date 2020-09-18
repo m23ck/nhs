@@ -81,13 +81,15 @@
             <table class="responsive-table">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Naam</th>
                   <th>Start Datum</th>
                   <th>Eind Datum</th>
+                  <th></th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody id="roadmapTableBody">
               </tbody>
             </table>
           </div>
@@ -107,6 +109,7 @@
 
   <script src="../../controllers/main.js"></script>
   <script src="../../controllers/permissions.js"></script>
+  <script src="../../controllers/roadmapController.js"></script>
   <script>
     M.AutoInit();
     // document.addEventListener("DOMContentLoaded", function () {
