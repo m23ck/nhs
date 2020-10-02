@@ -314,14 +314,14 @@ INSERT INTO `vak` (`id`, `vak_naam`) VALUES
 -- Indexes for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `roadmap_id` (`roadmap_id`);
 
 --
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `assignment_id` (`assignment_id`),
   ADD KEY `student_id` (`student_id`);
 
@@ -329,7 +329,7 @@ ALTER TABLE `assignment_submission`
 -- Indexes for table `docent_richting`
 --
 ALTER TABLE `docent_richting`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `docent_id` (`docent_id`),
   ADD KEY `richting_id` (`richting_id`);
 
@@ -337,7 +337,7 @@ ALTER TABLE `docent_richting`
 -- Indexes for table `docent_vak`
 --
 ALTER TABLE `docent_vak`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `docent_id` (`docent_id`),
   ADD KEY `vak_id` (`vak_id`);
 
@@ -345,14 +345,14 @@ ALTER TABLE `docent_vak`
 -- Indexes for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `gebruiker_type_id` (`gebruiker_type_id`);
 
 --
 -- Indexes for table `jaar_klas`
 --
 ALTER TABLE `jaar_klas`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `klas_id` (`klas_id`),
   ADD KEY `richting_id` (`richting_id`);
 
@@ -360,14 +360,14 @@ ALTER TABLE `jaar_klas`
 -- Indexes for table `klas`
 --
 ALTER TABLE `klas`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `klassendocent_id` (`klassendocent_id`);
 
 --
 -- Indexes for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `roadmap_id` (`roadmap_id`),
   ADD KEY `jaar_klas_id` (`jaar_klas_id`);
 
@@ -375,25 +375,25 @@ ALTER TABLE `klas_roadmaps`
 -- Indexes for table `resultaat`
 --
 ALTER TABLE `resultaat`
-  ADD PRIMARY KEY (`id`);
+  ADD green KEY (`id`);
 
 --
 -- Indexes for table `richting`
 --
 ALTER TABLE `richting`
-  ADD PRIMARY KEY (`id`);
+  ADD green KEY (`id`);
 
 --
 -- Indexes for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  ADD PRIMARY KEY (`id`);
+  ADD green KEY (`id`);
 
 --
 -- Indexes for table `student_klas`
 --
 ALTER TABLE `student_klas`
-  ADD PRIMARY KEY (`id`),
+  ADD green KEY (`id`),
   ADD KEY `student_id` (`student_id`),
   ADD KEY `jaar_klas_id` (`jaar_klas_id`);
 
@@ -401,13 +401,13 @@ ALTER TABLE `student_klas`
 -- Indexes for table `type`
 --
 ALTER TABLE `type`
-  ADD PRIMARY KEY (`type_id`);
+  ADD green KEY (`type_id`);
 
 --
 -- Indexes for table `vak`
 --
 ALTER TABLE `vak`
-  ADD PRIMARY KEY (`id`);
+  ADD green KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

@@ -81,7 +81,7 @@
             <div class="col s12 m12">
                 <div class="card white">
                     <div class="card-content ">
-                        <a class="waves-effect waves-light btn primary"><i
+                        <a class="waves-effect waves-light btn nhs-green modal-trigger" href="#modal_docent"><i
                                 class="material-icons right">add</i>Docent</a>
                         <table id="docentTable" class="highlight responsive-table">
                             <thead>
@@ -105,78 +105,93 @@
         </div>
         <!-- Docenten Table -->
 
-
-        <!-- Floating Gebruiker Button -->
-        <div class="fixed-action-btn">
-            <a class=" btn-floating primary  btn-large nav waves-effect waves-light btn modal-trigger"
-                href="#modal_docent">
-                <i class="large material-icons">add</i>
-            </a>
-        </div>
-
         <!-- Create docent modal -->
         <div id="modal_docent" class="modal" style="height: 900px;">
             <div class="modal-content">
-                <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Nieuw Docent Aanmaken</h3>
-                <br>
-                <div>
-                    <div class="row">
-                        <form class="col s12" method="POST" id="docentForm" name="docentForm"
-                            onsubmit="return createDocent()">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input type="text" name="naam" id="naam" required>
-                                    <label for="naam">Naam</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" name="voornaam" id="voornaam" required>
-                                    <label for="voornaam">Voornaam</label>
-                                </div>
-                            </div>
-                            <div class="row">
 
-                                <div class="input-field col s6">
-                                    <select name="gebruiker_type_id">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Docent</option>
-                                    </select>
-                                    <label for="gebruiker_type_id">Type</label>
+                <div class="modal-content">
+                    <h3 style="font-family: 'Anton', sans-serif; text-align: center;">Nieuw Docent Aanmaken</h3>
+                    <br>
+                    <div>
+                        <div class="row">
+                            <form class="col s12" method="POST" id="docentForm" name="docentForm"
+                                onsubmit="return createDocent()" _lpchecked="1">
+                                <h6 class="center">Persoonlijke Informatie</h6>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="naam" id="naam" required="" class="nhs-input">
+                                        <label for="naam" class="nhs-input-label">Naam</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+                                        <input type="text" name="voornaam" id="voornaam" required="" class="nhs-input">
+                                        <label for="voornaam" class="nhs-input-label">Voornaam</label>
+                                    </div>
+                                </div>
+                                <h6 class="center">Docent Rol</h6>
+
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+
+                                        <select name="gebruiker_type_id" class="nhs-input">
+                                            <option value="1">Admin</option>
+                                            <option value="2">Docent</option>
+                                        </select>
+
+                                        <label for="gebruiker_type_id" class="nhs-select-label">Type</label>
+                                    </div>
+
+                                    <!-- <div class="input-field col s6">
+                                        <input type="text" name="gebruiker_type_id" id="gebruiker_type_id" value="2" required disabled>
+                                        <label for="gebruiker_type_id">Type_id</label>
+                                    </div> -->
+
+                                </div>
+                                <h6 class="center">Contact Informatie</h6>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="email" id="email" required="" class="nhs-input">
+                                        <label for="email" class="nhs-input-label">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="adres" id="adres" required="" class="nhs-input">
+                                        <label for="adres" class="nhs-input-label">Adres</label>
+                                    </div>
                                 </div>
 
-                                <!-- <div class="input-field col s6">
-                                    <input type="text" name="gebruiker_type_id" id="gebruiker_type_id" value="2" required disabled>
-                                    <label for="gebruiker_type_id">Type_id</label>
-                                </div> -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="telefoon" id="telefoon" required="" class="nhs-input">
+                                        <label for="telefoon" class="nhs-input-label">Telefoon</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="password" name="wachtwoord" id="wachtwoord" required=""
+                                            class="nhs-input">
+                                        <label for="wachtwoord" class="nhs-input-label">Wachtwoord</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="password" name="wachtwoord2" id="wachtwoord2" required=""
+                                            class="nhs-input">
+                                        <label for="wachtwoord2" class="nhs-input-label">Wachtwoord Opniew
+                                            Invoeren</label>
+                                    </div>
+                                </div>
+                                <button class="btn waves-effect waves-light nhs-green nav" type="submit"
+                                    name="action">Opslaan</button>
 
-                                <div class="input-field col s6">
-                                    <input type="text" name="email" id="email" required>
-                                    <label for="email">Email</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input type="text" name="adres" id="adres" required>
-                                    <label for="adres">Adres</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" name="telefoon" id="telefoon" required>
-                                    <label for="telefoon">Telefoon</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input type="password" name="wachtwoord" id="wachtwoord" required>
-                                    <label for="wachtwoord">Wachtwoord</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="password" name="wachtwoord2" id="wachtwoord2" required>
-                                    <label for="wachtwoord2">Wachtwoord Opniew Invoeren</label>
-                                </div>
-                            </div>
-                            <button class="btn waves-effect waves-light primary nav" type="submit"
-                                name="action">Opslaan</button>
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,7 +250,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn waves-effect waves-light primary nav" type="submit"
+                            <button class="btn waves-effect waves-light  nhs-green nav" type="submit"
                                 name="action">Opslaan</button>
 
                         </form>
