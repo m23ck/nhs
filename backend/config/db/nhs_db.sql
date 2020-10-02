@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Sep 11, 2020 at 01:07 AM
+=======
+-- Generation Time: Sep 18, 2020 at 01:55 AM
+>>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -66,7 +70,11 @@ CREATE TABLE `assignment_submission` (
 --
 
 INSERT INTO `assignment_submission` (`id`, `assignment_id`, `student_id`, `status`) VALUES
+<<<<<<< HEAD
 (2, 3, 11, 'submitted');
+=======
+(2, 3, 11, 'approved');
+>>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
 
 -- --------------------------------------------------------
 
@@ -200,11 +208,15 @@ INSERT INTO `klas_roadmaps` (`id`, `roadmap_id`, `jaar_klas_id`) VALUES
 
 CREATE TABLE `resultaat` (
   `id` int(11) NOT NULL,
-  `assignment_id` int(11) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL,
-  `type` varchar(255) DEFAULT NULL
+  `assignment_submission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `resultaat`
+--
+
+INSERT INTO `resultaat` (`id`, `assignment_submission_id`) VALUES
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -321,7 +333,11 @@ ALTER TABLE `assignment`
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
+<<<<<<< HEAD
   ADD green KEY (`id`),
+=======
+  ADD PRIMARY KEY (`id`),
+>>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
   ADD KEY `assignment_id` (`assignment_id`),
   ADD KEY `student_id` (`student_id`);
 
@@ -375,7 +391,12 @@ ALTER TABLE `klas_roadmaps`
 -- Indexes for table `resultaat`
 --
 ALTER TABLE `resultaat`
+<<<<<<< HEAD
   ADD green KEY (`id`);
+=======
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assignment_submission_id` (`assignment_submission_id`);
+>>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
 
 --
 -- Indexes for table `richting`
@@ -465,7 +486,7 @@ ALTER TABLE `klas_roadmaps`
 -- AUTO_INCREMENT for table `resultaat`
 --
 ALTER TABLE `resultaat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `richting`
@@ -553,6 +574,12 @@ ALTER TABLE `klas`
 ALTER TABLE `klas_roadmaps`
   ADD CONSTRAINT `klas_roadmaps_ibfk_1` FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`id`),
   ADD CONSTRAINT `klas_roadmaps_ibfk_2` FOREIGN KEY (`jaar_klas_id`) REFERENCES `jaar_klas` (`id`);
+
+--
+-- Constraints for table `resultaat`
+--
+ALTER TABLE `resultaat`
+  ADD CONSTRAINT `resultaat_ibfk_1` FOREIGN KEY (`assignment_submission_id`) REFERENCES `assignment_submission` (`id`);
 
 --
 -- Constraints for table `student_klas`

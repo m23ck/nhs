@@ -278,6 +278,62 @@
 
 
 
+<<<<<<< HEAD
+=======
+        <!-- Add Student to Class modal -->
+        <div id="modal_add_student_to_class" class="modal" style="height: 900px">
+          <div class="modal-content">
+            <h3 style="font-family: 'Anton', sans-serif; text-align: center">
+              Add Student to Class
+            </h3>
+            <br />
+            <div>
+              <div class="row">
+                <form
+                  class="col s12"
+                  method="POST"
+                  id="add_student_to_classForm"
+                  name="add_student_to_classForm"
+                  onsubmit="return add_student_to_class()"
+                >
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <select name="jaar_klas_id" id="jaar_klas_id" >
+                        <option value="Kies een klas" disabled selected>
+                          Kies een klas
+                        </option>
+                      </select>
+                      <label for="jaar_klas_id">Klas</label>
+                    </div>
+    
+                    <div class="input-field col s6">
+                      <select name="student_id" id="student_id" >
+                        <option value="Kies een Roadmap" disabled selected>
+                          Kies een student
+                        </option>
+                      </select>
+                      <label for="student_id">Student</label>
+                    </div>
+                  </div>
+    
+                  <button
+                    class="btn waves-effect waves-light, nav"
+                    type="submit"
+                    name="action"
+                  >
+                    Opslaan
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+
+
+
+
+>>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
 
 
     <!--JavaScript at end of body for optimized loading-->
