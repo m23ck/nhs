@@ -9,16 +9,16 @@
   <link type="text/css" rel="stylesheet" href="../../../src/style/materialize/css/materialize.min.css"
     media="screen,projection" />
 
-  <link rel="stylesheet" href="../../../src/style/main.css" />
-  <script src="../../controllers/main.js"></script>
+  <link rel="stylesheet" href="../../style/main.css">
+
+
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NHS - Resultaten</title>
+  <title>NHS - Roadmaps</title>
 </head>
 
-<body>
-  <nav>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<body class="">
+  <nav> <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
@@ -53,49 +53,33 @@
       </li>
       <span class="line"></span>
       <nav-block>
-        <li>
+        <li class="">
           <i class="material-icons">dashboard</i>
-          <a href="./Dashboard.html">Dashboard</a>
+          <a href="./dashboard.html">Dashboard</a>
         </li>
         <li>
           <i class="material-icons">person</i>
           <a href="./gegevens.html">Mijn Gegevens</a>
         </li>
-        <li>
+        <li class="">
           <i class="material-icons">flag</i>
           <a href="./roadmaps.html">Roadmaps</a>
         </li>
-        <li>
-          <i class="material-icons">people</i>
-          <a href="./klassen.html">Klassen</a>
-        </li>
-        <li>
-          <i class="material-icons">library_books</i>
-          <a href="./vakken.html">Vakken</a>
-        </li>
-        <li>
-          <i class="material-icons">school</i>
-          <a href="./studenten.html">Studenten</a>
-
-        </li>
-        <li>
-          <i class="material-icons">assignment</i>
-          <a href="./submissions.html">Submissions</a>
-        </li>
         <li class="active">
-          <i class="material-icons">assessment</i>
+          <i class="material-icons">flag</i>
           <a href="./resultaten.html">Resultaten</a>
         </li>
       </nav-block>
     </ul>
   </div>
+
   <div class="main-content">
     <div class="row">
-      <div class="col s12 ">
+      <div class="col s12 m8">
         <div class="card white">
-          <div class="card-header-floating">
-            <span class="card-title">Resultaten Beheren</span>
-            <span class="card-subtitle"></span>
+          <div class="card-header-floating z-depth-2">
+            <span class="card-title">Leaderboard</span>
+            <span class="card-subtitle">Here's an overview of all your assignments and scores.</span>
           </div>
           <div class="card-content ">
             <!-- Resultaat Table -->
@@ -104,7 +88,6 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Student</th>
                   <th>Assignment</th>
                   <th>Omschrijving</th>
                   <th>Roadmap</th>
@@ -117,33 +100,33 @@
               <tbody id="resultaatTableBody"></tbody>
             </table>
           </div>
+
         </div>
       </div>
     </div>
+
+
   </div>
-
-
-
-  <!-- Floating Vak Button -->
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large nav waves-effect waves-light btn modal-trigger  nhs-green" href="#modal_resultaat">
-      <i class="large material-icons">add</i>
-    </a>
-  </div>
-  </div>
-
 
 
   <!--JavaScript at end of body for optimized loading-->
 
-  <script type="text/javascript" src="../../../src/style/materialize/js/materialize.min.js"></script>
+  <script type=" text/javascript" src="../../../src/style/materialize/js/materialize.min.js">
+              </script>
 
+  <script src="../../controllers/main.js"></script>
   <script src="../../controllers/permissions.js"></script>
-  <script src="../../controllers/resultaatController.js"></script>
+  <script src="../../controllers/studentResultaatController.js"></script>
   <script>
     M.AutoInit();
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   var elems = document.querySelectorAll("select");
+    //   var instances = M.FormSelect.init(elems, {});
+    //   // var instances = M.FormSelect.init(elems, options);
 
-    redirectIfNotPermitted();
+    // });
+    window.onload = redirectIfNotPermitted();
+    console.log('re')
   </script>
 </body>
 

@@ -243,16 +243,18 @@ CREATE TABLE `roadmap` (
   `id` int(11) NOT NULL,
   `roadmap_naam` varchar(255) NOT NULL,
   `start_datum` date DEFAULT NULL,
-  `eind_datum` date DEFAULT NULL
+  `eind_datum` date DEFAULT NULL,
+  `docent_id` int(11) NULL
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `roadmap`
 --
 
-INSERT INTO `roadmap` (`id`, `roadmap_naam`, `start_datum`, `eind_datum`) VALUES
-(2, 'ITE Basics', '2020-09-03', '2020-09-08'),
-(3, 'Wiskunde Inleiding', '2020-09-03', '2020-09-15');
+INSERT INTO `roadmap` (`id`, `roadmap_naam`, `start_datum`, `eind_datum`, `docent_id`) VALUES
+(2, 'ITE Basics', '2020-09-03', '2020-09-08', 3),
+(3, 'Wiskunde Inleiding', '2020-09-03', '2020-09-15', 4);
 
 -- --------------------------------------------------------
 
@@ -395,7 +397,8 @@ ALTER TABLE `richting`
 -- Indexes for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `docent_id` (`docent_id`);
 
 --
 -- Indexes for table `student_klas`
@@ -550,6 +553,11 @@ ALTER TABLE `jaar_klas`
   ADD CONSTRAINT `jaar_klas_ibfk_2` FOREIGN KEY (`richting_id`) REFERENCES `richting` (`id`),
   ADD CONSTRAINT `jaar_klas_ibfk_3` FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
 
+--
+-- Constraints for table `roadmap`
+--
+ALTER TABLE `roadmap`
+  ADD CONSTRAINT `roadmap_ibfk_1` FOREIGN KEY (`docent_id`) REFERENCES `gebruiker` (`id`);
 --
 -- Constraints for table `klas_roadmaps`
 --

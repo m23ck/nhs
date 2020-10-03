@@ -1,11 +1,12 @@
 const current_token2 = localStorage.getItem("token");
+const gebruiker_id = localStorage.getItem("gebruiker_id");
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);
 
 // Roadmaps
 
-fetch(`http://127.0.0.1:3000/roadmap/`, {
+fetch(`http://127.0.0.1:3000/roadmap/docent/${gebruiker_id}`, {
   method: "GET",
   headers: myHeaders,
   mode: "cors",
@@ -21,7 +22,7 @@ fetch(`http://127.0.0.1:3000/roadmap/`, {
 
       data.data.forEach((i) => {
         body += "<tr>";
-        body += "<td>" + i.id + "</td>";
+        body += "<td>" + i.roadmap_id + "</td>";
         body += "<td>" + i.roadmap_naam + "</td>";
         body += "<td>" + i.start_datum + "</td>";
         body += "<td>" + i.eind_datum + "</td>";
