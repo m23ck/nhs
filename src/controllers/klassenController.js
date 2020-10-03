@@ -17,14 +17,14 @@ fetch(`http://127.0.0.1:3000/klas`, {
 
     if (data.data.length > 0) {
       var body = "";
-      // console.log(data.data)
+      console.log(data.data)
       data.data.forEach((i) => {
         body += "<tr>";
-        body += "<td>" + i.id + "</td>";
+        body += "<td>" + i.jaar_klas_id + "</td>";
         body += "<td>" + i.klas_naam + "</td>";
         body += "<td>" + i.jaar + "</td>";
-        body += "<td>" + i.richting_naam + "</td>";
-        body += "<td>" + `${i.naam + " "+ i.voornaam}` + "</td>";
+        body += "<td>" + i.richting + "</td>";
+        body += "<td>" + i.klassendocent_voornaam + " " + i.klassendocent_naam + "</td>";
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_klas' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Verwijderen' data-toggle='tooltip' style='cursor: pointer;' onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>

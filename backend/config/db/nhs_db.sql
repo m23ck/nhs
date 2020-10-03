@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Sep 11, 2020 at 01:07 AM
-=======
--- Generation Time: Sep 18, 2020 at 01:55 AM
->>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
+-- Generation Time: Oct 03, 2020 at 01:32 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -70,11 +66,8 @@ CREATE TABLE `assignment_submission` (
 --
 
 INSERT INTO `assignment_submission` (`id`, `assignment_id`, `student_id`, `status`) VALUES
-<<<<<<< HEAD
-(2, 3, 11, 'submitted');
-=======
-(2, 3, 11, 'approved');
->>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
+(2, 3, 11, 'approved'),
+(3, 2, 11, 'submitted');
 
 -- --------------------------------------------------------
 
@@ -141,18 +134,19 @@ CREATE TABLE `jaar_klas` (
   `id` int(11) NOT NULL,
   `klas_id` int(11) NOT NULL,
   `richting_id` int(11) NOT NULL,
-  `jaar` int(11) NOT NULL
+  `jaar` int(11) NOT NULL,
+  `klassendocent_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jaar_klas`
 --
 
-INSERT INTO `jaar_klas` (`id`, `klas_id`, `richting_id`, `jaar`) VALUES
-(1, 6, 1, 2019),
-(2, 8, 2, 2017),
-(3, 9, 3, 2018),
-(4, 10, 3, 2018);
+INSERT INTO `jaar_klas` (`id`, `klas_id`, `richting_id`, `jaar`, `klassendocent_id`) VALUES
+(1, 6, 1, 2019, 3),
+(2, 8, 2, 2017, 4),
+(3, 9, 3, 2018, 3),
+(4, 10, 3, 2018, 4);
 
 -- --------------------------------------------------------
 
@@ -162,24 +156,23 @@ INSERT INTO `jaar_klas` (`id`, `klas_id`, `richting_id`, `jaar`) VALUES
 
 CREATE TABLE `klas` (
   `id` int(11) NOT NULL,
-  `klas_naam` varchar(255) NOT NULL,
-  `klassendocent_id` int(11) NOT NULL
+  `klas_naam` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `klas`
 --
 
-INSERT INTO `klas` (`id`, `klas_naam`, `klassendocent_id`) VALUES
-(2, '4.06.21', 3),
-(3, '3.06.21', 3),
-(4, '1.23', 3),
-(5, '2.26', 3),
-(6, '3.06.11', 3),
-(7, '1.06.10', 3),
-(8, '2.06.23', 3),
-(9, '1.01.2', 3),
-(10, '1.03.5', 4);
+INSERT INTO `klas` (`id`, `klas_naam`) VALUES
+(2, '4.06.21'),
+(3, '3.06.21'),
+(4, '1.23'),
+(5, '2.26'),
+(6, '3.06.11'),
+(7, '1.06.10'),
+(8, '2.06.23'),
+(9, '1.01.2'),
+(10, '1.03.5');
 
 -- --------------------------------------------------------
 
@@ -198,7 +191,8 @@ CREATE TABLE `klas_roadmaps` (
 --
 
 INSERT INTO `klas_roadmaps` (`id`, `roadmap_id`, `jaar_klas_id`) VALUES
-(1, 3, 3);
+(1, 3, 3),
+(5, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -208,15 +202,16 @@ INSERT INTO `klas_roadmaps` (`id`, `roadmap_id`, `jaar_klas_id`) VALUES
 
 CREATE TABLE `resultaat` (
   `id` int(11) NOT NULL,
-  `assignment_submission_id` int(11) NOT NULL
+  `assignment_submission_id` int(11) NOT NULL,
+  `punten` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `resultaat`
 --
 
-INSERT INTO `resultaat` (`id`, `assignment_submission_id`) VALUES
-(5, 2);
+INSERT INTO `resultaat` (`id`, `assignment_submission_id`, `punten`) VALUES
+(5, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -326,18 +321,14 @@ INSERT INTO `vak` (`id`, `vak_naam`) VALUES
 -- Indexes for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `roadmap_id` (`roadmap_id`);
 
 --
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-<<<<<<< HEAD
-  ADD green KEY (`id`),
-=======
   ADD PRIMARY KEY (`id`),
->>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
   ADD KEY `assignment_id` (`assignment_id`),
   ADD KEY `student_id` (`student_id`);
 
@@ -345,7 +336,7 @@ ALTER TABLE `assignment_submission`
 -- Indexes for table `docent_richting`
 --
 ALTER TABLE `docent_richting`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `docent_id` (`docent_id`),
   ADD KEY `richting_id` (`richting_id`);
 
@@ -353,7 +344,7 @@ ALTER TABLE `docent_richting`
 -- Indexes for table `docent_vak`
 --
 ALTER TABLE `docent_vak`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `docent_id` (`docent_id`),
   ADD KEY `vak_id` (`vak_id`);
 
@@ -361,29 +352,29 @@ ALTER TABLE `docent_vak`
 -- Indexes for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `gebruiker_type_id` (`gebruiker_type_id`);
 
 --
 -- Indexes for table `jaar_klas`
 --
 ALTER TABLE `jaar_klas`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `klas_id` (`klas_id`),
-  ADD KEY `richting_id` (`richting_id`);
+  ADD KEY `richting_id` (`richting_id`),
+  ADD KEY `klassendocent_id` (`klassendocent_id`);
 
 --
 -- Indexes for table `klas`
 --
 ALTER TABLE `klas`
-  ADD green KEY (`id`),
-  ADD KEY `klassendocent_id` (`klassendocent_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `roadmap_id` (`roadmap_id`),
   ADD KEY `jaar_klas_id` (`jaar_klas_id`);
 
@@ -391,30 +382,26 @@ ALTER TABLE `klas_roadmaps`
 -- Indexes for table `resultaat`
 --
 ALTER TABLE `resultaat`
-<<<<<<< HEAD
-  ADD green KEY (`id`);
-=======
   ADD PRIMARY KEY (`id`),
   ADD KEY `assignment_submission_id` (`assignment_submission_id`);
->>>>>>> 3d42f7f27f1f64a995118e2718df02ab73e1efd4
 
 --
 -- Indexes for table `richting`
 --
 ALTER TABLE `richting`
-  ADD green KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  ADD green KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student_klas`
 --
 ALTER TABLE `student_klas`
-  ADD green KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
   ADD KEY `jaar_klas_id` (`jaar_klas_id`);
 
@@ -422,13 +409,13 @@ ALTER TABLE `student_klas`
 -- Indexes for table `type`
 --
 ALTER TABLE `type`
-  ADD green KEY (`type_id`);
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indexes for table `vak`
 --
 ALTER TABLE `vak`
-  ADD green KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -444,7 +431,7 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `docent_richting`
@@ -480,7 +467,7 @@ ALTER TABLE `klas`
 -- AUTO_INCREMENT for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `resultaat`
@@ -560,13 +547,8 @@ ALTER TABLE `gebruiker`
 --
 ALTER TABLE `jaar_klas`
   ADD CONSTRAINT `jaar_klas_ibfk_1` FOREIGN KEY (`klas_id`) REFERENCES `klas` (`id`),
-  ADD CONSTRAINT `jaar_klas_ibfk_2` FOREIGN KEY (`richting_id`) REFERENCES `richting` (`id`);
-
---
--- Constraints for table `klas`
---
-ALTER TABLE `klas`
-  ADD CONSTRAINT `klas_ibfk_1` FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
+  ADD CONSTRAINT `jaar_klas_ibfk_2` FOREIGN KEY (`richting_id`) REFERENCES `richting` (`id`),
+  ADD CONSTRAINT `jaar_klas_ibfk_3` FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
 
 --
 -- Constraints for table `klas_roadmaps`
