@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2020 at 01:32 AM
+-- Generation Time: Oct 03, 2020 at 08:44 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -211,7 +211,7 @@ CREATE TABLE `resultaat` (
 --
 
 INSERT INTO `resultaat` (`id`, `assignment_submission_id`, `punten`) VALUES
-(5, 2, 0);
+(5, 2, 30);
 
 -- --------------------------------------------------------
 

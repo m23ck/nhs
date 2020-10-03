@@ -70,7 +70,6 @@ function getRoadmaps() {
   // return false;
 }
 
-
 function changeSubmission(assignment_submission_id, status){
   let VALUE = JSON.stringify({status: status, assignment_submission_id: assignment_submission_id})
   console.log(VALUE)
@@ -98,7 +97,6 @@ function changeSubmission(assignment_submission_id, status){
   return false;
 }
 
-
 function approveSubmission(td){
   selectedRow = td.parentElement.parentElement;
   let assignment_submission_id = selectedRow.cells[0].innerHTML;
@@ -115,8 +113,6 @@ function rejectSubmission(td){
   let status = "rejected"
   changeSubmission(assignment_submission_id, status)
 }
-
-
 
 function fillSelects() {
   getKlassen();

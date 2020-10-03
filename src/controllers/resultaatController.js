@@ -20,7 +20,13 @@ fetch(`http://127.0.0.1:3000/resultaat`, {
       data.data.forEach((i) => {
         body += "<tr>";
         body += "<td>" + i.id + "</td>";
+        body += "<td>" + i.naam + " " + i.voornaam + "</td>";
+        body += "<td>" + i.assignment_naam + "</td>";
+        body += "<td>" + i.omschrijving + "</td>";
+        body += "<td>" + i.roadmap_naam + "</td>";
         body += "<td>" + i.vak_naam + "</td>";
+        body += "<td>" + i.klas_naam + "</td>";
+        body += "<td>" + i.punten + "</td>";
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_vak' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Verwijderen' data-toggle='tooltip' style='cursor: pointer;' onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
