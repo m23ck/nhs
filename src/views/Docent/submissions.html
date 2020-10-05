@@ -36,7 +36,7 @@
             <i class="material-icons black-text">person</i>
           </a>
           <ul id='dropdown2' class='dropdown-content'>
-            <li><a href="./gegevens.html"><i class="material-icons left">person</i>Gebruiker</a></li>
+            <li><a href="./gegevens.html" id="huidige_gebruiker_naam"><i class="material-icons left">person</i></a></li>
             <li><a onclick=" logout()">Uitloggen</a></li>
           </ul>
           </a>
@@ -239,7 +239,9 @@
   </script>
   <script>
     M.AutoInit();
-    redirectIfNotPermitted();
+    window.onload = redirectIfNotPermitted();
+    
+    window.onload = setFullName();
     window.onload = fillSelects();
     // document.addEventListener('DOMContentLoaded', () => {
     //   for (let select of document.querySelectorAll("input.select-dropdown")) {

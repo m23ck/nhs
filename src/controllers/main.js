@@ -25,6 +25,11 @@ function getName() {
     return `${JSON.parse(localStorage.getItem("nhs_user")).full_name}`
 }
 
+function setFullName(){
+    document.getElementById("huidige_gebruiker_naam").innerHTML = JSON.parse(localStorage.getItem("nhs_user")).voornaam
+    // document.getElementById("huidige_gebruiker_naam").style.fontSize = "15px"
+    // document.getElementById("huidige_gebruiker_naam").style.color = "black"
+}
 
 redirectIfNoToken()
 
