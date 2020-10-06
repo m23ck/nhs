@@ -96,7 +96,7 @@
       <div class="col s12 m12">
         <div class="card white">
           <div class="card-content ">
-            <a class="waves-effect waves-light btn  nhs-green"><i class="material-icons right">add</i>Student</a>
+            <a class="waves-effect waves-light btn  nhs-green modal-trigger" href="#modal_klas" onclick="return fillSelects();"><i class="material-icons right">add</i>Add</a>
             <table id="klasTable" class="responsive-table">
               <thead>
                 <tr>
@@ -117,13 +117,6 @@
 
 
 
-    <!-- Floating Klas Button -->
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large nav waves-effect waves-light  nhs-green btn modal-trigger" href="#modal_klas"
-        onclick="return fillSelects();">
-        <i class="large material-icons">add</i>
-      </a>
-    </div>
 
     <!-- Create klas modal -->
     <div id="modal_klas" class="modal" style="height: 900px">

@@ -29,7 +29,7 @@ fetch(`http://127.0.0.1:3000/roadmap/docent/${gebruiker_id}`, {
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_roadmap' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getRoadmapData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Delete' data-toggle='tooltip' style='cursor: pointer;'  onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
-                    <a title='Go' data-toggle='tooltip' style='cursor: pointer;'  onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
+                    <a class='modal-trigger' href='#modal_roadmap' title='Go' data-toggle='tooltip' style='cursor: pointer;'  onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
                     <a class='modal-trigger' href='#modal_assign_roadmap' title='Assign' data-toggle='tooltip' style='cursor: pointer;' onclick="return fillAssociationSelects();"><i class='small material-icons' style='color: #228B22;'>assignment</i></a>
                 </td>`;
         body += "</tr>";
@@ -120,8 +120,6 @@ function getRoadmapData(td) {
 function viewAssignments(td) {
   selectedRow = td.parentElement.parentElement;
   let roadmap_id = selectedRow.cells[0].innerHTML;
-  // console.log("roadmap ", roadmap_id)
-let roadmap_naam = selectedRow.cells[1].innerHTML;
   fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap_id}`, {
     method: "GET",
     headers: myHeaders,
@@ -132,11 +130,9 @@ let roadmap_naam = selectedRow.cells[1].innerHTML;
     .then((data) => {
       // console.log(data);
       console.log("results: ",data.data.length);
-      document.getElementById("AssignmentsHeader").innerHTML = roadmap_naam;
-      document.getElementById("current_roadmap_id").innerHTML = roadmap_id;
-      console.log(roadmap_id)
       
-      unhideAssignments();
+      // console.log(roadmap_id)
+      
       if (data.data.length > 0) {
         var body = "";
         assignments = data.data;
@@ -146,8 +142,8 @@ let roadmap_naam = selectedRow.cells[1].innerHTML;
           body += "<td>" + i.id + "</td>";
           body += "<td>" + i.assignment_naam + "</td>";
           body += "<td>" + i.omschrijving + "</td>";
-          body += "<td>" + i.start_datum + "</td>";
-          body += "<td>" + i.inlever_datum + "</td>";
+          body += "<td>" + new Date(i.start_datum).toDateString() + "</td>";
+          body += "<td>" + new Date(i.inlever_datum).toDateString() + "</td>";
           body += "<td>" + i.punten + "</td>";
           body += "<td>" + i.herkansingspunten + "</td>";
           body += `<td>
@@ -158,19 +154,11 @@ let roadmap_naam = selectedRow.cells[1].innerHTML;
           
         });
         document.getElementById("assignmentsTableBody").innerHTML = body;
-        
+        document.getElementById("AssignmentsHeader").innerHTML = data.data[0].roadmap_naam;
+      
       }
     })
     .catch((err) => console.log(err));
-}
-
-function unhideAssignments() {
-  
-  if(document.getElementById("assignmentsContainer").style.display == "none"){
-    document.getElementById("assignmentsContainer").style.display = "block";
-  } else if(document.getElementById("assignmentsContainer").style.display == "block"){
-    document.getElementById("assignmentsContainer").style.display = "none";
-  }
 }
 
 

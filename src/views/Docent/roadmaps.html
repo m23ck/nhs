@@ -98,6 +98,8 @@
             <span class="card-subtitle"></span>
           </div>
           <div class="card-content ">
+            <a class="waves-effect waves-light btn  nhs-green modal-trigger" href="#modal_create_roadmap"><i
+              class="material-icons right">add</i>Add</a>
             <table id="roadmapTable">
               <thead>
                 <tr>
@@ -120,45 +122,52 @@
 
   </div>
 
-  <!-- Assignments Table -->
-  <div class="container" id="assignmentsContainer" style="display: none">
-    <div class="row">
-      <blockquote>
-        <p class="flow-text" id="AssignmentsHeader"></p>
-      </blockquote>
-      <input id="current_roadmap_id" type="text" style="display: none;">
+
+  <div class="row">
+    <!-- view roadmap modal -->
+<div id="modal_roadmap" class="modal" style="width: 80vw;">
+  <div class="modal-content">
+    <h4 id="AssignmentsHeader" style="font-family: 'Anton', sans-serif; text-align: center">
+     
       <a class="btn waves-effect waves-light modal-trigger" href="#modal_assignment" name="addAssignment"
         onclick="return fillSelects();">Add Assignment</a>
       <br />
-      <div class="col s12" style="height: 28em; width: auto; overflow: auto">
-        <table id="assignmentsTable" class="responsive-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Naam</th>
-              <th>Omschrijving</th>
-              <th>Start Datum</th>
-              <th>Deadline</th>
-              <th>Punten</th>
-              <th>HerkansingsPunten</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="assignmentsTableBody"></tbody>
-        </table>
-      </div>
+
+    </h4>
+    <br />
+    <div>
+      <!-- <div class="row"> -->
+        <div class="col s12" style="height: 28em; width: auto; overflow: auto">
+          <table id="assignmentsTable" class="responsive-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Start Datum</th>
+                <th>Deadline</th>
+                <th>Punten</th>
+                <th>Herkansing</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="assignmentsTableBody"></tbody>
+          </table>
+        </div>
+      
+      <!-- </div> -->
     </div>
   </div>
-
-  <!-- Floating Roadmap Button -->
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large  nhs-green nav waves-effect waves-light btn modal-trigger" href="#modal_roadmap">
-      <i class="large material-icons">add</i>
-    </a>
+</div>
   </div>
 
+
+
+
+
+
   <!-- Create roadmap modal -->
-  <div id="modal_roadmap" class="modal" style="height: 900px">
+  <div id="modal_create_roadmap" class="modal" style="height: 900px">
     <div class="modal-content">
       <h3 style="font-family: 'Anton', sans-serif; text-align: center">
         Nieuw Roadmap Aanmaken

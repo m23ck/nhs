@@ -31,7 +31,7 @@ fetch(`http://127.0.0.1:3000/gebruiker/type/student`, {
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_student' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Verwijderen' data-toggle='tooltip' style='cursor: pointer;' onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
-                    <a title='Go' data-toggle='tooltip' style='cursor: pointer;'  onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
+                    
                     </td>`;
         body += "</tr>";
       });
