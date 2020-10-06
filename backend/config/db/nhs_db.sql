@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2020 at 08:44 AM
+-- Generation Time: Oct 06, 2020 at 08:00 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -46,7 +46,8 @@ CREATE TABLE `assignment` (
 INSERT INTO `assignment` (`id`, `roadmap_id`, `vak_id`, `assignment_naam`, `omschrijving`, `start_datum`, `inlever_datum`, `punten`, `herkansingspunten`) VALUES
 (1, 2, '2', 'Helloworld', 'Creeer een Helloworld command-line programma met Java', '2020-09-03', '2020-09-04', 20, 15),
 (2, 3, '2', 'Stelling van Pythagoras Leren', 'Maak alle opgegeven sommen en zorg ervoor dat je de stelling van pythagoras kent', '2020-09-04', '2020-09-07', 19, 14),
-(3, 2, '1', 'Linux Server opzetten', 'Zet een linux server met CentOS op', '2020-09-08', '2020-09-09', 30, 20);
+(3, 2, '1', 'Linux Server opzetten', 'Zet een linux server met CentOS op', '2020-09-08', '2020-09-09', 30, 20),
+(4, 2, '3', 'How to Use Your Toolset ', 'Get used to the use of your personally chosen toolset and craft amazing works with it.', '2020-10-07', '2020-10-22', 10, 8);
 
 -- --------------------------------------------------------
 
@@ -244,8 +245,7 @@ CREATE TABLE `roadmap` (
   `roadmap_naam` varchar(255) NOT NULL,
   `start_datum` date DEFAULT NULL,
   `eind_datum` date DEFAULT NULL,
-  `docent_id` int(11) NULL
-  
+  `docent_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -428,7 +428,7 @@ ALTER TABLE `vak`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `assignment_submission`
@@ -554,11 +554,6 @@ ALTER TABLE `jaar_klas`
   ADD CONSTRAINT `jaar_klas_ibfk_3` FOREIGN KEY (`klassendocent_id`) REFERENCES `gebruiker` (`id`);
 
 --
--- Constraints for table `roadmap`
---
-ALTER TABLE `roadmap`
-  ADD CONSTRAINT `roadmap_ibfk_1` FOREIGN KEY (`docent_id`) REFERENCES `gebruiker` (`id`);
---
 -- Constraints for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
@@ -570,6 +565,12 @@ ALTER TABLE `klas_roadmaps`
 --
 ALTER TABLE `resultaat`
   ADD CONSTRAINT `resultaat_ibfk_1` FOREIGN KEY (`assignment_submission_id`) REFERENCES `assignment_submission` (`id`);
+
+--
+-- Constraints for table `roadmap`
+--
+ALTER TABLE `roadmap`
+  ADD CONSTRAINT `roadmap_ibfk_1` FOREIGN KEY (`docent_id`) REFERENCES `gebruiker` (`id`);
 
 --
 -- Constraints for table `student_klas`
