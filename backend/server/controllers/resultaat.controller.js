@@ -3,6 +3,7 @@ const {
     getResultaatById,
     getResultatenByRoadmapId,
     getResultatenByKlasId,
+    getResultatenByStudentId,
     getResultatenByVakId,
     getResultaten,
     getTopResultaten,
@@ -51,6 +52,25 @@ module.exports = {
     getResultatenByKlasId: (req, res) => {
         const klas_id = req.params.klas_id;
         getResultatenByKlasId(klas_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "Resultaat bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getResultatenByStudentId: (req, res) => {
+        const student_id = req.params.student_id;
+        getResultatenByStudentId(student_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;

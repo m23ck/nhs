@@ -2,6 +2,7 @@ const {
     getResultaatById,
     getResultatenByRoadmapId,
     getResultatenByKlasId,
+    getResultatenByStudentId,
     getResultatenByVakId,
     getResultaten,
     getTopResultaten,
@@ -16,6 +17,7 @@ router.get("/top/", checkToken, getTopResultaten);
 router.get("/:id", checkToken, getResultaatById);
 router.get("/:roadmap_id", checkToken, getResultatenByRoadmapId);
 router.get("/:klas_id", checkToken, getResultatenByKlasId);
+router.get("/student/:student_id", checkToken, getResultatenByStudentId);
 router.get("/:vak_id", checkToken, getResultatenByVakId);
 router.delete("/:id", checkToken, deleteResultaat);
 
