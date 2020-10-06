@@ -4,6 +4,7 @@ const {
     getAssignmentSubmissionByAssignmentId,
     getAssignmentSubmissionByStudentId,
     getSpecificAssignmentSubmissions,
+    getProgressDetails,
     getAssignmentSubmissions,
     changeAssignmentSubmissionStatus,
     deleteAssignmentSubmission
@@ -16,6 +17,7 @@ router.get("/", checkToken, getAssignmentSubmissions);
 router.get("/assignment/:assignment_id", checkToken, getAssignmentSubmissionByAssignmentId);
 router.get("/student/:student_id", checkToken, getAssignmentSubmissionByStudentId);
 router.get("/specific/", checkToken, getSpecificAssignmentSubmissions);
+router.get("/progress/", checkToken, getProgressDetails);
 // don't put the get by ID before getspecific  fsr it ruins it
 router.get("/:id", checkToken, getAssignmentSubmissionById);
 router.put("/:id", checkToken, changeAssignmentSubmissionStatus);

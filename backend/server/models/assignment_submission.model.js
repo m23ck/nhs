@@ -101,6 +101,55 @@ module.exports = {
       }
     );
   },
+  getProgressDetails: (student_id, roadmap_id, callBack) => {
+    pool.query(
+        `(SELECT
+          COUNT(*) as progress
+      FROM
+          assignment_submission
+          LEFT JOIN gebruiker on assignment_submission.student_id = gebruiker.id
+          LEFT JOIN assignment on assignment_submission.assignment_id = assignment.id
+          LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id
+          WHERE assignment_submission.student_id = ${student_id} and roadmap.id = ${roadmap_id}) 
+         
+           UNION ALL
+          
+          (SELECT
+          COUNT(*) as progress
+      FROM
+          assignment_submission
+          LEFT JOIN gebruiker on assignment_submission.student_id = gebruiker.id
+          LEFT JOIN assignment on assignment_submission.assignment_id = assignment.id
+          LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id
+          WHERE assignment_submission.status = 'approved' and assignment_submission.student_id = ${student_id} and roadmap.id = ${roadmap_id}) 
+          
+          UNION ALL
+          
+          (SELECT
+          COUNT(*) as progress
+      FROM
+          assignment_submission
+          LEFT JOIN gebruiker on assignment_submission.student_id = gebruiker.id
+          LEFT JOIN assignment on assignment_submission.assignment_id = assignment.id
+          LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id
+          WHERE assignment_submission.status = 'submitted' and assignment_submission.student_id = ${student_id} and roadmap.id = ${roadmap_id}) 
+        `,
+      [
+        student_id,
+        roadmap_id
+      ],
+      (error, results, fields) => {
+        
+        if (error) {
+          return callBack(error);
+          return results
+        }
+        
+        return callBack(null, results);
+        
+      }
+    );
+  },
 
   changeAssignmentSubmissionStatus: (data, assignment_submission_id, callBack) => {
     // check if the submission was approved and then create a record for it

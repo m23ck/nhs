@@ -4,7 +4,7 @@ const {
     getAssignmentSubmissionByAssignmentId,
     getAssignmentSubmissionByStudentId,
     getSpecificAssignmentSubmissions,
-    getAssignmentSubmissions,
+    getProgressDetails,
     changeAssignmentSubmissionStatus,
     deleteAssignmentSubmission
 } = require("../models/assignment_submission.model");
@@ -70,6 +70,27 @@ module.exports = {
         const roadmap_id = req.query.roadmap_id;
         const status = req.query.status;
         getSpecificAssignmentSubmissions(jaar_klas_id, roadmap_id, status, (err, results) => {
+            
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "AssignmentSubmission bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getProgressDetails: (req, res) => {
+        const student_id = req.query.student_id;
+        const roadmap_id = req.query.roadmap_id;
+        getProgressDetails(student_id, roadmap_id, (err, results) => {
             
             if (err) {
                 console.log(err);
