@@ -156,8 +156,8 @@ function requestSubmissions() {
           body += "<td>" + i.naam +" "+ i.voornaam + "</td>";
           body += "<td>" + i.assignment_naam + "</td>";
           body += `<td>
-                      <a title='Approve' data-toggle='tooltip' style='cursor: pointer;' onclick='return approveSubmission(this)'><i class='small material-icons' >mood</i></a>
-                      <a title='Reject' data-toggle='tooltip' style='cursor: pointer;' onclick='return rejectSubmission(this)'><i class='small material-icons' style='color: #c62828;'>mood_bad</i></a>
+                      <a title='Approve' data-toggle='tooltip' style='cursor: pointer;' onclick='return approveSubmission(this)'><i class='small material-icons' style='color: #45E042;' >check</i></a>
+                      <a title='Reject' data-toggle='tooltip' style='cursor: pointer;' onclick='return rejectSubmission(this)'><i class='small material-icons' style='color: #c62828;'>clear</i></a>
                   </td>`;
           body += "</tr>";
         });

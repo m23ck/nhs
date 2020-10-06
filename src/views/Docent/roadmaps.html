@@ -96,10 +96,12 @@
           <div class="card-header-floating z-depth-2">
             <span class="card-title">Roadmaps</span>
             <span class="card-subtitle"></span>
-          </div>
+          </div>     
           <div class="card-content ">
             <a class="waves-effect waves-light btn  nhs-green modal-trigger" href="#modal_create_roadmap"><i
               class="material-icons right">add</i>Add</a>
+              <a class="waves-effect waves-light btn  nhs-green modal-trigger" href="#modal_assign_roadmap" onclick="return fillAssociationSelects()"><i
+                class="material-icons right">add</i>Assign Roadmap to Class</a>
             <table id="roadmapTable">
               <thead>
                 <tr>
@@ -131,6 +133,7 @@
     </h4>
       <a class="btn waves-effect waves-light modal-trigger nhs_green" href="#modal_assignment" name="addAssignment"
         onclick="return fillSelects();">Add Assignment</a>
+        
       <br />
 
     </h4>
