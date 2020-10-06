@@ -1,7 +1,7 @@
 const {
     createAssignment,
     getAssignmentById,
-    getPendingAssigments,
+    getAssigmentStats,
     getAssignmentsByRoadmapId,
     getAssignments,
     updateAssignment,
@@ -45,9 +45,9 @@ module.exports = {
             });
         });
     },
-    getPendingAssigments: (req, res) => {
+    getAssigmentStats: (req, res) => {
         const student_id = req.params.id;
-        getPendingAssigments(student_id, (err, results) => {
+        getAssigmentStats(student_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;

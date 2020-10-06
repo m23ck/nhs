@@ -107,6 +107,7 @@ module.exports = {
   getResultatenByStudentId: (jaar_klas_id, callBack) => {
     pool.query(
       `SELECT
+      resultaat.id,
       gebruiker.naam,
       gebruiker.voornaam,
       assignment.assignment_naam,
@@ -132,7 +133,7 @@ module.exports = {
         if (error) {
           return callBack(error);
         }
-        return callBack(null, results[0]);
+        return callBack(null, results);
       }
     );
   },
