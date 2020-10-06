@@ -155,6 +155,7 @@ function viewAssignments(td) {
         });
         document.getElementById("assignmentsTableBody").innerHTML = body;
         document.getElementById("AssignmentsHeader").innerHTML = data.data[0].roadmap_naam;
+        document.getElementById("AssignmentsHeader").setAttribute('key',data.data[0].roadmap_id);
       
       }
     })
@@ -164,9 +165,7 @@ function viewAssignments(td) {
 
 
 function createAssignment() {
-  let roadmap_id = document.getElementById('current_roadmap_id').innerText
-  console.log("this is roadmap id:" + roadmap_id)
-  alert(`${roadmap_id}`)
+  let roadmap_id = document.getElementById("AssignmentsHeader").getAttribute("key")
   let form = document.forms["assignmentForm"];
   let fd = new FormData(form);
   let data = {};
