@@ -152,7 +152,7 @@ cache: "default",
 
     approved_submissions_percentage = (approved_submissions / all_assignments) * 100 + "%"; 
     submitted_submissions_percentage = (submitted_submissions / all_assignments) * 100 + "%"; 
-    console.log(submitted_submissions_percentage)
+    // console.log(submitted_submissions_percentage)
     document.getElementById("progress_percentage").style.width = submitted_submissions_percentage;
     document.getElementById("progress_percentage").innerHTML = submitted_submissions_percentage;
   }
