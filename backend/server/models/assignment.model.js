@@ -48,7 +48,7 @@ module.exports = {
   },
   getAssignmentsByRoadmapId: (roadmap_id, callBack) => {
     pool.query(
-      `select * from assignment INNER JOIN vak ON vak.id = vak_id INNER JOIN roadmap ON roadmap_id = roadmap.id where roadmap_id = ?`,
+      `select assignment.id as id, assignment.assignment_naam, assignment.omschrijving, assignment.start_datum, assignment.inlever_datum, assignment.punten, assignment.herkansingspunten, roadmap.roadmap_naam from assignment LEFT JOIN vak ON vak.id = vak_id LEFT JOIN roadmap ON roadmap_id = roadmap.id where assignment.roadmap_id = ?`,
       [roadmap_id],
       (error, results, fields) => {
         if (error) {

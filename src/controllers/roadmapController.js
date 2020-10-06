@@ -24,8 +24,8 @@ fetch(`http://127.0.0.1:3000/roadmap/docent/${gebruiker_id}`, {
         body += "<tr>";
         body += "<td>" + i.roadmap_id + "</td>";
         body += "<td>" + i.roadmap_naam + "</td>";
-        body += "<td>" + i.start_datum + "</td>";
-        body += "<td>" + i.eind_datum + "</td>";
+        body += "<td>" + new Date(i.start_datum).toDateString() + "</td>";
+        body += "<td>" + new Date(i.eind_datum).toDateString() + "</td>";
         body += `<td>
                     <a class='modal-trigger' href='#modal_update_roadmap' title='Wijzigen' data-toggle='tooltip' style='cursor: pointer;' onclick='return getRoadmapData(this)'><i class='small material-icons' style='color: #ffd600;'>edit</i></a>
                     <a title='Delete' data-toggle='tooltip' style='cursor: pointer;'  onclick='return deleteCheck(this)'><i class='small material-icons' style='color: #c62828;'>delete</i></a>
