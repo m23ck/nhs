@@ -23,10 +23,6 @@ fetch(`http://127.0.0.1:3000/roadmap/student/${student_id}`, {
         body += "<td>" + i.roadmap_naam + "</td>";
         body += "<td>" + new Date(i.start_datum).toDateString() + "</td>";
         body += "<td>" + new Date(i.eind_datum).toDateString() + "</td>";
-        body += "<td><div class='progress'><div class='determinate' id='progress_percentage' >" + "" + "</div></div></td>" ;
-        getPercentageRoadmap(i.roadmap_id);
-        // body += ""
-        // body += "<td>" + getPercentageRoadmap(i.roadmap_id) +"</td>"
         body += `<td>
             <a class='modal-trigger' href='#modal_roadmap' title='Go' data-toggle='tooltip' style='cursor: pointer;' onclick='return viewAssignments(this)'><i class='small material-icons' style='color: #4285F4;'>preview</i></a>
                 </td>`;
@@ -74,6 +70,7 @@ fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap_id}`, {
       });
       document.getElementById("assignmentsModalContentBody").innerHTML = body;
       document.getElementById("roadmap_modal_title").innerHTML = data.data[0].roadmap_naam;
+      getPercentageRoadmap(roadmap_id, data.data.length)
       
     }
   })
@@ -136,10 +133,9 @@ function submitCheck(td) {
 
 
 
-async function getPercentageRoadmap(roadmap_id){
-
+function getPercentageRoadmap(roadmap_id, all_assignments){
   let student_id =  JSON.parse(localStorage.getItem("nhs_user")).gebruiker_id
-  let progress_data = await fetch(`http://127.0.0.1:3000/assignment_submission/progress/?student_id=${student_id}&roadmap_id=${roadmap_id}`, {
+fetch(`http://127.0.0.1:3000/assignment_submission/progress/?student_id=${student_id}&roadmap_id=${roadmap_id}`, {
 method: "GET",
 headers: myHeaders,
 mode: "cors",
@@ -149,13 +145,16 @@ cache: "default",
 .then((data) => {
   console.log(data.data);
   if (data.data.length > 0) {
+
     let all_submissions = data.data[0].progress;
-    let approved_submissions = data.data[0].progress;
-    let submitted_submissions = data.data[0].progress;
-    approved_submissions_percentage = (approved_submissions / all_submissions) * 100 + "%"; 
-    submitted_submissions_percentage = (submitted_submissions / all_submissions) * 100 + "%"; 
+    let approved_submissions = data.data[1].progress;
+    let submitted_submissions = data.data[2].progress;
+
+    approved_submissions_percentage = (approved_submissions / all_assignments) * 100 + "%"; 
+    submitted_submissions_percentage = (submitted_submissions / all_assignments) * 100 + "%"; 
+    console.log(submitted_submissions_percentage)
     document.getElementById("progress_percentage").style.width = submitted_submissions_percentage;
-    document.getElementById("progress_percentage").textContent = submitted_submissions_percentage;
+    document.getElementById("progress_percentage").innerHTML = submitted_submissions_percentage;
   }
 })
 .catch((err) => console.log(err));
