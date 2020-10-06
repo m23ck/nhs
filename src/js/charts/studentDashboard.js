@@ -1,16 +1,14 @@
-const current_token2 = localStorage.getItem("token");
 
-const myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer " + current_token2);
+// myHeaders.append("Authorization", "Bearer " + current_token2);
 
-function getData() {
-    fetch('http://127.0.0.1:3000/', {
-        method: "GET",
-        headers: myHeaders,
-        mode: "cors",
-        cache: "default",
-    }).then
-}
+// function getData() {
+//     fetch('http://127.0.0.1:3000/', {
+//         method: "GET",
+//         headers: myHeaders,
+//         mode: "cors",
+//         cache: "default",
+//     }).then
+// }
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {

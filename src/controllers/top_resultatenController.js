@@ -1,4 +1,4 @@
-const current_token2 = localStorage.getItem("token");
+let  current_token2 = localStorage.getItem("token");
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);

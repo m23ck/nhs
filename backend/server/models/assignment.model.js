@@ -5,15 +5,15 @@ module.exports = {
     pool.query(
       'insert into assignment(assignment_naam, omschrijving, start_datum, inlever_datum, vak_id, punten, herkansingspunten, roadmap_id) values(?,?,?,?,?,?,?,?)',
       [
-          data.assignment_naam,
-          data.omschrijving,
-          data.start_datum,
-          data.inlever_datum,
-          data.vak_id,
-          data.punten,
-          data.herkansingspunten,
-          data.roadmap_id
-        ],
+        data.assignment_naam,
+        data.omschrijving,
+        data.start_datum,
+        data.inlever_datum,
+        data.vak_id,
+        data.punten,
+        data.herkansingspunten,
+        data.roadmap_id
+      ],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
@@ -48,7 +48,7 @@ module.exports = {
   },
   getPendingAssigments: (student_id, callBack) => {
     pool.query(
-      `SELECT COUNT(*) FROM assignment LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id LEFT JOIN student_klas ON klas_roadmaps.jaar_klas_id = student_klas.jaar_klas_id LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id LEFT JOIN klas ON jaar_klas.klas_id = klas.id WHERE assignment.id NOT IN (SELECT assignment_id from assignment_submission) AND student_klas.student_id = ?`,
+      `SELECT COUNT(*) as pending_assignments FROM assignment LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id LEFT JOIN student_klas ON klas_roadmaps.jaar_klas_id = student_klas.jaar_klas_id LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id LEFT JOIN klas ON jaar_klas.klas_id = klas.id WHERE assignment.id NOT IN (SELECT assignment_id from assignment_submission) AND student_klas.student_id = ?`,
       [student_id],
       (error, results, fields) => {
         if (error) {
