@@ -16,7 +16,7 @@ function getKlassen() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       // console.log(data.data.length);
       if (data.data.length > 0) {
         data.data.forEach((i) => {
@@ -129,7 +129,7 @@ function requestSubmissions() {
   }
   VALUE = JSON.stringify(data, null, 2);
 
-  console.log(VALUE);
+  // console.log(VALUE);
 
   const myHeaders = new Headers();
   myHeaders.append("Authorization", "Bearer " + current_token2);
@@ -144,7 +144,7 @@ function requestSubmissions() {
     .then((res) => res.json())
     .then((data) => {
         
-      console.log(data);
+      // console.log(data);
       
       // console.log(data.data.length);
       if (data.data.length > 0) {
@@ -156,7 +156,7 @@ function requestSubmissions() {
           body += "<td>" + i.naam +" "+ i.voornaam + "</td>";
           body += "<td>" + i.assignment_naam + "</td>";
           body += `<td>
-                      <a title='Approve' data-toggle='tooltip' style='cursor: pointer;' onclick='return approveSubmission(this)'><i class='small material-icons' style='color: blue;'>mood</i></a>
+                      <a title='Approve' data-toggle='tooltip' style='cursor: pointer;' onclick='return approveSubmission(this)'><i class='small material-icons' >mood</i></a>
                       <a title='Reject' data-toggle='tooltip' style='cursor: pointer;' onclick='return rejectSubmission(this)'><i class='small material-icons' style='color: #c62828;'>mood_bad</i></a>
                   </td>`;
           body += "</tr>";
