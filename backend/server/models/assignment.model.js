@@ -46,6 +46,18 @@ module.exports = {
       }
     );
   },
+  getPendingAssigments: (student_id, callBack) => {
+    pool.query(
+      `SELECT COUNT(*) FROM assignment LEFT JOIN roadmap on assignment.roadmap_id = roadmap.id LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id LEFT JOIN student_klas ON klas_roadmaps.jaar_klas_id = student_klas.jaar_klas_id LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id LEFT JOIN klas ON jaar_klas.klas_id = klas.id WHERE assignment.id NOT IN (SELECT assignment_id from assignment_submission) AND student_klas.student_id = ?`,
+      [student_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results[0]);
+      }
+    );
+  },
   getAssignmentsByRoadmapId: (roadmap_id, callBack) => {
     pool.query(
       `select assignment.id as id, assignment.assignment_naam, assignment.omschrijving, assignment.start_datum, assignment.inlever_datum, assignment.punten, assignment.herkansingspunten, roadmap.roadmap_naam from assignment LEFT JOIN vak ON vak.id = vak_id LEFT JOIN roadmap ON roadmap_id = roadmap.id where assignment.roadmap_id = ? `,

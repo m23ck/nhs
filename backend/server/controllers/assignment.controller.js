@@ -1,6 +1,7 @@
 const {
     createAssignment,
     getAssignmentById,
+    getPendingAssigments,
     getAssignmentsByRoadmapId,
     getAssignments,
     updateAssignment,
@@ -28,6 +29,25 @@ module.exports = {
     getAssignmentById: (req, res) => {
         const assignment_id = req.params.id;
         getAssignmentById(assignment_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "Assignment bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getPendingAssigments: (req, res) => {
+        const student_id = req.params.id;
+        getPendingAssigments(student_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
