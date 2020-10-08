@@ -8,6 +8,7 @@
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="../../../src/style/materialize/css/materialize.min.css"
     media="screen,projection" />
+  <link href='../../js/node_modules/fullcalendar/main.css' rel='stylesheet' />
 
   <link rel="stylesheet" href="../../style/main.css">
 
@@ -92,7 +93,7 @@
               </thead>
 
               <tbody id="topResultsBody">
-                              </tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -149,6 +150,17 @@
           </div>
         </div>
       </div>
+      <div class="col s12 m6 ">
+        <div class="card white slide-left">
+          <div class="card-header-floating silver z-depth-2">
+            <span class="card-title">Deadlines</span>
+            <span class="card-subtitle">Weergave van je totale scores behaalde scores per vak</span>
+          </div>
+          <div class="card-content ">
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -174,7 +186,9 @@
   <script src="../../controllers/studentStatsController.js"></script>
   <script src="../../controllers/permissions.js"></script>
   <script src="../../js/node_modules/chart.js/dist/Chart.js"></script>
+  <script src='../../js/node_modules/fullcalendar/main.js'></script>
   <script defer type="text/javascript" src="../../js/charts/studentDashboard.js"></script>
+  <script defer type="text/javascript" src="../../js/calendar/studentCalendar.js"></script>
   <script>
     M.AutoInit();
     window.onload = redirectIfNotPermitted();
