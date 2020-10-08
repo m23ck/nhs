@@ -65,7 +65,7 @@
           <a href="./roadmaps.html">Roadmaps</a>
         </li>
         <li class="">
-          <i class="material-icons">flag</i>
+          <i class="material-icons">assessment</i>
           <a href="./resultaten.html">Resultaten</a>
         </li>
       </nav-block>
@@ -73,42 +73,42 @@
   </div>
 
   <div class="main-content">
-    
-   
+
+
     <div class="row">
       <!-- view roadmap modal -->
-  <div id="modal_roadmap" class="modal" style="width: 80vw;">
-    <div class="modal-content">
-      <h4 id="roadmap_modal_title" style="font-family: 'Anton', sans-serif; text-align: center"></h4>
-      <div class="progress">
-        <div class="determinate nhs_green" id="progress_percentage" ></div>
-    </div>
-      </h4>
-      <br />
-      <div>
-        <!-- <div class="row"> -->
-          <div class="col s12" style="height: 28em; width: auto; overflow: auto">
-            <table id="assignmentsTable" class="responsive-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Naam</th>
-                  <th>Omschrijving</th>
-                  <th>Start Datum</th>
-                  <th>Deadline</th>
-                  <th>Punten</th>
-                  <th>Herkansing</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="assignmentsModalContentBody"></tbody>
-            </table>
+      <div id="modal_roadmap" class="modal" style="width: 80vw;">
+        <div class="modal-content">
+          <h4 id="roadmap_modal_title" style="font-family: 'Anton', sans-serif; text-align: center"></h4>
+          <div class="progress">
+            <div class="determinate nhs_green" id="progress_percentage"></div>
           </div>
-        
-        <!-- </div> -->
+          </h4>
+          <br />
+          <div>
+            <!-- <div class="row"> -->
+            <div class="col s12" style="height: 28em; width: auto; overflow: auto">
+              <table id="assignmentsTable" class="responsive-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Naam</th>
+                    <th>Omschrijving</th>
+                    <th>Start Datum</th>
+                    <th>Deadline</th>
+                    <th>Punten</th>
+                    <th>Herkansing</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="assignmentsModalContentBody"></tbody>
+              </table>
+            </div>
+
+            <!-- </div> -->
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
     </div>
 
 
@@ -163,7 +163,7 @@
 
     // });
     window.onload = redirectIfNotPermitted();
-    
+
     window.onload = setFullName();
     console.log('re')
   </script>
