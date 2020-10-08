@@ -155,76 +155,76 @@
             <tbody id="submissionsTableBody"></tbody>
           </table>
         </div> -->
-    <!-- </div> -->
+      <!-- </div> -->
 
-    <!-- Submissions Table -->
+      <!-- Submissions Table -->
 
-    <div class="row">
-      <div class="col s12">
-        <div class="card white">
-          <div class="card-header-floating">
-            <span class="card-title">Submissions</span>
-            
-            <span class="card-subtitle">
+      <div class="row">
+        <div class="col s12 scale-up-center">
+          <div class="card white">
+            <div class="card-header-floating">
+              <span class="card-title">Submissions</span>
+
+              <span class="card-subtitle">
+              </span>
+            </div>
+            <div class="card-content ">
               <div class="white">
                 <form method="POST" id="requestSubmissionsForm" name="requestSubmissionsForm"
-                onsubmit="return requestSubmissions()">
-                <div class="row">
-                  <div class="input-field col s4">
-                    <select name="jaar_klas_id" id="jaar_klas_id">
-                      <option value="Kies een klas" disabled selected>
-                        Kies een klas
-                      </option>
-                    </select>
-                    <!-- <label for="jaar_klas_id">Klas</label> -->
+                  onsubmit="return requestSubmissions()">
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <select name="jaar_klas_id" id="jaar_klas_id">
+                        <option value="Kies een klas" disabled selected>
+                          Kies een klas
+                        </option>
+                      </select>
+                      <!-- <label for="jaar_klas_id">Klas</label> -->
+                    </div>
+
+                    <div class="input-field col s4">
+                      <select name="roadmap_id" id="roadmap_id">
+                        <option value="Kies een Roadmap" disabled selected>
+                          Kies een roadmap
+                        </option>
+                      </select>
+                      <!-- <label for="roadmap_id">Roadmap</label> -->
+                    </div>
+
+                    <div class="input-field col s4">
+                      <select name="status" id="status">
+                        <option value="Kies een Roadmap" disabled selected>
+                          Kies een status
+                        </option>
+                        <option value="submitted">Submitted</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                      <!-- <label for="status">Status</label> -->
+                    </div>
+                    <button class="btn waves-effect waves-light  nhs-green nav" type="submit" name="action">
+                      View Submissions
+                    </button>
                   </div>
-               
-                  <div class="input-field col s4">
-                    <select name="roadmap_id" id="roadmap_id">
-                      <option value="Kies een Roadmap" disabled selected>
-                        Kies een roadmap
-                      </option>
-                    </select>
-                    <!-- <label for="roadmap_id">Roadmap</label> -->
-                  </div>
-               
-                  <div class="input-field col s4">
-                    <select name="status" id="status">
-                      <option value="Kies een Roadmap" disabled selected>
-                        Kies een status
-                      </option>
-                      <option value="submitted">Submitted</option>
-                      <option value="approved">Approved</option>
-                      <option value="rejected">Rejected</option>
-                    </select>
-                    <!-- <label for="status">Status</label> -->
-                  </div>
-                <button class="btn waves-effect waves-light  nhs-green nav" type="submit" name="action">
-                  View Submissions
-                </button>
-                </div>
-              </form>
+                </form>
               </div>
-            </span>
-          </div>
-          <div class="card-content ">
-            <table id="assignmentSubmissionsTable" class="highlight responsive-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Student</th>
-                  <th>Assignment</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="assignmentSubmissionsTableBody">
-              </tbody>
-            </table>
+              <table id="assignmentSubmissionsTable" class="highlight responsive-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Assignment</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="assignmentSubmissionsTableBody">
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
 
@@ -240,7 +240,7 @@
   <script>
     M.AutoInit();
     window.onload = redirectIfNotPermitted();
-    
+
     window.onload = setFullName();
     window.onload = fillSelects();
     // document.addEventListener('DOMContentLoaded', () => {

@@ -1,7 +1,5 @@
-const current_token2 = localStorage.getItem("token");
 
-const myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer " + current_token2);
+myHeaders.set("Authorization", "Bearer " + current_token2);
 
 function getData() {
     fetch('http://127.0.0.1:3000/', {
