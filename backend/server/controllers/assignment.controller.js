@@ -46,7 +46,7 @@ module.exports = {
         });
     },
     getAssigmentStats: (req, res) => {
-        const student_id = req.params.id;
+        const student_id = req.params.student_id;
         getAssigmentStats(student_id, (err, results) => {
             if (err) {
                 console.log(err);
