@@ -1,3 +1,5 @@
+const eventModal = M.Modal.init(document.getElementById('eventModal'))
+const inputs = document.querySelectorAll('input')
 let roadmaps = []
 let assignments = []
 let fetchOptions = {
@@ -10,8 +12,8 @@ let fetchOptions = {
 let parseEvents = function () {
     let events = []
     for (let assignment of assignments) {
-        let { assignment_naam: title, start_datum: start, inlever_datum: end } = assignment
-        { events.push({ title, start, end }) }
+        let { id, assignment_naam: title, start_datum: start, inlever_datum: end } = assignment
+        { events.push({ id, title, start, end, url: id }) }
     }
     return events
 }
@@ -24,17 +26,33 @@ document.addEventListener('DOMContentLoaded', async function () {
         .then(async ({ data }) => {
             roadmaps = data.map(x => x)
             for (let roadmap of roadmaps) {
-                console.log(roadmap)
+                // console.log(roadmap)
                 await fetch(`http://127.0.0.1:3000/assignment/roadmap/${roadmap.roadmap_id}`, fetchOptions)
                     .then(res => res.json())
                     .then(({ data }) => { for (let x of data) { assignments.push(x) } })
             }
         })
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    let calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        events: parseEvents()
-    });
+        events: parseEvents(),
+        eventClick: function (info) {
+            info.jsEvent.preventDefault()
+            assignment = assignments.find(x => x.id == info.event.id)
+            for (let input of inputs) {
+                if (input.id == 'start_datum' || input.id == 'inlever_datum') {
+                    input.value = new Date(assignment[input.id]).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+                }
+                else
+                    input.value = assignment[input.id]
+                input.setAttribute('disabled', true)
+            }
+            eventModal.open()
+            // console.log(info, assignment)
+
+        }
+    })
+
     calendar.render();
 
 
