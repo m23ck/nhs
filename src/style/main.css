@@ -129,6 +129,37 @@ nav {
   color: #a3a3a3;
 }
 
+/* notifications */
+#notifications {
+  background-color: #fff;
+  margin: 0;
+  display: none;
+  min-width: 100px;
+  overflow-y: auto;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+#notifications.open {
+  display: block;
+  display: block;
+  /* width: 270px; */
+  top: 50px;
+  left: calc(100vw - 347px);
+  /* height: 100px; */
+  transform-origin: 100% 0px;
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+}
+#notifications > li {
+  width: 100%;
+  height: 40px;
+}
+
 /* theme customization*/
 input[type="text"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid #45e042;
