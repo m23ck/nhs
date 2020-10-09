@@ -36,7 +36,8 @@
                         <i class="material-icons black-text">person</i>
                     </a>
                     <ul id='dropdown2' class='dropdown-content'>
-                        <li><a href="./gegevens.html" id="huidige_gebruiker_naam"><i class="material-icons left">person</i></a></li>
+                        <li><a href="./gegevens.html" id="huidige_gebruiker_naam"><i
+                                    class="material-icons left">person</i></a></li>
                         <li><a onclick="logout()">Uitloggen</a></li>
                     </ul>
                     </a>
@@ -66,8 +67,8 @@
                     <a href="./roadmaps.html">Roadmaps</a>
                 </li>
                 <li class="">
-                  <i class="material-icons">assessment</i>
-                  <a href="./resultaten.html">Resultaten</a>
+                    <i class="material-icons">assessment</i>
+                    <a href="./resultaten.html">Resultaten</a>
                 </li>
             </nav-block>
         </ul>
@@ -77,7 +78,7 @@
 
         <!-- Gegevens Row-->
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m6  scale-up-center">
                 <div class="card white">
                     <div class="card-header-floating z-depth-2">
                         <span class="card-title">Mijn Gegevens</span>
@@ -149,8 +150,8 @@
             // var instances = M.FormSelect.init(elems, options);
 
         });
-        
-    window.onload = setFullName();
+
+        window.onload = setFullName();
         window.onload = redirectIfNotPermitted();
     </script>
 </body>
