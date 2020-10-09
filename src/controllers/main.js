@@ -25,7 +25,7 @@ function getName() {
     return `${JSON.parse(localStorage.getItem("nhs_user")).full_name}`
 }
 
-function setFullName(){
+function setFullName() {
     document.getElementById("huidige_gebruiker_naam").innerHTML = JSON.parse(localStorage.getItem("nhs_user")).voornaam
     // document.getElementById("huidige_gebruiker_naam").style.fontSize = "15px"
     // document.getElementById("huidige_gebruiker_naam").style.color = "black"
@@ -40,3 +40,12 @@ function refreshSelect(el) {
     M.FormSelect.init(el)
     document.getElementsByClassName("select-dropdown dropdown-trigger")[0].classList.add("white-text")
 }
+
+const notificationsTrigger = document.getElementById('notifications-trigger')
+const notifications = document.getElementById('notifications')
+notificationsTrigger.addEventListener('click', () => {
+    isActive = notifications.classList.contains('open')
+
+    isActive ? notifications.classList.remove('open') : notifications.classList.add('open')
+    console.log(isActive)
+})
