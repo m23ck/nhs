@@ -16,9 +16,12 @@ fetch(`http://127.0.0.1:3000/resultaat/top/`, {
 
     if (data.data.length > 0) {
       var body = "";
+      let num = 0
 
       data.data.forEach((i) => {
+        num++
         body += "<tr>";
+        body += "<td>" + num + "</td>";
         body += "<td>" + i.naam + "</td>";
         body += "<td>" + i.voornaam + "</td>";
         body += "<td>" + i.klas_naam + "</td>";

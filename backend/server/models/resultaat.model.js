@@ -34,7 +34,24 @@ module.exports = {
   },
   getTopResultaten: (callBack) => {
     pool.query(
-      `SELECT AVG(assignment.punten) as score, gebruiker.naam, gebruiker.voornaam, klas.klas_naam FROM resultaat LEFT JOIN assignment_submission ON assignment_submission_id = assignment_submission.id LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id LEFT JOIN vak ON assignment.vak_id = vak.id LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id LEFT JOIN klas ON jaar_klas.klas_id = klas.id LIMIT 10`,
+      `SELECT
+      AVG(assignment.punten) AS score,
+      gebruiker.naam,
+      gebruiker.voornaam,
+      klas.klas_naam
+  FROM
+      resultaat
+  LEFT JOIN assignment_submission ON assignment_submission_id = assignment_submission.id
+  LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id
+  LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id
+  LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id
+  LEFT JOIN vak ON assignment.vak_id = vak.id
+  LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id
+  LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id = jaar_klas.id
+  LEFT JOIN klas ON jaar_klas.klas_id = klas.id
+  ORDER BY
+      score DESC
+  LIMIT 10`,
       [],
       (error, results, fields) => {
         if (error) {
