@@ -43,9 +43,11 @@ function refreshSelect(el) {
 
 const notificationsTrigger = document.getElementById('notifications-trigger')
 const notifications = document.getElementById('notifications')
-notificationsTrigger.addEventListener('click', () => {
-    isActive = notifications.classList.contains('open')
 
-    isActive ? notifications.classList.remove('open') : notifications.classList.add('open')
-    console.log(isActive)
+
+notificationsTrigger.addEventListener('mouseover', () => {
+    notifications.classList.add('open')
+})
+notificationsTrigger.addEventListener('mouseout', () => {
+    notifications.classList.remove('open')
 })

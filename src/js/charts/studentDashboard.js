@@ -60,5 +60,3 @@ async function createChart() {
         }
     })
 }
-
-document.onload = createChart()
