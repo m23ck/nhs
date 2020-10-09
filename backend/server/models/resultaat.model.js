@@ -170,7 +170,8 @@ module.exports = {
   LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id
   LEFT JOIN student_klas ON jaar_klas.id = student_klas.jaar_klas_id
   LEFT JOIN klas ON jaar_klas.klas_id = klas.id 
-  where student_klas.student_id = ?`,
+  where student_klas.student_id = ?
+  GROUP BY vak.vak_naam`,
       [student_id],
       (error, results, fields) => {
         if (error) {
