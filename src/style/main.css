@@ -28,6 +28,11 @@ body {
 .logo-block img {
   vertical-align: middle;
 }
+nav ul a {
+  text-align: center;
+  width: 64px !important;
+  border-radius: 50% !important;
+}
 nav-block {
   margin-top: 30px;
   display: block;
