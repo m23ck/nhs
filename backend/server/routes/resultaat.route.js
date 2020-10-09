@@ -3,6 +3,7 @@ const {
     getResultatenByRoadmapId,
     getResultatenByKlasId,
     getResultatenByStudentId,
+    getAveragePointsPerVak,
     getResultatenByVakId,
     getResultaten,
     getTopResultaten,
@@ -18,6 +19,7 @@ router.get("/:id", checkToken, getResultaatById);
 router.get("/:roadmap_id", checkToken, getResultatenByRoadmapId);
 router.get("/:klas_id", checkToken, getResultatenByKlasId);
 router.get("/student/:student_id", checkToken, getResultatenByStudentId);
+router.get("/average_vak/:student_id", checkToken, getAveragePointsPerVak);
 router.get("/:vak_id", checkToken, getResultatenByVakId);
 router.delete("/:id", checkToken, deleteResultaat);
 

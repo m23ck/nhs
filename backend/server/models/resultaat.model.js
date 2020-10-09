@@ -121,7 +121,7 @@ module.exports = {
       }
     );
   },
-  getResultatenByStudentId: (jaar_klas_id, callBack) => {
+  getResultatenByStudentId: (student_id, callBack) => {
     pool.query(
       `SELECT
       resultaat.id,
@@ -145,7 +145,33 @@ module.exports = {
   LEFT JOIN student_klas ON jaar_klas.id = student_klas.jaar_klas_id
   LEFT JOIN klas ON jaar_klas.klas_id = klas.id 
   where student_klas.student_id = ?`,
-      [jaar_klas_id],
+      [student_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+  getAveragePointsPerVak: (student_id, callBack) => {
+    pool.query(
+      `SELECT
+      AVG(assignment.punten) as punten,
+      vak.vak_naam
+  FROM
+      resultaat
+  LEFT JOIN assignment_submission ON assignment_submission_id = assignment_submission.id
+  LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id
+  LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id
+  LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id
+  LEFT JOIN vak ON assignment.vak_id = vak.id
+  LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id
+  LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id
+  LEFT JOIN student_klas ON jaar_klas.id = student_klas.jaar_klas_id
+  LEFT JOIN klas ON jaar_klas.klas_id = klas.id 
+  where student_klas.student_id = ?`,
+      [student_id],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
