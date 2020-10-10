@@ -280,12 +280,12 @@ function deleteAssignmentCheck(td) {
 
 function getAssignmentData(td) {
   selectedRow = td.parentElement.parentElement;
-  document.getElementById("updateNaam").value = selectedRow.cells[1].innerHTML;
-  document.getElementById("updateOmschrijving").value = selectedRow.cells[1].innerHTML;
-  document.getElementById("updateStartDatum").value = selectedRow.cells[2].innerHTML;
-  document.getElementById("updateDeadline").value = selectedRow.cells[3].innerHTML;
-  document.getElementById("updatePunten").value = selectedRow.cells[4].innerHTML;
-  document.getElementById("updateHerkansingspunten").value = selectedRow.cells[5].innerHTML;
+  document.getElementById("update_assignment_naam").value = selectedRow.cells[1].innerHTML;
+  document.getElementById("update_omschrijving").value = selectedRow.cells[2].innerHTML;
+  document.getElementById("update_start_datum").value = selectedRow.cells[3].innerHTML;
+  document.getElementById("update_inlever_datum").value = selectedRow.cells[4].innerHTML;
+  document.getElementById("update_punten").value = selectedRow.cells[5].innerHTML;
+  document.getElementById("update_herkansingspunten").value = selectedRow.cells[6].innerHTML;
   id = selectedRow.cells[0].innerHTML;
   // console.log(id);
 }
