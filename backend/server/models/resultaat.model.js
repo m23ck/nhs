@@ -181,6 +181,32 @@ module.exports = {
       }
     );
   },
+  getAveragePointsPerVakAll: (callBack) => {
+    pool.query(
+      `SELECT
+      AVG(assignment.punten) as punten,
+      vak.vak_naam
+  FROM
+      resultaat
+  LEFT JOIN assignment_submission ON assignment_submission_id = assignment_submission.id
+  LEFT JOIN gebruiker ON assignment_submission.student_id = gebruiker.id
+  LEFT JOIN assignment ON assignment_submission.assignment_id = assignment.id
+  LEFT JOIN roadmap ON assignment.roadmap_id = roadmap.id
+  LEFT JOIN vak ON assignment.vak_id = vak.id
+  LEFT JOIN klas_roadmaps ON roadmap.id = klas_roadmaps.roadmap_id
+  LEFT JOIN jaar_klas ON klas_roadmaps.jaar_klas_id
+  LEFT JOIN student_klas ON jaar_klas.id = student_klas.jaar_klas_id
+  LEFT JOIN klas ON jaar_klas.klas_id = klas.id 
+  GROUP BY vak.vak_naam`,[],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        console.log('test')
+        return callBack(null, results);
+      }
+    );
+  },
   getResultatenByVakId: (vak_id, callBack) => {
     pool.query(
       `SELECT

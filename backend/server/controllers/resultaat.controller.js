@@ -1,10 +1,11 @@
 const {
-    
+
     getResultaatById,
     getResultatenByRoadmapId,
     getResultatenByKlasId,
     getResultatenByStudentId,
     getAveragePointsPerVak,
+    getAveragePointsPerVakAll,
     getResultatenByVakId,
     getResultaten,
     getTopResultaten,
@@ -91,6 +92,24 @@ module.exports = {
     getAveragePointsPerVak: (req, res) => {
         const student_id = req.params.student_id;
         getAveragePointsPerVak(student_id, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    succes: 0,
+                    message: "Resultaat bestaat niet!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+    getAveragePointsPerVakAll: (req, res) => {
+        getAveragePointsPerVakAll((err, results) => {
             if (err) {
                 console.log(err);
                 return;
