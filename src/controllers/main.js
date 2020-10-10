@@ -44,10 +44,30 @@ function refreshSelect(el) {
 const notificationsTrigger = document.getElementById('notifications-trigger')
 const notifications = document.getElementById('notifications')
 
+if (notificationsTrigger) {
 
-notificationsTrigger.addEventListener('mouseover', () => {
-    notifications.classList.add('open')
-})
-notificationsTrigger.addEventListener('mouseout', () => {
-    notifications.classList.remove('open')
-})
+    notificationsTrigger.addEventListener('click', () => {
+        if (!notifications.classList.contains('open')) {
+            notifications.classList.remove('slide-right')
+            notifications.classList.add('open')
+            notifications.classList.add('slide-left')
+        } else {
+            notifications.classList.add('slide-right')
+            notifications.classList.remove('slide-left')
+
+            setTimeout(() => {
+                notifications.classList.remove('open')
+            }, 400)
+        }
+    })
+}
+// notificationsTrigger.addEventListener('mouseover', () => {
+//     notifications.classList.add('open')
+//     notifications.classList.add('slide-left')
+// })
+// notificationsTrigger.addEventListener('mouseout', () => {
+//     setTimeout(() => {
+//         notifications.classList.remove('slide-left')
+//         notifications.classList.remove('open')
+//     }, 3000)
+// })

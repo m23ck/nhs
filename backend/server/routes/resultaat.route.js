@@ -4,6 +4,7 @@ const {
     getResultatenByKlasId,
     getResultatenByStudentId,
     getAveragePointsPerVak,
+    getAveragePointsPerVakAll,
     getResultatenByVakId,
     getResultaten,
     getTopResultaten,
@@ -15,6 +16,7 @@ const { checkToken } = require("../../auth/token_validation");
 
 router.get("/", checkToken, getResultaten);
 router.get("/top/", checkToken, getTopResultaten);
+router.get("/average_vak_all/", checkToken, getAveragePointsPerVakAll);
 router.get("/:id", checkToken, getResultaatById);
 router.get("/:roadmap_id", checkToken, getResultatenByRoadmapId);
 router.get("/:klas_id", checkToken, getResultatenByKlasId);
