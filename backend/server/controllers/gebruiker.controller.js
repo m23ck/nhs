@@ -152,9 +152,10 @@ module.exports = {
         });
     },
     updateGebruiker: (req, res) => {
+        console.log(req.body)
+        console.log('test')
         const body = req.body;
-        const salt = genSaltSync(10);
-        body.wachtwoord = hashSync(body.wachtwoord, salt);
+
         const gebruiker_id = req.params.id;
         getGebruikerById(gebruiker_id, (err, result) => {
             if (err) {
@@ -246,8 +247,8 @@ module.exports = {
                     status: results.status,
                     gebruiker_type: results.type
                 });
-                
-                
+
+
             } else {
                 return res.status(401).json({
                     success: 0,

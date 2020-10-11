@@ -12,17 +12,37 @@ const { gebruiker_id } = JSON.parse(localStorage.nhs_user)
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer " + current_token2);
+myHeaders.append("Content-Type", "application/json ");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault()
     let gegevens = new FormData(form)
-    fetch(`http://127.0.0.1:3000/gebruiker/${gebruiker_id}`, {
+    let gegevensData = {}
+    for (var pair of gegevens.entries()) {
+        gegevensData[pair[0]] = pair[1];
+    }
+    const VALUES = JSON.stringify(gegevensData, null, 2)
+
+    await fetch(`http://127.0.0.1:3000/gebruiker/${gebruiker_id}`, {
         method: "PUT",
         headers: myHeaders,
         mode: "cors",
         cache: "default",
-        body: JSON.stringify(gegevens)
+        body: VALUES
     })
+
+    // mutate loacalstorage object with new data 
+    gegevensData['full_name'] = gegevensData.voornaam + ' ' + gegevensData.naam
+
+    let updatedData = Object.assign(JSON.parse(localStorage.nhs_user), gegevensData)
+
+    localStorage.setItem('nhs_user', JSON.stringify(updatedData))
+
+    location.reload()
+
+    // console.log(gegevensData)
+    // console.log(updatedData)
+    // console.log(JSON.stringify(gegevensData, null, 2)) jh 
 })
 
 for (let input of inputs) {

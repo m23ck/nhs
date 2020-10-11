@@ -48,16 +48,14 @@ module.exports = {
         );
     },
     updateGebruiker: (data, id, callBack) => {
-        pool.query('update gebruiker set gebruiker_type_id = ?, naam = ?, voornaam = ?, email = ?, cohort = ?, telefoon = ?, adres = ?, wachtwoord = ?, status = ? where id = ?',
+        pool.query('update gebruiker set naam = ?, voornaam = ?, email = ?,  telefoon = ?, adres = ?, status = ? where id = ?',
             [
-                data.gebruiker_type_id,
                 data.naam,
                 data.voornaam,
                 data.email,
                 data.cohort,
                 data.telefoon,
                 data.adres,
-                data.wachtwoord,
                 data.status,
                 id
             ],
