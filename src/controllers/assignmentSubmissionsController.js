@@ -102,7 +102,10 @@ function approveSubmission(td){
   let assignment_submission_id = selectedRow.cells[0].innerHTML;
 
   let status = "approved"
-  changeSubmission(assignment_submission_id, status)
+  if (confirm("Are You Sure?")) {
+    changeSubmission(assignment_submission_id, status);
+  }
+  
 
 }
 
@@ -111,7 +114,10 @@ function rejectSubmission(td){
   let assignment_submission_id = selectedRow.cells[0].innerHTML;
   
   let status = "rejected"
-  changeSubmission(assignment_submission_id, status)
+  if (confirm("Are You Sure?")) {
+    changeSubmission(assignment_submission_id, status);
+  }
+  
 }
 
 function fillSelects() {

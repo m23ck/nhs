@@ -163,7 +163,7 @@ module.exports = {
             reject(error);
             return callBack(error);
           }
-          resolve(results.insertId);
+          return(results.insertId);
           // return callBack(null, results[0]);
         }
       );
