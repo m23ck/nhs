@@ -28,7 +28,7 @@ async function createChart() {
         data: {
             labels: resultData.vak_naam,
             datasets: [{
-                label: '# of Votes',
+                label: '# Average Score Per Subject',
                 data: resultData.punten,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

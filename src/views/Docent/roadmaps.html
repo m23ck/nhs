@@ -348,6 +348,62 @@
     </div>
   </div>
 
+
+   <!-- Update assignment modal -->
+   <div id="modal_update_assignment" class="modal" style="height: 900px">
+    <div class="modal-content">
+      <h3 style="font-family: 'Anton', sans-serif; text-align: center">
+        Edit Assignment
+      </h3>
+      <br />
+      <div>
+        <div class="row">
+          <form class="col s12" method="POST" id="updateAssignmentForm" name="updateAssignmentForm"
+            onsubmit="return updateAssignment()">
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="text" name="update_assignment_naam" id="update_assignment_naam" required />
+                <label for="update_assignment_naam">Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" name="update_omschrijving" id="update_omschrijving" required />
+                <label for="update_omschrijving">Description</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="date" name="update_start_datum" id="update_start_datum" required />
+                <label for="update_start_datum">Start Date</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="date" name="update_inlever_datum" id="update_inlever_datum" required />
+                <label for="update_inlever_datum">Eind Date</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="number" name="update_punten" id="update_punten" required />
+                <label for="update_punten">Points</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="number" name="update_herkansingspunten" id="update_herkansingspunten" required />
+                <label for="update_herkansingspunten">Re-examination</label>
+              </div>
+            </div>
+
+            <button class="btn waves-effect waves-light, nav" type="submit" name="action">
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!--JavaScript at end of body for optimized loading-->
 
   <script type="text/javascript" src="../../../src/style/materialize/js/materialize.min.js"></script>

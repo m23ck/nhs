@@ -93,7 +93,7 @@ function deleteCheck(td) {
   }
 
   if (confirm("Bent u zeker?")) {
-    deleteDocent();
+    deleteRichting();
   }
 }
 
