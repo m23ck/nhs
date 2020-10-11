@@ -38,12 +38,13 @@ fetch(`http://127.0.0.1:3000/gebruiker/type/admin`, {
   })
   .catch((err) => console.log(err));
 
-function createDocent() {
+function createAdmin() {
   let form = document.forms["docentForm"];
   let fd = new FormData(form);
   let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
+    data['status'] = "new";
   }
   VALUE = JSON.stringify(data, null, 2);
 
