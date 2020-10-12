@@ -44,6 +44,8 @@ function createDocent() {
   let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
+    data['status'] = 'new'
+    data['gebruiker_type_id'] = 2
   }
   VALUE = JSON.stringify(data, null, 2);
 

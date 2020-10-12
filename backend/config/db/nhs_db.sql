@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 08:00 PM
+-- Generation Time: Oct 13, 2020 at 01:49 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -47,7 +47,9 @@ INSERT INTO `assignment` (`id`, `roadmap_id`, `vak_id`, `assignment_naam`, `omsc
 (1, 2, '2', 'Helloworld', 'Creeer een Helloworld command-line programma met Java', '2020-09-03', '2020-09-04', 20, 15),
 (2, 3, '2', 'Stelling van Pythagoras Leren', 'Maak alle opgegeven sommen en zorg ervoor dat je de stelling van pythagoras kent', '2020-09-04', '2020-09-07', 19, 14),
 (3, 2, '1', 'Linux Server opzetten', 'Zet een linux server met CentOS op', '2020-09-08', '2020-09-09', 30, 20),
-(4, 2, '3', 'How to Use Your Toolset ', 'Get used to the use of your personally chosen toolset and craft amazing works with it.', '2020-10-07', '2020-10-22', 10, 8);
+(4, 2, '3', 'How to Use Your Toolset ', 'Get used to the use of your personally chosen toolset and craft amazing works with it.', '2020-10-07', '2020-10-22', 10, 8),
+(6, NULL, '4', 'PHP Helloworld', 'maak een helloworld app met php', '2020-10-13', '2020-10-14', 10, 8),
+(7, 2, '4', 'test ', 'maak een helloworld app met php', '2020-10-14', '2020-10-29', 10, 8);
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,8 @@ CREATE TABLE `assignment_submission` (
 
 INSERT INTO `assignment_submission` (`id`, `assignment_id`, `student_id`, `status`) VALUES
 (2, 3, 11, 'approved'),
-(3, 2, 11, 'submitted');
+(3, 2, 11, 'approved'),
+(4, 3, 11, 'submitted');
 
 -- --------------------------------------------------------
 
@@ -123,7 +126,11 @@ INSERT INTO `gebruiker` (`id`, `gebruiker_type_id`, `naam`, `voornaam`, `email`,
 (4, 2, 'Tdlohreg', 'Mayra', 'tmayra@gmail.com', NULL, 79765421, 'mayraStraat 43', '$2b$10$OZR6jLhnPRRIifHnLuyhaOEmz2nHeUARs66OYZwzV3uBrxc5Ocbyi', ''),
 (8, 1, 'Monorath', 'Raman', 'ramanmono@yahoo.com', NULL, 8954326, 'monorathweg 11', '$2b$10$JeSTIDvKV3OZsC4e7qq5CeH3wbNUadxR2p1ZaXFbuWe.hqxW8/0Be', ''),
 (10, 3, 'Latchmansing', 'Kenson', 'klsing@gmail.com', 2016, 8954326, 'singweg 3', '$2b$10$Uf6bBquL.O5.BIx.f8N43eitK9DtHozXRfKnE/odSGiMDo03IOYMK', 'new'),
-(11, 3, 'Samadhan', 'Shaniel', 'esaniello@gmail.com', 2016, 8786854, 'lalaweg 1', '$2b$10$oMj53GYhe6ZnSvuSrRG2xurVEgCX2QTACItDAunz/jet4GkQHbCVi', 'new');
+(11, 3, 'Samadhan', 'Shaniel', 'esaniello@gmail.com', 2016, 8786854, 'lalaweg 1', '$2b$10$oMj53GYhe6ZnSvuSrRG2xurVEgCX2QTACItDAunz/jet4GkQHbCVi', 'new'),
+(13, 2, 'Hammen', 'Joann', 'hamj@gmail.com', NULL, 8582853, 'hammenstraat 5', '$2b$10$c4PkAdIkz8A9Xh5JNERj6eQvdoZuqAYEAuLTBM0YoGMQF9iGEaFCy', 'new'),
+(14, 1, 'peralta', 'Jake', 'jp@gmail.com', NULL, 8987845, 'perastraat 7', '$2b$10$AysVOXwVerazmiLDQNYVFugqldaUkcCm.fFlpPqdHH3WiRymUg6qS', 'new'),
+(15, 3, 'Uiterlo', 'Lesley', 'lulu@gmail.com', 2017, 8855231, 'anniestraat 6', '$2b$10$rpT7HBXBXbbO7jIqzl2ZMeC5NcIhsutAic/fTGgdlx.GG73FP49Zi', 'new'),
+(16, 3, 'Mack', 'Tafarel', 'tmack', 2020, 8587845, 'itstraat 20', '$2b$10$EHHdDBik/9hTgCA7dz0LLuvkCxTgg8RbOqFcqBsDaz3fZAJjbEt1W', 'new');
 
 -- --------------------------------------------------------
 
@@ -147,7 +154,9 @@ INSERT INTO `jaar_klas` (`id`, `klas_id`, `richting_id`, `jaar`, `klassendocent_
 (1, 6, 1, 2019, 3),
 (2, 8, 2, 2017, 4),
 (3, 9, 3, 2018, 3),
-(4, 10, 3, 2018, 4);
+(4, 10, 3, 2018, 4),
+(5, 11, 1, 2020, 13),
+(6, 12, 1, 2020, 3);
 
 -- --------------------------------------------------------
 
@@ -173,7 +182,9 @@ INSERT INTO `klas` (`id`, `klas_naam`) VALUES
 (7, '1.06.10'),
 (8, '2.06.23'),
 (9, '1.01.2'),
-(10, '1.03.5');
+(10, '1.03.5'),
+(11, '4.13.01'),
+(12, '4.16.02');
 
 -- --------------------------------------------------------
 
@@ -212,7 +223,8 @@ CREATE TABLE `resultaat` (
 --
 
 INSERT INTO `resultaat` (`id`, `assignment_submission_id`, `punten`) VALUES
-(5, 2, 30);
+(5, 2, 30),
+(7, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -232,7 +244,8 @@ CREATE TABLE `richting` (
 INSERT INTO `richting` (`id`, `richting_naam`) VALUES
 (1, 'Informatie-en Communicatie Technologie'),
 (2, 'Audio-visuele Productie'),
-(3, 'Proces Techniek');
+(3, 'Proces Techniek'),
+(5, 'Mijnbouw');
 
 -- --------------------------------------------------------
 
@@ -254,7 +267,10 @@ CREATE TABLE `roadmap` (
 
 INSERT INTO `roadmap` (`id`, `roadmap_naam`, `start_datum`, `eind_datum`, `docent_id`) VALUES
 (2, 'ITE Basics', '2020-09-03', '2020-09-08', 3),
-(3, 'Wiskunde Inleiding', '2020-09-03', '2020-09-15', 4);
+(3, 'Wiskunde Inleiding', '2020-09-03', '2020-09-15', 4),
+(4, 'Introductie Programmeren', '2020-10-13', '2020-10-20', NULL),
+(6, 'Introductie Programmeren', '2020-10-13', '2020-10-22', 13),
+(7, 'Introductie Programmeren', '2020-10-13', '2020-10-30', 3);
 
 -- --------------------------------------------------------
 
@@ -313,7 +329,9 @@ CREATE TABLE `vak` (
 INSERT INTO `vak` (`id`, `vak_naam`) VALUES
 (1, 'Engels'),
 (2, 'Wiskunde'),
-(3, 'IT Essentials');
+(3, 'IT Essentials'),
+(4, 'Programmeren'),
+(5, 'IT Recht');
 
 --
 -- Indexes for dumped tables
@@ -428,13 +446,13 @@ ALTER TABLE `vak`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `docent_richting`
@@ -452,49 +470,49 @@ ALTER TABLE `docent_vak`
 -- AUTO_INCREMENT for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `jaar_klas`
 --
 ALTER TABLE `jaar_klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `klas`
 --
 ALTER TABLE `klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `klas_roadmaps`
 --
 ALTER TABLE `klas_roadmaps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `resultaat`
 --
 ALTER TABLE `resultaat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `richting`
 --
 ALTER TABLE `richting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_klas`
 --
 ALTER TABLE `student_klas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -506,7 +524,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `vak`
 --
 ALTER TABLE `vak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

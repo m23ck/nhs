@@ -46,6 +46,7 @@ function createRoadmap() {
   let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
+    data['docent_id'] = gebruiker_id
   }
   VALUE = JSON.stringify(data, null, 2);
 
